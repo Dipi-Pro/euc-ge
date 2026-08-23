@@ -78,6 +78,18 @@ Double click `index.html`. It works straight off the filesystem, no server neede
 The published copy runs on GitHub Pages through `.github/workflows/pages.yml`, which deploys
 on every push to `main`. Turn it on once under Settings, Pages, Source: GitHub Actions.
 
+## Notes on the video
+
+The video section embeds a YouTube video from the channel დიფი • DIPI, on whether couriering
+by unicycle is worth it. The player is a click-to-load facade: until someone presses play the
+page only fetches the thumbnail, so no YouTube script or cookie is involved. Pressing play
+swaps in a `youtube-nocookie.com` iframe.
+
+Embedding is what YouTube's embed feature is for, and the channel is credited with a link.
+Still worth a message to the author once this is a commercial storefront, and worth checking
+they have not since disabled embedding. To swap the video, change the id in the `data-video`
+attribute and the thumbnail URL in `index.html`, and `video.name` in `data/i18n.js`.
+
 ## Notes on the photos
 
 Press photos arrive at wildly different sizes, some on white backgrounds, some as cutouts

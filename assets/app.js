@@ -286,6 +286,18 @@
     return ok;
   }
 
+  /* --- ვიდეო ------------------------------------------------------------ */
+  /* პლეერი მხოლოდ დაწკაპუნებაზე ჩნდება: სანამ არ დააჭერ, YouTube-სთან
+     კავშირი არ იხსნება და გვერდი მალე იტვირთება. */
+  function playVideo(id) {
+    var frame = document.getElementById("videoFrame");
+    if (!frame || !/^[\w-]{6,20}$/.test(id)) return;
+    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0&hl=' + lang + '" title="' + esc(t("video.name")) +
+      '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" ' +
+      'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  }
+
   /* --- გამოჩენის ანიმაცია ----------------------------------------------- */
   var io = null;
   function watchRise() {
@@ -329,6 +341,7 @@
       $$("#sheetBody .sheet__thumbs button").forEach(function (b) { b.setAttribute("aria-current", String(b === el)); });
       return;
     }
+    if ((el = hit("[data-video]"))) { playVideo(el.dataset.video); return; }
     if ((el = hit("[data-filter]"))) { filter = el.dataset.filter; renderGrid(); return; }
     if ((el = hit("[data-jump]"))) { filter = el.dataset.jump; renderGrid(); return; }
     if ((el = hit("[data-close]"))) { el.closest("dialog").close(); return; }
