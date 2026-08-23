@@ -12,6 +12,9 @@
   var BRANDS = DATA.brands;
   var META = DATA.meta;
   var IMG = "assets/wheels/";
+  /* ფოტოს მისამართი. window.PHOTOS-ის არსებობის შემთხვევაში (ერთფაილიანი
+     დემო ვერსია) ფოტოები პირდაპირ ფაილშია ჩაშენებული. */
+  var photo = function (file) { return (window.PHOTOS && window.PHOTOS[file]) || IMG + file; };
   var STORE_LANG = "mono-lang";
   var STORE_THEME = "mono-theme";
 
@@ -91,7 +94,7 @@
       '<article class="card">' +
         '<button class="card__plate" data-open="' + w.id + '" aria-label="' + esc(full) + '">' +
           (w.badge ? '<span class="badge">' + esc(t("badge." + w.badge)) + "</span>" : "") +
-          '<img src="' + IMG + w.images[0] + '" alt="' + esc(full) + '" loading="lazy" decoding="async">' +
+          '<img src="' + photo(w.images[0]) + '" alt="' + esc(full) + '" loading="lazy" decoding="async">' +
         "</button>" +
         '<div class="card__body">' +
           '<span class="card__brand">' + esc(b.name) + "</span>" +
@@ -128,7 +131,7 @@
       var b = brandOf(w.brand);
       return (
         '<div class="flag__slide" data-on="' + (i === flagIdx ? 1 : 0) + '" role="tabpanel" aria-label="' + esc(b.name) + '">' +
-          '<div class="flag__plate"><img src="' + IMG + w.images[0] + '" alt="' + esc(b.name + " " + w.model) + '"' + (i ? ' loading="lazy"' : "") + "></div>" +
+          '<div class="flag__plate"><img src="' + photo(w.images[0]) + '" alt="' + esc(b.name + " " + w.model) + '"' + (i ? ' loading="lazy"' : "") + "></div>" +
           '<div class="flag__meta">' +
             "<div>" +
               '<div class="flag__brand">' + esc(b.name) + "</div>" +
@@ -172,7 +175,7 @@
           '<span class="tile__count">' + t("brands.models", { n: mine.length }) + "</span>" +
           '<span class="tile__tag">' + esc(loc(b.tagline)) + "</span>" +
           '<span class="tile__from">' + t("brands.from", { x: price(min) }) + "</span>" +
-          '<span class="tile__shot"><img src="' + IMG + star.images[0] + '" alt="" loading="lazy"></span>' +
+          '<span class="tile__shot"><img src="' + photo(star.images[0]) + '" alt="" loading="lazy"></span>' +
         "</a>"
       );
     }).join("");
@@ -229,11 +232,11 @@
 
     $("#sheetBody").innerHTML =
       '<div class="sheet__media">' +
-        '<div class="sheet__big"><img id="sheetBig" src="' + IMG + w.images[0] + '" alt="' + esc(full) + '"></div>' +
+        '<div class="sheet__big"><img id="sheetBig" src="' + photo(w.images[0]) + '" alt="' + esc(full) + '"></div>' +
         '<div class="sheet__thumbs">' +
           w.images.map(function (src, i) {
-            return '<button data-thumb="' + IMG + src + '" aria-current="' + (i === 0) + '" aria-label="' + esc(t("sheet.photo", { n: i + 1 })) + '">' +
-              '<img src="' + IMG + src + '" alt=""></button>';
+            return '<button data-thumb="' + photo(src) + '" aria-current="' + (i === 0) + '" aria-label="' + esc(t("sheet.photo", { n: i + 1 })) + '">' +
+              '<img src="' + photo(src) + '" alt=""></button>';
           }).join("") +
         "</div>" +
       "</div>" +

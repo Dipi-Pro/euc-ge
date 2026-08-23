@@ -27,7 +27,7 @@
   /* პროდუქტის ფოტოს ფირფიტა: ორივე თემაში ღიაა, რადგან ქარხნული ფოტოების
      ნაწილი თეთრ ფონზეა გადაღებული და მუქ კარტზე თეთრი ლაქა გამოჩნდებოდა.
      მუქ თემაზე ოდნავ ჩამუქებულია, რომ თვალს არ ეჭრებოდეს */
-  --plate-1: #e9edf2;
+  --plate-1: #ffffff;
   --plate-2: #dfe4ea;
   --plate-line: rgba(0, 0, 0, 0.08);
 
@@ -59,7 +59,7 @@
     --accent-glow: rgba(226, 65, 15, 0.16);
     --ok: #157f52;
     --wait: #8c5710;
-    --plate-1: #f7f8fa;
+    --plate-1: #ffffff;
     --plate-2: #e6eaef;
     --plate-line: rgba(0, 0, 0, 0.06);
     --shadow: 0 20px 50px -28px rgba(16, 20, 26, 0.45);
@@ -81,7 +81,7 @@
   --accent-glow: rgba(226, 65, 15, 0.16);
   --ok: #157f52;
   --wait: #8c5710;
-  --plate-1: #f7f8fa;
+  --plate-1: #ffffff;
   --plate-2: #e6eaef;
   --plate-line: rgba(0, 0, 0, 0.06);
   --shadow: 0 20px 50px -28px rgba(16, 20, 26, 0.45);
