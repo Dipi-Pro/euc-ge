@@ -1,4 +1,4 @@
-# MONO.GE
+# ZIPI.GE
 
 A Georgian storefront for electric unicycles, laid out the way cfmoto.ge is: sticky header,
 a flagship slider, brand tiles, a top models row, a filterable catalogue, service section,

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MONO.GE — გვერდის ლოგიკა. ბიბლიოთეკების გარეშე.
+   ZIPI.GE — გვერდის ლოგიკა. ბიბლიოთეკების გარეშე.
 
    მონაცემები: data/catalog.js (window.CATALOG), ტექსტები: data/i18n.js.
    ამ ფაილში ხდება: ენა, თემა, ჩვენება, ფილტრი, სორტირება და ორი ფანჯარა.
@@ -15,8 +15,8 @@
   /* ფოტოს მისამართი. window.PHOTOS-ის არსებობის შემთხვევაში (ერთფაილიანი
      დემო ვერსია) ფოტოები პირდაპირ ფაილშია ჩაშენებული. */
   var photo = function (file) { return (window.PHOTOS && window.PHOTOS[file]) || IMG + file; };
-  var STORE_LANG = "mono-lang";
-  var STORE_THEME = "mono-theme";
+  var STORE_LANG = "zipi-lang";
+  var STORE_THEME = "zipi-theme";
 
   /* TOP მოდელები: ორი ქალაქური და ორი ფლაგმანი */
   var TOP = ["inmotion-v14-pro", "kingsong-s22-pro", "nosfet-apex", "leaperkim-lynx-s"];

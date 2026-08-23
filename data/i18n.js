@@ -112,7 +112,7 @@ window.I18N = {
 
     "about.eyebrow": "ჩვენ შესახებ",
     "about.h2": "მაღაზია, რომელსაც მოსიარულეები აკეთებენ",
-    "about.p1": "MONO.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
+    "about.p1": "ZIPI.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
     "about.p2": "გინდა უბრალოდ დაჯდომა და ცდა? ჩამოდი მაღაზიაში: დამწყებთათვის დამცავებს და სასწავლო სივრცეს უფასოდ ვაძლევთ.",
 
     "contact.eyebrow": "კონტაქტი",
@@ -256,7 +256,7 @@ window.I18N = {
 
     "about.eyebrow": "About us",
     "about.h2": "A shop run by riders",
-    "about.p1": "MONO.GE is an electric unicycle shop in Tbilisi. We only sell the brands we ride ourselves and can get parts for. Every wheel is opened, tested and reassembled before it is handed over.",
+    "about.p1": "ZIPI.GE is an electric unicycle shop in Tbilisi. We only sell the brands we ride ourselves and can get parts for. Every wheel is opened, tested and reassembled before it is handed over.",
     "about.p2": "Just want to stand on one and try? Come by the shop: pads and a space to learn in are free.",
 
     "contact.eyebrow": "Contact",
