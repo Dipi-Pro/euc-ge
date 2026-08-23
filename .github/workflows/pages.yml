@@ -1,0 +1,61 @@
+# ============================================================================
+# Publishes the site to GitHub Pages.
+#
+# The site is plain static files (HTML, CSS, JS, images), so there is nothing to
+# build. The job just hands the whole repository to Pages as-is.
+#
+# One-time setup in the repo, after this file is on main:
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+# Without that switch, this workflow runs but Pages ignores the result.
+# ============================================================================
+
+name: pages
+
+on:
+  # Deploy whenever main moves (a merged pull request counts).
+  push:
+    branches: [main]
+  # Lets you re-deploy by hand from the Actions tab without pushing anything.
+  workflow_dispatch:
+
+# Permissions the deploy needs. `id-token` is what lets the Pages action prove
+# to GitHub that the artifact really came from this workflow run.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two pushes land close together, let the newer one finish and cancel the
+# older run, so the live site always reflects the newest commit on main.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Tells GitHub this job publishes to Pages, and surfaces the live URL in the
+    # run summary once it is done.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 1. Grab the repository contents.
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      # 2. Prepare Pages (works out the base URL, enables the deployment API).
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # 3. Package the site. `path: .` means "the repo root", because index.html
+      #    already sits there. Nothing is compiled or minified.
+      - name: Package the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      # 4. Push the package live.
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

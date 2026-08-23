@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MONO.GE — ელექტრო მონოციკლები თბილისში</title>
+<meta name="description" content="NOSFET, LEAPERKIM, INMOTION და KINGSONG ელექტრო მონოციკლები თბილისში. მარაგი, ფასები ლარში, განვადება და სერვისი.">
+<meta property="og:title" content="MONO.GE — ელექტრო მონოციკლები">
+<meta property="og:description" content="NOSFET, LEAPERKIM, INMOTION და KINGSONG მონოციკლები. 16 მოდელი, ფასები ლარში, სერვისი თბილისში.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<script>
+  /* თემა ჯერ თავში ვსვამთ, რომ გვერდი არასწორი ფერით არ აციმციმდეს.
+     არჩევანი localStorage-შია; "auto" ნიშნავს სისტემის თემას. */
+  try {
+    var t = localStorage.getItem("mono-theme");
+    if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+  } catch (e) { /* localStorage გამორთულია, ვრჩებით სისტემის თემაზე */ }
+</script>
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">გადადი მთავარ შიგთავსზე</a>
+
+<!-- ==================== ჰედერი ==================== -->
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="#" aria-label="MONO.GE">
+      <span class="logo__mark">MONO<span>.GE</span></span>
+      <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
+    </a>
+
+    <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" data-t-aria="nav.menu" aria-label="მენიუ">☰</button>
+
+    <nav class="nav" id="nav">
+      <a href="#hero" data-t="nav.home">მთავარი</a>
+      <a href="#catalog" data-t="nav.catalog">კატალოგი</a>
+      <a href="#service" data-t="nav.service">სერვისი</a>
+      <a href="#about" data-t="nav.about">ჩვენ შესახებ</a>
+      <a href="#contact" data-t="nav.contact">კონტაქტი</a>
+    </nav>
+
+    <!-- ენის გადამრთველი -->
+    <div class="seg seg--lang" data-t-aria="lang.label" aria-label="ენა">
+      <button data-lang="ka" aria-pressed="true">ქარ</button>
+      <button data-lang="en" aria-pressed="false">ENG</button>
+    </div>
+
+    <!-- თემის გადამრთველი: ავტო ნიშნავს სისტემის თემას -->
+    <div class="seg seg--theme" data-t-aria="theme.label" aria-label="თემა">
+      <button data-theme-set="auto" aria-pressed="true" title="ავტო" data-t-title="theme.auto">◐</button>
+      <button data-theme-set="light" aria-pressed="false" title="ღია" data-t-title="theme.light">☀</button>
+      <button data-theme-set="dark" aria-pressed="false" title="მუქი" data-t-title="theme.dark">☾</button>
+    </div>
+
+    <a class="top__tel num" href="tel:+995500000000">+995 500 00 00 00</a>
+    <button class="btn btn--sm" data-call data-t="cta.call">მოითხოვე ზარი</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==================== ჰერო ==================== -->
+  <section class="hero" id="hero">
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <p class="eyebrow" data-t="hero.eyebrow">ოფიციალური მარაგი თბილისში</p>
+        <h1>
+          <span data-t="hero.h1a">ერთი ბორბალი,</span><br>
+          <em data-t="hero.h1b">მთელი თბილისი</em> <span data-t="hero.h1c">გზაა.</span>
+        </h1>
+        <p class="lead" data-t="hero.lead">
+          მაღალი სიმძლავრის ელექტრო მონოციკლები ოთხი ბრენდისგან. ფასები ლარში,
+          განვადება 12 თვემდე, სერვისი და ნაწილები ადგილზე.
+        </p>
+        <div class="hero__cta">
+          <a class="btn" href="#catalog" data-t="cta.catalog">კატალოგის ნახვა</a>
+          <button class="btn btn--ghost" data-call="test" data-t="cta.testride">დაჯავშნე ტესტ-სვლა</button>
+        </div>
+        <p class="hero__marks">
+          <span>NOSFET</span><span>LEAPERKIM</span><span>INMOTION</span><span>KINGSONG</span>
+        </p>
+      </div>
+
+      <!-- ბრენდების ფლაგმანები, JS ავსებს -->
+      <div class="flag">
+        <div class="flag__stage" id="flagStage"></div>
+        <div class="flag__dots" id="flagDots" role="tablist"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ციფრები ==================== -->
+  <section class="sec sec--tight" aria-label="მოკლე ინფორმაცია">
+    <div class="wrap">
+      <div class="strip__in">
+        <div class="strip__cell"><span class="strip__n">4</span><span class="strip__l" data-t="strip.brands">ბრენდი ერთ სივრცეში</span></div>
+        <div class="strip__cell"><span class="strip__n">16</span><span class="strip__l" data-t="strip.models">მოდელი კატალოგში</span></div>
+        <div class="strip__cell"><span class="strip__n">12</span><span class="strip__l" data-t="strip.months">თვემდე განვადება</span></div>
+        <div class="strip__cell"><span class="strip__n" id="fromPrice">—</span><span class="strip__l" data-t="strip.from">საწყისი ფასი</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ბრენდები (ბენტო) ==================== -->
+  <section class="sec" id="brands">
+    <div class="wrap">
+      <div class="sec__head">
+        <div>
+          <p class="eyebrow" data-t="brands.eyebrow">ბრენდები</p>
+          <h2 data-t="brands.h2">ოთხი მწარმოებელი, ოთხი ხასიათი</h2>
+        </div>
+        <p class="lead" data-t="brands.lead">
+          ერთი და იმავე ფასის მოდელები სხვადასხვა ამოცანას ხსნის. აირჩიე ბრენდი,
+          ან პირდაპირ კატალოგში გაფილტრე.
+        </p>
+      </div>
+      <div class="bento" id="brandGrid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TOP მოდელები ==================== -->
+  <section class="sec" id="top-models">
+    <div class="wrap">
+      <div class="sec__head">
+        <div>
+          <p class="eyebrow" data-t="top.eyebrow">ყველაზე მოთხოვნადი</p>
+          <h2 data-t="top.h2">TOP მოდელები</h2>
+        </div>
+        <p class="lead" data-t="top.lead">ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ: ორი ქალაქური და ორი ფლაგმანი.</p>
+      </div>
+      <div class="grid" id="topGrid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== კატალოგი ==================== -->
+  <section class="sec" id="catalog">
+    <div class="wrap">
+      <div class="sec__head">
+        <div>
+          <p class="eyebrow" data-t="cat.eyebrow">კატალოგი</p>
+          <h2 data-t="cat.h2">ყველა მონოციკლი</h2>
+        </div>
+        <p class="lead" data-t="cat.lead">ფასები მოცემულია ლარში, დღგ-ს ჩათვლით. მარაგი და ფასი ზარის დროს დაზუსტდება.</p>
+      </div>
+
+      <div class="tools">
+        <div class="chips" id="chips" role="group"></div>
+        <label class="sort">
+          <span data-t="cat.sort">სორტირება</span>
+          <select id="sort">
+            <option value="price-asc" data-t="sort.priceAsc">ფასი: ზრდადობით</option>
+            <option value="price-desc" data-t="sort.priceDesc">ფასი: კლებადობით</option>
+            <option value="power-desc" data-t="sort.powerDesc">სიმძლავრე: მაღლიდან</option>
+            <option value="range-desc" data-t="sort.rangeDesc">გარბენი: მაღლიდან</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" data-t="cat.empty" hidden>ამ ფილტრით მოდელი ვერ მოიძებნა.</p>
+    </div>
+  </section>
+
+  <!-- ==================== სერვისი ==================== -->
+  <section class="sec" id="service">
+    <div class="wrap">
+      <div class="sec__head">
+        <div>
+          <p class="eyebrow" data-t="svc.eyebrow">სერვის ცენტრი</p>
+          <h2 data-t="svc.h2">ყიდვის შემდეგ არ გვშორდები</h2>
+        </div>
+        <p class="lead" data-t="svc.lead">
+          მონოციკლი მოძრავი ნაწილების კრებულია: საბურავი, ამორტიზაცია, ბატარეა.
+          სამივეს ადგილზე ვაკეთებთ, ნაწილის ჩამოტანის ლოდინის გარეშე.
+        </p>
+      </div>
+      <div class="svc">
+        <div class="svc__item">
+          <span data-t="svc.1t">დიაგნოსტიკა</span>
+          <h3 data-t="svc.1h">შემოწმება და პროგრამული განახლება</h3>
+          <p data-t="svc.1p">ბატარეის ტესტი დატვირთვის ქვეშ, ძრავისა და კონტროლერის შემოწმება, firmware-ის განახლება.</p>
+        </div>
+        <div class="svc__item">
+          <span data-t="svc.2t">ბატარეა</span>
+          <h3 data-t="svc.2h">ბატარეის შეკეთება და შეცვლა</h3>
+          <p data-t="svc.2p">ელემენტების შეცვლა, BMS-ის დიაგნოსტიკა, დატენვის და ავტონომიის დაცემის მიზეზის დადგენა.</p>
+        </div>
+        <div class="svc__item">
+          <span data-t="svc.3t">მექანიკა</span>
+          <h3 data-t="svc.3h">საბურავი და ამორტიზაცია</h3>
+          <p data-t="svc.3p">საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება მოსიარულეზე.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ჩვენ შესახებ და კონტაქტი ==================== -->
+  <section class="sec" id="about">
+    <div class="wrap about__in">
+      <div class="panel">
+        <p class="eyebrow" data-t="about.eyebrow">ჩვენ შესახებ</p>
+        <h2 data-t="about.h2">მაღაზია, რომელსაც მოსიარულეები აკეთებენ</h2>
+        <p class="lead" data-t="about.p1">
+          MONO.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს,
+          რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია.
+          ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.
+        </p>
+        <p class="lead" data-t="about.p2">
+          გინდა უბრალოდ დაჯდომა და ცდა? ჩამოდი მაღაზიაში: დამწყებთათვის დამცავებს და
+          სასწავლო სივრცეს უფასოდ ვაძლევთ.
+        </p>
+        <div class="hero__cta">
+          <button class="btn" data-call data-t="cta.call">მოითხოვე ზარი</button>
+          <a class="btn btn--ghost" href="#catalog" data-t="cta.catalog">კატალოგის ნახვა</a>
+        </div>
+      </div>
+
+      <div class="panel" id="contact">
+        <p class="eyebrow" data-t="contact.eyebrow">კონტაქტი</p>
+        <dl class="facts">
+          <div class="fact"><dt data-t="contact.address">მისამართი</dt><dd data-t="contact.addressValue">თბილისი, [მისამართი]</dd></div>
+          <div class="fact"><dt data-t="contact.sales">გაყიდვები</dt><dd><a class="num" href="tel:+995500000000">+995 500 00 00 00</a></dd></div>
+          <div class="fact"><dt data-t="contact.service">სერვისი</dt><dd><a class="num" href="tel:+995500000001">+995 500 00 00 01</a></dd></div>
+          <div class="fact"><dt data-t="contact.email">ელფოსტა</dt><dd><a href="mailto:info@mono.ge">info@mono.ge</a></dd></div>
+          <div class="fact"><dt data-t="contact.hours">სამუშაო საათები</dt><dd data-t="contact.hoursValue">ორშ–შაბ, 10:00–19:00</dd></div>
+          <div class="fact"><dt data-t="contact.installment">განვადება</dt><dd data-t="contact.installmentValue">12 თვემდე, ბანკის პარტნიორობით</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== ფუტერი ==================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__in">
+      <div>
+        <a class="logo" href="#">
+          <span class="logo__mark">MONO<span>.GE</span></span>
+          <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
+        </a>
+        <p style="margin-top:14px;font-size:0.86rem;max-width:32ch;color:var(--muted)" data-t="foot.blurb">
+          NOSFET, LEAPERKIM, INMOTION და KINGSONG მონოციკლები, ნაწილები და სერვისი თბილისში.
+        </p>
+      </div>
+      <div>
+        <h4 data-t="foot.catalog">კატალოგი</h4>
+        <ul>
+          <li><a href="#catalog" data-jump="nosfet">NOSFET</a></li>
+          <li><a href="#catalog" data-jump="leaperkim">LEAPERKIM</a></li>
+          <li><a href="#catalog" data-jump="inmotion">INMOTION</a></li>
+          <li><a href="#catalog" data-jump="kingsong">KINGSONG</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-t="foot.shop">მაღაზია</h4>
+        <ul>
+          <li><a href="#service" data-t="svc.eyebrow">სერვის ცენტრი</a></li>
+          <li><a href="#about" data-t="nav.about">ჩვენ შესახებ</a></li>
+          <li><a href="#contact" data-t="nav.contact">კონტაქტი</a></li>
+          <li><a href="#catalog" data-t="foot.installment">განვადება</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-t="foot.contact">კონტაქტი</h4>
+        <ul>
+          <li><a class="num" href="tel:+995500000000">+995 500 00 00 00</a></li>
+          <li><a href="mailto:info@mono.ge">info@mono.ge</a></li>
+          <li data-t="contact.addressValue">თბილისი, [მისამართი]</li>
+          <li data-t="contact.hoursValue">ორშ–შაბ, 10:00–19:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span class="num">2026</span> MONO.GE</span>
+      <span data-t="foot.disclaimer">ფასები საინფორმაციო ხასიათისაა და არ არის საჯარო შეთავაზება.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== პროდუქტის ფანჯარა ==================== -->
+<dialog id="sheet">
+  <button class="sheet__x" data-close data-t-aria="cta.close" aria-label="დახურვა">✕</button>
+  <div class="sheet" id="sheetBody"></div>
+</dialog>
+
+<!-- ==================== ზარის ფორმა ==================== -->
+<dialog id="call" aria-labelledby="callTitle">
+  <button class="sheet__x" data-close data-t-aria="cta.close" aria-label="დახურვა">✕</button>
+  <form class="callform" id="callForm" novalidate>
+    <div>
+      <p class="eyebrow" data-t="form.eyebrow">უკუკავშირი</p>
+      <h3 id="callTitle" style="margin-top:10px" data-t="form.title">მოითხოვე ზარი</h3>
+    </div>
+    <p class="note" id="callAbout" data-t="form.about">დაგირეკავთ სამუშაო საათებში და მარაგსა და ფასს დაგიდასტურებთ.</p>
+    <div class="field" id="fName">
+      <label for="cName" data-t="form.name">სახელი</label>
+      <input id="cName" name="name" autocomplete="name" required>
+      <span class="field__err"></span>
+    </div>
+    <div class="field" id="fTel">
+      <label for="cTel" data-t="form.tel">ტელეფონი</label>
+      <input id="cTel" name="tel" inputmode="tel" autocomplete="tel" placeholder="+995 5XX XX XX XX" required>
+      <span class="field__err"></span>
+    </div>
+    <div class="field">
+      <label for="cNote" data-t="form.note">კომენტარი (სურვილისამებრ)</label>
+      <textarea id="cNote" name="note" rows="3"></textarea>
+    </div>
+    <button class="btn btn--block" type="submit" data-t="form.send">გაგზავნა</button>
+    <p class="note" data-t="form.backend">ფორმა ჯერ არ არის სერვერზე მიბმული. იხილე README, სად უნდა ჩასვა ფორმის სერვისის მისამართი.</p>
+  </form>
+</dialog>
+
+<script src="data/catalog.js"></script>
+<script src="data/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
