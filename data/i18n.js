@@ -32,9 +32,8 @@ window.I18N = {
     "cta.close": "დახურვა",
 
     "hero.eyebrow": "ოფიციალური მარაგი თბილისში",
-    "hero.h1a": "ერთი ბორბალი,",
     "hero.h1b": "მთელი თბილისი",
-    "hero.h1c": "გზაა.",
+    "hero.h1c": "გზაა",
     "hero.lead": "მაღალი სიმძლავრის ელექტრო მონოციკლები ოთხი ბრენდისგან. ფასები ლარში, განვადება 12 თვემდე, სერვისი და ნაწილები ადგილზე.",
     "hero.flagship": "ფლაგმანი",
 
@@ -42,6 +41,14 @@ window.I18N = {
     "strip.models": "მოდელი კატალოგში",
     "strip.months": "თვემდე განვადება",
     "strip.from": "საწყისი ფასი",
+
+    "video.eyebrow": "ვიდეო მიმოხილვა",
+    "video.h2": "ნახე, როგორია ეს რეალურ ქუჩაში",
+    "video.lead": "ქართული არხის ვიდეო იმაზე, ღირს თუ არა მონოციკლით კურიერობა. კარგი შესავალია, თუ ჯერ ეჭვი გაქვს, რამდენად პრაქტიკულია ეს ყოველდღიურად.",
+    "video.name": "ღირს თუ არა მონობორბლით კურიერობა?",
+    "video.credit": "არხი",
+    "video.play": "ვიდეოს გახსნა",
+    "video.watch": "YouTube-ზე ნახვა",
 
     "brands.eyebrow": "ბრენდები",
     "brands.h2": "ოთხი მწარმოებელი, ოთხი ხასიათი",
@@ -112,7 +119,7 @@ window.I18N = {
 
     "about.eyebrow": "ჩვენ შესახებ",
     "about.h2": "მაღაზია, რომელსაც მოსიარულეები აკეთებენ",
-    "about.p1": "MONO.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
+    "about.p1": "ZIPI.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
     "about.p2": "გინდა უბრალოდ დაჯდომა და ცდა? ჩამოდი მაღაზიაში: დამწყებთათვის დამცავებს და სასწავლო სივრცეს უფასოდ ვაძლევთ.",
 
     "contact.eyebrow": "კონტაქტი",
@@ -176,9 +183,8 @@ window.I18N = {
     "cta.close": "Close",
 
     "hero.eyebrow": "In stock in Tbilisi",
-    "hero.h1a": "One wheel,",
     "hero.h1b": "all of Tbilisi",
-    "hero.h1c": "is the road.",
+    "hero.h1c": "is the road",
     "hero.lead": "High-power electric unicycles from four brands. Prices in lari, instalments up to 12 months, service and parts on site.",
     "hero.flagship": "Flagship",
 
@@ -186,6 +192,14 @@ window.I18N = {
     "strip.models": "models in the catalogue",
     "strip.months": "months of instalments",
     "strip.from": "starting price",
+
+    "video.eyebrow": "Video review",
+    "video.h2": "See what this looks like on a real street",
+    "video.lead": "A Georgian channel on whether couriering by unicycle is worth it. A good place to start if you are still unsure how practical one of these is day to day.",
+    "video.name": "ღირს თუ არა მონობორბლით კურიერობა?",
+    "video.credit": "Channel",
+    "video.play": "Play the video",
+    "video.watch": "Watch on YouTube",
 
     "brands.eyebrow": "Brands",
     "brands.h2": "Four makers, four characters",
@@ -256,7 +270,7 @@ window.I18N = {
 
     "about.eyebrow": "About us",
     "about.h2": "A shop run by riders",
-    "about.p1": "MONO.GE is an electric unicycle shop in Tbilisi. We only sell the brands we ride ourselves and can get parts for. Every wheel is opened, tested and reassembled before it is handed over.",
+    "about.p1": "ZIPI.GE is an electric unicycle shop in Tbilisi. We only sell the brands we ride ourselves and can get parts for. Every wheel is opened, tested and reassembled before it is handed over.",
     "about.p2": "Just want to stand on one and try? Come by the shop: pads and a space to learn in are free.",
 
     "contact.eyebrow": "Contact",

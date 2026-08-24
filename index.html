@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MONO.GE — ელექტრო მონოციკლები თბილისში</title>
+<title>ZIPI.GE — ელექტრო მონოციკლები თბილისში</title>
 <meta name="description" content="NOSFET, LEAPERKIM, INMOTION და KINGSONG ელექტრო მონოციკლები თბილისში. მარაგი, ფასები ლარში, განვადება და სერვისი.">
-<meta property="og:title" content="MONO.GE — ელექტრო მონოციკლები">
+<meta property="og:title" content="ZIPI.GE — ელექტრო მონოციკლები">
 <meta property="og:description" content="NOSFET, LEAPERKIM, INMOTION და KINGSONG მონოციკლები. 16 მოდელი, ფასები ლარში, სერვისი თბილისში.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
   /* თემა ჯერ თავში ვსვამთ, რომ გვერდი არასწორი ფერით არ აციმციმდეს.
      არჩევანი localStorage-შია; "auto" ნიშნავს სისტემის თემას. */
   try {
-    var t = localStorage.getItem("mono-theme");
+    var t = localStorage.getItem("zipi-theme");
     if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
   } catch (e) { /* localStorage გამორთულია, ვრჩებით სისტემის თემაზე */ }
 </script>
@@ -27,8 +27,8 @@
 <!-- ==================== ჰედერი ==================== -->
 <header class="top">
   <div class="wrap top__in">
-    <a class="logo" href="#" aria-label="MONO.GE">
-      <span class="logo__mark">MONO<span>.GE</span></span>
+    <a class="logo" href="#" aria-label="ZIPI.GE">
+      <span class="logo__mark">ZIPI<span>.GE</span></span>
       <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
     </a>
 
@@ -68,8 +68,7 @@
       <div class="hero__copy">
         <p class="eyebrow" data-t="hero.eyebrow">ოფიციალური მარაგი თბილისში</p>
         <h1>
-          <span data-t="hero.h1a">ერთი ბორბალი,</span><br>
-          <em data-t="hero.h1b">მთელი თბილისი</em> <span data-t="hero.h1c">გზაა.</span>
+          <em data-t="hero.h1b">მთელი თბილისი</em> <span data-t="hero.h1c">გზაა</span>
         </h1>
         <p class="lead" data-t="hero.lead">
           მაღალი სიმძლავრის ელექტრო მონოციკლები ოთხი ბრენდისგან. ფასები ლარში,
@@ -100,6 +99,36 @@
         <div class="strip__cell"><span class="strip__n">16</span><span class="strip__l" data-t="strip.models">მოდელი კატალოგში</span></div>
         <div class="strip__cell"><span class="strip__n">12</span><span class="strip__l" data-t="strip.months">თვემდე განვადება</span></div>
         <div class="strip__cell"><span class="strip__n" id="fromPrice">—</span><span class="strip__l" data-t="strip.from">საწყისი ფასი</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ვიდეო ====================
+       პლეერი მხოლოდ დაწკაპუნების შემდეგ იტვირთება: სანამ არ დააჭერ,
+       YouTube-ს არც მოთხოვნა მიდის და არც cookie ჩნდება. -->
+  <section class="sec" id="video">
+    <div class="wrap vid__in">
+      <div class="vid__frame" id="videoFrame">
+        <button class="vid__facade" data-video="Al8V_a5caJc" data-t-aria="video.play" aria-label="ვიდეოს გახსნა">
+          <img src="https://i.ytimg.com/vi/Al8V_a5caJc/maxresdefault.jpg" alt="" onerror="this.remove()">
+          <span class="vid__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+        </button>
+      </div>
+      <div class="vid__copy">
+        <p class="eyebrow" data-t="video.eyebrow">ვიდეო მიმოხილვა</p>
+        <h2 data-t="video.h2">ნახე, როგორია ეს რეალურ ქუჩაში</h2>
+        <p class="lead" data-t="video.lead">
+          ქართული არხის ვიდეო იმაზე, ღირს თუ არა მონოციკლით კურიერობა.
+          კარგი შესავალია, თუ ჯერ ეჭვი გაქვს, რამდენად პრაქტიკულია ეს ყოველდღიურად.
+        </p>
+        <p class="vid__name" data-t="video.name">ღირს თუ არა მონობორბლით კურიერობა?</p>
+        <p class="note">
+          <span data-t="video.credit">არხი</span>:
+          <a href="https://www.youtube.com/@%E1%83%93%E1%83%98%E1%83%A4%E1%83%98" target="_blank" rel="noopener">დიფი • DIPI</a>
+        </p>
+        <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=Al8V_a5caJc" target="_blank" rel="noopener" data-t="video.watch">YouTube-ზე ნახვა</a>
       </div>
     </div>
   </section>
@@ -204,7 +233,7 @@
         <p class="eyebrow" data-t="about.eyebrow">ჩვენ შესახებ</p>
         <h2 data-t="about.h2">მაღაზია, რომელსაც მოსიარულეები აკეთებენ</h2>
         <p class="lead" data-t="about.p1">
-          MONO.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს,
+          ZIPI.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს,
           რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია.
           ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.
         </p>
@@ -224,7 +253,7 @@
           <div class="fact"><dt data-t="contact.address">მისამართი</dt><dd data-t="contact.addressValue">თბილისი, [მისამართი]</dd></div>
           <div class="fact"><dt data-t="contact.sales">გაყიდვები</dt><dd><a class="num" href="tel:+995500000000">+995 500 00 00 00</a></dd></div>
           <div class="fact"><dt data-t="contact.service">სერვისი</dt><dd><a class="num" href="tel:+995500000001">+995 500 00 00 01</a></dd></div>
-          <div class="fact"><dt data-t="contact.email">ელფოსტა</dt><dd><a href="mailto:info@mono.ge">info@mono.ge</a></dd></div>
+          <div class="fact"><dt data-t="contact.email">ელფოსტა</dt><dd><a href="mailto:info@zipi.ge">info@zipi.ge</a></dd></div>
           <div class="fact"><dt data-t="contact.hours">სამუშაო საათები</dt><dd data-t="contact.hoursValue">ორშ–შაბ, 10:00–19:00</dd></div>
           <div class="fact"><dt data-t="contact.installment">განვადება</dt><dd data-t="contact.installmentValue">12 თვემდე, ბანკის პარტნიორობით</dd></div>
         </dl>
@@ -239,7 +268,7 @@
     <div class="foot__in">
       <div>
         <a class="logo" href="#">
-          <span class="logo__mark">MONO<span>.GE</span></span>
+          <span class="logo__mark">ZIPI<span>.GE</span></span>
           <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
         </a>
         <p style="margin-top:14px;font-size:0.86rem;max-width:32ch;color:var(--muted)" data-t="foot.blurb">
@@ -268,14 +297,14 @@
         <h4 data-t="foot.contact">კონტაქტი</h4>
         <ul>
           <li><a class="num" href="tel:+995500000000">+995 500 00 00 00</a></li>
-          <li><a href="mailto:info@mono.ge">info@mono.ge</a></li>
+          <li><a href="mailto:info@zipi.ge">info@zipi.ge</a></li>
           <li data-t="contact.addressValue">თბილისი, [მისამართი]</li>
           <li data-t="contact.hoursValue">ორშ–შაბ, 10:00–19:00</li>
         </ul>
       </div>
     </div>
     <div class="foot__bar">
-      <span>© <span class="num">2026</span> MONO.GE</span>
+      <span>© <span class="num">2026</span> ZIPI.GE</span>
       <span data-t="foot.disclaimer">ფასები საინფორმაციო ხასიათისაა და არ არის საჯარო შეთავაზება.</span>
     </div>
   </div>
