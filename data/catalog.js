@@ -1,13 +1,35 @@
 /* ==========================================================================
-   ZIPI.GE-ის კატალოგი — ერთადერთი ფაილი, რომელიც ფასების შესაცვლელად გჭირდება.
+   ZIPI.GE-ის კატალოგი: ერთადერთი ფაილი, რომელიც ფასების შესაცვლელად გჭირდება.
 
-   priceGel     — მიმდინარე ფასი ლარში (მთელი რიცხვი, გამყოფების გარეშე)
-   oldPriceGel  — ძველი, გადახაზული ფასი; null, თუ ფასდაკლება არ არის
-   badge        — წარწერა ფოტოზე. დასაშვები მნიშვნელობები:
-                  flagship, new, sale, range, offroad, bestseller, beginner, null
-   stock        — "in" (მარაგშია) ან "order" (შეკვეთით)
-   ka / en      — ქართული და ინგლისური ტექსტი; ორივე უნდა შეავსო
-   images       — ფაილების სახელები assets/wheels/ საქაღალდიდან
+   priceGel: მიმდინარე ფასი ლარში (მთელი რიცხვი, გამყოფების გარეშე)
+   oldPriceGel: ძველი, გადახაზული ფასი; null, თუ ფასდაკლება არ არის
+   badge: წარწერა ფოტოზე. დასაშვები მნიშვნელობები:
+                  flagship, new, sale, range, offroad, bestseller, beginner, light, city, null
+   stock: "in" (მარაგშია) ან "order" (შეკვეთით)
+   blurb: მოკლე აღწერა (ka / en), ჩანს მოდელის ფანჯარაში
+   features: მთავარი თავისებურებები სიად (ka / en), ჩანს ფოტოების ქვეშ
+   images: ფაილების სახელები assets/wheels/ საქაღალდიდან
+
+   specs: ყველა ველი ჩანს მოდელის ფანჯარაშიც და შედარების ცხრილშიც.
+     motorW / peakW: ძრავის ნომინალური / პიკური სიმძლავრე, ვატი
+     batteryWh: ბატარეის ტევადობა, ვატ-საათი
+     voltage: ძაბვა, ვოლტი
+     cells: ბატარეის ელემენტები (ტექსტი)
+     topSpeedKmh: მაქსიმალური სიჩქარე, კმ/სთ
+     rangeKm: გარბენი ერთი დატენვით (მწარმოებლის "მაქსიმუმ"), კმ
+     tire: საბურავის ზომა (ტექსტი)
+     suspensionMm: ამორტიზაციის სვლა, მმ (0 = არ აქვს)
+     suspType: air, coil, hydraulic, hydraulicAir ან none
+     weightKg: წონა, კგ
+     chargerA: კომპლექტში შემავალი დამტენის დენი, ამპერი
+     maxLoadKg: მხედრის მაქსიმალური წონა, კგ
+     climbDeg: მაქსიმალური აღმართი, გრადუსი
+     ip: წყალგამძლეობის კლასი (ტექსტი)
+   უცნობი მნიშვნელობა: null. საიტზე "—" გამოჩნდება და შედარებაში
+   "საუკეთესოს" არჩევაში არ მიიღებს მონაწილეობას.
+
+   წყაროები (2026-11-06): ewheels.com, ecodrift.ru (Leaperkim), nosfet.com.
+   აღწერები ჩვენი დაწერილია ამ მონაცემებზე დაყრდნობით, არ არის თარგმანი.
 
    შენახვისას სინტაქსი დაცული უნდა იყოს (ბრჭყალები, მძიმეები),
    თორემ საიტი მოდელებს ვერ ჩაიტვირთავს.
@@ -16,8 +38,11 @@ window.CATALOG = {
   "meta": {
     "shop": "ZIPI.GE",
     "currency": "GEL",
-    "updated": "2026-08-23",
-    "fxUsdGel": 2.7,
+    "updated": "2026-11-06",
+    /* WhatsApp-ის ნომერი საერთაშორისო ფორმატში, მხოლოდ ციფრები (+995 598 66 61 11) */
+    "whatsapp": "995598666111",
+    /* გარანტია ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე, ყველა მოდელზე */
+    "warrantyMonths": 12,
     "installmentMonths": 12,
     "installmentRate": 1.09
   },
@@ -26,156 +51,155 @@ window.CATALOG = {
       "id": "nosfet",
       "name": "NOSFET",
       "tagline": {
-        "ka": "მაღალვოლტიანი ახალი თაობა",
-        "en": "The new high-voltage generation"
+        "ka": "მსუბუქი მაგნიუმის ჩარჩო",
+        "en": "Light magnesium frames"
       },
       "blurb": {
-        "ka": "მაგნიუმის ჩარჩო, 126V და 151V პლატფორმები, ევროპული აწყობის ხარისხი.",
-        "en": "Magnesium frames, 126V and 151V platforms, European assembly standards."
+        "ka": "მაგნიუმის ჩარჩო, 126V და 151V პლატფორმები, 24.5-დან 39 კგ-მდე.",
+        "en": "Magnesium frames, 126V and 151V platforms, from 24.5 to 39 kg."
       }
     },
     {
       "id": "leaperkim",
       "name": "LEAPERKIM",
       "tagline": {
-        "ka": "Veteran სერია: გარბენი და ამორტიზაცია",
-        "en": "The Veteran series: range and suspension"
+        "ka": "Veteran სერია: სიმძლავრე და გარბენი",
+        "en": "The Veteran line: power and range"
       },
       "blurb": {
         "ka": "შორ მანძილზე მოსიარულეების არჩევანი. 4700 Wh-მდე ბატარეა და ჩარჩო, რომელიც უსწორმასწორო გზას ითმენს.",
         "en": "What long-distance riders pick. Up to 4700 Wh and a frame that tolerates broken tarmac."
       }
-    },
-    {
-      "id": "inmotion",
-      "name": "INMOTION",
-      "tagline": {
-        "ka": "ჭკვიანი ელექტრონიკა, ქარხნული ხარისხი",
-        "en": "Smart electronics, factory finish"
-      },
-      "blurb": {
-        "ka": "ყველაზე დახვეწილი პროგრამული უზრუნველყოფა და უსაფრთხოების სისტემები.",
-        "en": "The most refined firmware and rider safety systems on the market."
-      }
-    },
-    {
-      "id": "kingsong",
-      "name": "KINGSONG",
-      "tagline": {
-        "ka": "ქალაქი და ოფ-როუდი ერთ ხაზში",
-        "en": "City and off-road in one line-up"
-      },
-      "blurb": {
-        "ka": "დაბალანსებული მოდელები დამწყებიდან ფლაგმანამდე, ნაწილების კარგი ხელმისაწვდომობით.",
-        "en": "Balanced models from beginner to flagship, with parts that are easy to source."
-      }
     }
   ],
   "wheels": [
+    {
+      "id": "nosfet-aero",
+      "brand": "nosfet",
+      "model": "Aero",
+      "badge": "light",
+      "stock": "in",
+      "priceGel": 6000,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "24.5 კგ, მაგნიუმის ჩარჩო და 70 მმ ამორტიზაცია. Aero კატალოგში ყველაზე მსუბუქი მოდელია: მანქანის საბარგულშიც და ლიფტშიც თავისუფლად ეტევა.",
+        "en": "24.5 kg, a magnesium frame and 70 mm of suspension. The Aero is the lightest wheel here: it fits a car boot or a lift without a fight."
+      },
+      "features": {
+        "ka": [
+          "ჩარჩო ერთიანი მაგნიუმის შენადნობისგანაა ჩამოსხმული, პედლების სამაგრიც მასშია ჩაშენებული.",
+          "თუ ჰოლის სენსორი (ძრავის მდებარეობის სენსორი) მწყობრიდან გამოვიდა, მონოციკლი ბალანსს არ კარგავს და უსაფრთხოდ გაჩერების საშუალებას გაძლევს.",
+          "ჭკვიანი BMS (ბატარეის მართვის სისტემა) Bluetooth-ით: ბატარეის მდგომარეობა ტელეფონის აპლიკაციაში ჩანს.",
+          "საბურავის შესაცვლელად გვერდითი პანელი რამდენიმე ჭანჭიკით იხსნება.",
+          "სადგამი, სატარებელი სახელური, ორნაწილიანი ფრთა და სამრეჟიმიანი განათება დღის სანათით."
+        ],
+        "en": [
+          "The frame is one magnesium alloy casting with the pedal mounts built in.",
+          "If a hall sensor (motor position sensor) fails, the wheel keeps balancing so you can stop safely.",
+          "Smart BMS (battery management system) with Bluetooth: battery health shows in the phone app.",
+          "The side panel comes off with a few screws for tyre changes.",
+          "Kickstand, trolley handle, two-piece mudguard and three-mode lights with a daytime running light."
+        ]
+      },
+      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 55, "rangeKm": 55, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp"]
+    },
+    {
+      "id": "nosfet-aeon",
+      "brand": "nosfet",
+      "model": "Aeon",
+      "badge": "city",
+      "stock": "in",
+      "priceGel": 6500,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "151V, 1300 Wh და 2200 W ძრავი (8000 W პიკზე) 12-ინჩიან საბურავზე. Aero-ს კომპაქტური ჩარჩო, უფრო დიდი ბორბლით და მაღალი ძაბვით.",
+        "en": "151V, 1300 Wh and a 2200 W motor (8000 W peak) on a 12-inch tyre. The Aero's compact frame with a bigger wheel and a higher voltage."
+      },
+      "features": {
+        "ka": [
+          "მაგნიუმის კომპაქტური ჩარჩო 29 კგ წონით: ქალაქში მოქნილია და კიბეზე ატანაც არ გაგიჭირდება.",
+          "90 მმ ამორტიზაცია ორმხრივი ჰიდრავლიკური ჩაქრობით; შეკუმშვის და დაბრუნების სიხისტე რეგულირდება.",
+          "კომპლექტში ორი ზომის პედლის საფარია: დიდი და პატარა.",
+          "შეგიძლია აირჩიო უკამერო ჰიბრიდული ან ოფ-როუდის კბილიანი საბურავი.",
+          "RGB უკანა სანათი ყველა მხრიდან ჩანს; წინა ფარი სიკაშკაშეს თვითონ არეგულირებს.",
+          "სადგამი და დასაკეცი სატარებელი სახელური."
+        ],
+        "en": [
+          "A compact 29 kg magnesium frame: nimble in the city and easy to carry upstairs.",
+          "90 mm of suspension with two-way hydraulic damping; compression and rebound are adjustable.",
+          "Two pedal cover sizes in the box, large and small.",
+          "Choose a tubeless hybrid tyre or a knobby off-road one.",
+          "An RGB tail light visible from every side, and a headlight that sets its own brightness.",
+          "Kickstand and folding trolley handle."
+        ]
+      },
+      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 64, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "images": ["nosfet-aeon-1.webp", "nosfet-aeon-2.webp", "nosfet-aeon-3.webp"]
+    },
+    {
+      "id": "nosfet-xeno",
+      "brand": "nosfet",
+      "model": "Xeno",
+      "badge": null,
+      "stock": "in",
+      "priceGel": 8000,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "2500 W, 2200 Wh და 20-ინჩიანი ბორბალი 33 კილოგრამად. Xeno Nosfet-ის მსუბუქი სერიის ყველაზე დიდი მოდელია: გრძელ მარშრუტზე სტაბილურია, ხელში კი ისევ მართვადი.",
+        "en": "2500 W, 2200 Wh and a 20-inch wheel at 33 kg. The Xeno is the biggest of Nosfet's light series: steady on long routes, still manageable by hand."
+      },
+      "features": {
+        "ka": [
+          "ქარხნულ ტესტში 80 კგ წონის მხედარმა საშუალოდ 36 კმ/სთ სიჩქარით ერთი დატენვით 103 კმ გაიარა.",
+          "90 მმ ჰიდრავლიკური ამორტიზაცია რეგულირებადი შეკუმშვით და დაბრუნებით.",
+          "სამი უკამერო საბურავის არჩევანი: ჰიბრიდული, კბილიანი და ქუჩის.",
+          "სატარებელი სახელური ყველაზე მაღალ მდგომარეობაში იკეტება, რაც დაჯდომით სიარულს ამარტივებს.",
+          "პროგრამის განახლება ინტერნეტით, Nosfet-ის აპლიკაციიდან. BMS იცავს მოკლე ჩართვისგან, გადატენვისგან და გადახურებისგან."
+        ],
+        "en": [
+          "In the factory test an 80 kg rider covered 103 km on one charge at a 36 km/h average.",
+          "90 mm of hydraulic suspension with adjustable compression and rebound.",
+          "Three tubeless tyre options: hybrid, knobby and street.",
+          "The trolley handle locks at its highest position, which makes seated riding easier.",
+          "Over-the-air firmware updates from the Nosfet app. The BMS protects against short circuit, overcharge and overheating."
+        ]
+      },
+      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 110, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "images": ["nosfet-xeno-1.webp", "nosfet-xeno-2.webp", "nosfet-xeno-3.webp"]
+    },
     {
       "id": "nosfet-apex",
       "brand": "nosfet",
       "model": "Apex",
       "badge": "flagship",
       "stock": "in",
-      "priceGel": 9990,
+      "priceGel": 9600,
       "oldPriceGel": null,
       "blurb": {
-        "ka": "3200 W ძრავი და 2700 Wh Samsung-ის ბატარეა. Apex არის Nosfet-ის ყველაზე მძლავრი მოდელი, შექმნილი მაღალი სიჩქარისა და შორი მარშრუტისთვის.",
-        "en": "A 3200 W motor and a 2700 Wh Samsung pack. The Apex is Nosfet's most powerful wheel, built for high speed and long routes."
+        "ka": "3200 W ძრავი და 2700 Wh ბატარეა 151V-ზე. Apex Nosfet-ის ფლაგმანია: ძრავი, ბატარეა და კონტროლერი Leaperkim-ის კონსტრუქციაა, ამორტიზაციის სვლა კი 150 მმ-მდე იზრდება.",
+        "en": "A 3200 W motor and a 2700 Wh pack at 151V. The Apex is Nosfet's flagship: motor, battery and controller are Leaperkim designs, and suspension travel goes up to 150 mm."
       },
-      "specs": { "motorW": 3200, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "topSpeedKmh": 90, "rangeKm": 130, "tire": "20″", "weightKg": 40, "suspensionMm": 130 },
+      "features": {
+        "ka": [
+          "ბერკეტიანი ამორტიზაცია DNM-ის ამორტიზატორით. სვლა 55-დან 150 მმ-მდე ხელით, ხელსაწყოს გარეშე რეგულირდება.",
+          "ამორტიზაციასთან ერთად პედლების სიმაღლეც იცვლება: 225-დან 313 მმ-მდე.",
+          "ამორტიზაციის მიმმართველები 6061-T6 ალუმინისაა, ზუსტად დამუშავებული და ანოდირებული, როგორც ველოსიპედის ჩანგალში.",
+          "20 W წინა ფარი მოჭრილი სხივით, რომ შემხვედრი არ დააბრმავოს; სამი რეჟიმი და ავტომატური სიკაშკაშე.",
+          "სწრაფი დატენვა 20 ამპერამდე შესაბამისი დამტენით: დაახლოებით 3 საათში 80%-მდე.",
+          "სადგამი დაცემისას იკეცება და არ ტყდება, ფრთა კი დარტყმისას უბრალოდ იხსნება."
+        ],
+        "en": [
+          "Linkage suspension with a DNM shock. Travel adjusts by hand from 55 to 150 mm, no tools needed.",
+          "Pedal height moves with the suspension setting: 225 to 313 mm.",
+          "The stanchions are 6061-T6 aluminium, precision ground and anodised, like a bicycle fork.",
+          "A 20 W headlight with a cut-off beam so it does not blind oncoming traffic; three modes and auto brightness.",
+          "Fast charging up to 20 A with a matching charger: about 3 hours to 80%.",
+          "The kickstand folds away on a hard drop instead of snapping, and the mudguard breaks away on impact."
+        ]
+      },
+      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 88, "rangeKm": 95, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" },
       "images": ["nosfet-apex-1.webp", "nosfet-apex-2.webp", "nosfet-apex-3.webp"]
-    },
-    {
-      "id": "nosfet-xeno",
-      "brand": "nosfet",
-      "model": "Xeno",
-      "badge": "new",
-      "stock": "in",
-      "priceGel": 8090,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "2500 W და 2200 Wh 126V პლატფორმაზე. Xeno ავსებს ადგილს Apex-სა და Aeon-ს შორის: მძლავრია, მაგრამ ჯერ კიდევ მსუბუქი სამართავად.",
-        "en": "2500 W and 2200 Wh on the 126V platform. The Xeno fills the gap between Apex and Aeon: strong, still light enough to throw around."
-      },
-      "specs": { "motorW": 2500, "peakW": 7000, "batteryWh": 2200, "voltage": 126, "topSpeedKmh": 80, "rangeKm": 110, "tire": "18″", "weightKg": 35, "suspensionMm": 100 },
-      "images": ["nosfet-xeno-1.webp", "nosfet-xeno-2.webp", "nosfet-xeno-3.webp"]
-    },
-    {
-      "id": "nosfet-aeon",
-      "brand": "nosfet",
-      "model": "Aeon",
-      "badge": null,
-      "stock": "in",
-      "priceGel": 6190,
-      "oldPriceGel": 6690,
-      "blurb": {
-        "ka": "151V, 1300 Wh და 2200 W ძრავი 12-ინჩიან ბორბალზე. ყველაზე მოქნილი მოდელი ქალაქისთვის: მსუბუქია, სიჩქარეს კი არ იკლებს.",
-        "en": "151V, 1300 Wh and a 2200 W motor on a 12-inch wheel. The most agile pick for the city, and it gives up almost no speed."
-      },
-      "specs": { "motorW": 2200, "peakW": 4600, "batteryWh": 1300, "voltage": 151, "topSpeedKmh": 90, "rangeKm": 70, "tire": "12″", "weightKg": 28, "suspensionMm": 90 },
-      "images": ["nosfet-aeon-1.webp", "nosfet-aeon-2.webp", "nosfet-aeon-3.webp"]
-    },
-    {
-      "id": "nosfet-aero",
-      "brand": "nosfet",
-      "model": "Aero",
-      "badge": null,
-      "stock": "in",
-      "priceGel": 5090,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "24.5 კგ, მაგნიუმის ჩარჩო და 70 მმ ამორტიზაცია. Aero-ს მთავარი უპირატესობა წონაა: მანქანის საბარგულში და ლიფტში პრობლემის გარეშე ჯდება.",
-        "en": "24.5 kg, magnesium frame, 70 mm of suspension. Weight is the Aero's whole argument: it fits a car boot and a lift without a fight."
-      },
-      "specs": { "motorW": 2000, "peakW": 5000, "batteryWh": 1110, "voltage": 126, "topSpeedKmh": 70, "rangeKm": 60, "tire": "14″", "weightKg": 24.5, "suspensionMm": 70 },
-      "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp"]
-    },
-    {
-      "id": "leaperkim-oryx",
-      "brand": "leaperkim",
-      "model": "Veteran Oryx",
-      "badge": "flagship",
-      "stock": "order",
-      "priceGel": 12150,
-      "oldPriceGel": 12890,
-      "blurb": {
-        "ka": "176V, 4700 Wh და 4200 W ძრავი 16-ინჩიან მოტოციკლის საბურავზე. Oryx ყველაზე დიდი და ყველაზე სტაბილური მონოციკლია, რაც Leaperkim-ს გამოუშვია.",
-        "en": "176V, 4700 Wh and a 4200 W motor on a 16-inch motorcycle tyre. The Oryx is the largest, steadiest wheel Leaperkim has built."
-      },
-      "specs": { "motorW": 4200, "peakW": 10500, "batteryWh": 4700, "voltage": 176, "topSpeedKmh": 110, "rangeKm": 200, "tire": "3.50-16", "weightKg": 58, "suspensionMm": 150 },
-      "images": ["leaperkim-oryx-1.webp", "leaperkim-oryx-2.webp", "leaperkim-oryx-3.webp"]
-    },
-    {
-      "id": "leaperkim-sherman-l",
-      "brand": "leaperkim",
-      "model": "Sherman-L SE",
-      "badge": "range",
-      "stock": "in",
-      "priceGel": 10490,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "4000 Wh ბატარეა და 90 მმ ამორტიზაცია. Sherman-L არჩევანია მათთვის, ვისაც ერთი დატენვით მთელი დღე უნდა იაროს.",
-        "en": "A 4000 Wh pack and 90 mm of suspension. The Sherman-L is for riders who want a whole day out of one charge."
-      },
-      "specs": { "motorW": 3000, "peakW": 8000, "batteryWh": 4000, "voltage": 151, "topSpeedKmh": 100, "rangeKm": 220, "tire": "80/90-14", "weightKg": 50, "suspensionMm": 90 },
-      "images": ["leaperkim-sherman-l-1.webp", "leaperkim-sherman-l-2.webp", "leaperkim-sherman-l-3.webp"]
-    },
-    {
-      "id": "leaperkim-lynx-s",
-      "brand": "leaperkim",
-      "model": "Veteran Lynx-S",
-      "badge": "offroad",
-      "stock": "in",
-      "priceGel": 9990,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "3800 W ძრავი (10000 W პიკზე), 2700 Wh და სრული ამორტიზაცია 20-ინჩიან ბორბალზე. თბილისის ორმოებსა და მთის ბილიკებზე გათვლილი მოდელი.",
-        "en": "3800 W (10000 W peak), 2700 Wh and full suspension on a 20-inch wheel. Built for Tbilisi potholes and mountain trails alike."
-      },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "topSpeedKmh": 100, "rangeKm": 140, "tire": "80/90-14", "weightKg": 46, "suspensionMm": 140 },
-      "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp"]
     },
     {
       "id": "leaperkim-patton-s",
@@ -183,134 +207,96 @@ window.CATALOG = {
       "model": "Patton-S",
       "badge": null,
       "stock": "in",
-      "priceGel": 7690,
-      "oldPriceGel": 7990,
+      "priceGel": 8000,
+      "oldPriceGel": null,
       "blurb": {
-        "ka": "126V, 2220 Wh და 3000 W ძრავი 16-ინჩიან ბორბალზე. Patton-S მოქნილობისა და სიმძლავრის ბალანსით Leaperkim-ის ყველაზე პოპულარული მოდელია.",
-        "en": "126V, 2220 Wh and 3000 W on a 16-inch wheel. The balance of agility and power makes the Patton-S Leaperkim's most popular model."
+        "ka": "126V, 2220 Wh და 3000 W ძრავი (7000 W პიკზე) 12-ინჩიან საბურავზე. Patton-S სიმძლავრისა და მოქნილობის ბალანსით Leaperkim-ის ერთ-ერთი ყველაზე პოპულარული მოდელია.",
+        "en": "126V, 2220 Wh and a 3000 W motor (7000 W peak) on a 12-inch tyre. The balance of power and agility makes the Patton-S one of Leaperkim's most popular wheels."
       },
-      "specs": { "motorW": 3000, "peakW": 8000, "batteryWh": 2220, "voltage": 126, "topSpeedKmh": 85, "rangeKm": 110, "tire": "16″", "weightKg": 38, "suspensionMm": 100 },
+      "features": {
+        "ka": [
+          "24 MOSFET-იანი კონტროლერი 680 ამპერი პიკური დენით. ჰოლის სენსორის მწყობრიდან გამოსვლისას ბალანსს ინარჩუნებს.",
+          "80 მმ FastAce ჰიდრავლიკური ამორტიზაცია პროგრესიული ზამბარით; შეკუმშვა და დაბრუნება რეგულირდება.",
+          "ჭკვიანი BMS აჩვენებს თითოეული ელემენტის ძაბვას, ტემპერატურას და დატენვა-განმუხტვის დენს.",
+          "ბატარეის კოლოფები მაგნიუმისაა: პირველ Patton-ზე დაახლოებით 3.5 კგ-ით მსუბუქია.",
+          "ორი 18 W წინა ფარი (2000 ლუმენი) და ხმოვანი გაფრთხილება, როცა ბატარეა იცლება.",
+          "ორი დასატენი პორტი: შესაბამისი დამტენებით 20 ამპერამდე."
+        ],
+        "en": [
+          "A 24-MOSFET controller with 680 A peak current. It keeps balancing if a hall sensor fails.",
+          "80 mm FastAce hydraulic suspension with a progressive spring; compression and rebound adjust.",
+          "Smart BMS showing each cell's voltage, temperature and charge/discharge current.",
+          "Magnesium battery boxes: about 3.5 kg lighter than the original Patton.",
+          "Twin 18 W headlights (2000 lumens) and an audible warning as the battery runs down.",
+          "Two charge ports: up to 20 A with matching chargers."
+        ]
+      },
+      "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "maxLoadKg": 145, "climbDeg": 40, "ip": null },
       "images": ["leaperkim-patton-s-1.webp", "leaperkim-patton-s-2.webp", "leaperkim-patton-s-3.webp"]
     },
     {
-      "id": "inmotion-p6",
-      "brand": "inmotion",
-      "model": "P6",
-      "badge": "flagship",
-      "stock": "order",
-      "priceGel": 13490,
+      "id": "leaperkim-lynx-s",
+      "brand": "leaperkim",
+      "model": "Lynx-S",
+      "badge": "offroad",
+      "stock": "in",
+      "priceGel": 9900,
       "oldPriceGel": null,
       "blurb": {
-        "ka": "235V, 4200 Wh და 6000 W ძრავი 20000 W პიკით. P6 ყველაზე მძლავრი სერიული მონოციკლია ბაზარზე, გამოცდილი მოსიარულეებისთვის.",
-        "en": "235V, 4200 Wh and 6000 W with a 20000 W peak. The P6 is the most powerful production wheel on sale, and it is for experienced riders."
+        "ka": "3800 W ძრავი (10000 W პიკზე), 2700 Wh და სრული ამორტიზაცია 20-ინჩიან ბორბალზე. თბილისის ორმოებსა და მთის ბილიკებზე გათვლილი მოდელი.",
+        "en": "3800 W (10000 W peak), 2700 Wh and full suspension on a 20-inch wheel. Built for Tbilisi potholes and mountain trails alike."
       },
-      "specs": { "motorW": 6000, "peakW": 20000, "batteryWh": 4200, "voltage": 235, "topSpeedKmh": 110, "rangeKm": 150, "tire": "16″", "weightKg": 55, "suspensionMm": 160 },
-      "images": ["inmotion-p6-1.webp", "inmotion-p6-2.webp", "inmotion-p6-3.webp"]
+      "features": {
+        "ka": [
+          "C42 ძრავი 42 მმ სიგანის სტატორით: პირველ Lynx-ზე 25%-ით მძლავრი.",
+          "36 MOSFET-იანი კონტროლერი 840 ამპერი პიკური დენით; ძრავს ტემპერატურის სენსორი აქვს.",
+          "90 მმ FastAce ჰიდრავლიკური ამორტიზაცია ზამბარით და ჰაერის კამერით; შეკუმშვა და დაბრუნება ორივე მხარეს რეგულირდება.",
+          "დიდი წვეტიანი პედლები სამ სიმაღლეზე ყენდება. ფეხის კაუჭები და დარტყმაგამძლე დასაკეცი სადგამი ჩაშენებულია.",
+          "დატენვა 20 ამპერამდე (დაახლოებით 3 kW): 10 ამპერით ბატარეა დაახლოებით 2 საათში ივსება."
+        ],
+        "en": [
+          "C42 motor with a 42 mm stator: 25% more power than the original Lynx.",
+          "A 36-MOSFET controller with 840 A peak current; the motor has a temperature sensor.",
+          "90 mm FastAce hydraulic suspension with a coil spring and an air chamber; compression and rebound adjust on both sides.",
+          "Large spiked pedals with three height positions. Toe hooks and a crash-resistant folding kickstand are built in.",
+          "Charging up to 20 A (about 3 kW): at 10 A the pack fills in about 2 hours."
+        ]
+      },
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 95, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null },
+      "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp"]
     },
     {
-      "id": "inmotion-v14-pro",
-      "brand": "inmotion",
-      "model": "V14 Pro Adventure",
-      "badge": "bestseller",
-      "stock": "in",
-      "priceGel": 7290,
-      "oldPriceGel": 8890,
-      "blurb": {
-        "ka": "4000 W ძრავი, 2400 Wh ბატარეა და დასაჯდომი სტანდარტულ კომპლექტში. V14 Pro ერთდროულად ქალაქური და ოფ-როუდ მოდელია.",
-        "en": "4000 W, a 2400 Wh pack and a seat in the box. The V14 Pro works as a city wheel and an off-road wheel without changing anything."
-      },
-      "specs": { "motorW": 4000, "peakW": 9000, "batteryWh": 2400, "voltage": 151, "topSpeedKmh": 80, "rangeKm": 120, "tire": "16″", "weightKg": 40, "suspensionMm": 120 },
-      "images": ["inmotion-v14-pro-1.webp", "inmotion-v14-pro-2.webp", "inmotion-v14-pro-3.webp"]
-    },
-    {
-      "id": "inmotion-v12s",
-      "brand": "inmotion",
-      "model": "V12S",
-      "badge": null,
-      "stock": "in",
-      "priceGel": 5390,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "2500 W ძრავი მკაცრ ჩარჩოზე, ამორტიზაციის გარეშე. V12S ქალაქური სიარულისთვის ერთ-ერთი ყველაზე გამძლე და მარტივად მოსავლელი მოდელია.",
-        "en": "2500 W on a rigid frame, no suspension to service. The V12S is one of the toughest, simplest city wheels you can own."
-      },
-      "specs": { "motorW": 2500, "peakW": 6000, "batteryWh": 1750, "voltage": 126, "topSpeedKmh": 70, "rangeKm": 100, "tire": "16″", "weightKg": 30, "suspensionMm": 0 },
-      "images": ["inmotion-v12s-1.webp", "inmotion-v12s-2.webp", "inmotion-v12s-3.webp"]
-    },
-    {
-      "id": "inmotion-v11y",
-      "brand": "inmotion",
-      "model": "V11Y",
-      "badge": "beginner",
-      "stock": "in",
-      "priceGel": 3790,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "ჰაერზე მომუშავე ამორტიზაცია და 18-ინჩიანი ბორბალი შედარებით დაბალ ფასად. კარგი პირველი მონოციკლი, რომელიც მაშინვე გადასაცვლელი არ გახდება.",
-        "en": "Air suspension and an 18-inch wheel at the low end of the range. A first wheel you will not want to replace after one month."
-      },
-      "specs": { "motorW": 2000, "peakW": 4500, "batteryWh": 1500, "voltage": 84, "topSpeedKmh": 55, "rangeKm": 90, "tire": "18″", "weightKg": 28, "suspensionMm": 60 },
-      "images": ["inmotion-v11y-1.webp", "inmotion-v11y-2.webp", "inmotion-v11y-3.webp"]
-    },
-    {
-      "id": "kingsong-f22-pro",
-      "brand": "kingsong",
-      "model": "F22 Pro",
-      "badge": "flagship",
-      "stock": "in",
-      "priceGel": 9450,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "176V პლატფორმა, 2700 Wh და გრძელსვლიანი ამორტიზაცია. F22 Pro KingSong-ის პასუხია ოფ-როუდ ფლაგმანების კლასზე.",
-        "en": "The 176V platform, 2700 Wh and long-travel suspension. The F22 Pro is KingSong's answer to the off-road flagship class."
-      },
-      "specs": { "motorW": 4500, "peakW": 11000, "batteryWh": 2700, "voltage": 176, "topSpeedKmh": 100, "rangeKm": 140, "tire": "20″", "weightKg": 48, "suspensionMm": 150 },
-      "images": ["kingsong-f22-pro-1.webp", "kingsong-f22-pro-2.webp"]
-    },
-    {
-      "id": "kingsong-f18",
-      "brand": "kingsong",
-      "model": "F18",
+      "id": "leaperkim-sherman-p",
+      "brand": "leaperkim",
+      "model": "Sherman-P",
       "badge": "new",
-      "stock": "in",
-      "priceGel": 8390,
+      "stock": "order",
+      "priceGel": 11500,
       "oldPriceGel": null,
       "blurb": {
-        "ka": "151V, 2700 Wh და 5000 W ძრავი უჰაერო საბურავზე. F18 ერთდროულად სწრაფი და კომფორტულია, გრძელ მარშრუტზეც და ქალაქშიც.",
-        "en": "151V, 2700 Wh and 5000 W on a tubeless tyre. The F18 manages to be fast and comfortable on the same ride."
+        "ka": "176V, 4700 Wh და 3800 W ძრავი (10000 W პიკზე). Sherman-P-ში Oryx-ის დიდი ბატარეა Sherman-L-ის კომპაქტურ კორპუსშია ჩასმული: ერთი დატენვით მთელი დღე.",
+        "en": "176V, 4700 Wh and a 3800 W motor (10000 W peak). The Sherman-P puts the Oryx's big battery into the compact Sherman-L body: a whole day out of one charge."
       },
-      "specs": { "motorW": 5000, "peakW": 12000, "batteryWh": 2700, "voltage": 151, "topSpeedKmh": 100, "rangeKm": 150, "tire": "18″", "weightKg": 45, "suspensionMm": 130 },
-      "images": ["kingsong-f18-1.webp", "kingsong-f18-2.webp", "kingsong-f18-3.webp"]
-    },
-    {
-      "id": "kingsong-s19-pro",
-      "brand": "kingsong",
-      "model": "S19 Pro",
-      "badge": null,
-      "stock": "in",
-      "priceGel": 6990,
-      "oldPriceGel": null,
-      "blurb": {
-        "ka": "მოტოციკლის ტიპის ჩარჩო და გრძელი ამორტიზაცია. S19 ბილიკებზე სიარულისთვის შეიქმნა და დღემდე ერთ-ერთი საყვარელი მოდელია მოსიარულეებში.",
-        "en": "A motorcycle-style frame and long suspension travel. The S19 was made for trails and riders still love it."
+      "features": {
+        "ka": [
+          "176V-იანი 4700 Wh ბატარეა Samsung 50S ელემენტებით, ორ ბლოკად. Oryx-ზე 4.5 კგ-ით მსუბუქია.",
+          "Lynx-S-ის C42 ძრავი, 176V-ზე გადაწყობილი: 351 ნიუტონ-მეტრი მაქსიმალური მომენტი და ტემპერატურის სენსორი.",
+          "36 MOSFET-იანი კონტროლერი 960 ამპერი პიკური დენით. ჰოლის სენსორის მწყობრიდან გამოსვლისას ბალანსს ინარჩუნებს.",
+          "BMS 3.0 ორ ბლოკს შორის ელემენტებს აბალანსებს და ტემპერატურას ექვს ზონაში აკონტროლებს.",
+          "90 მმ FastAce ჰიდრავლიკური ამორტიზაცია ზამბარით და ჰაერის კამერით, Lynx-S-ზე ხისტი ზამბარით მძიმე ბატარეისთვის.",
+          "დამალული სატარებელი სახელური, დასაკეცი სადგამი, ფეხის კაუჭები და IPX6 წყალგამძლეობა."
+        ],
+        "en": [
+          "A 176V 4700 Wh pack of Samsung 50S cells in two blocks. About 4.5 kg lighter than the Oryx.",
+          "The Lynx-S C42 motor rewound for 176V: 351 Nm peak torque and a temperature sensor.",
+          "A 36-MOSFET controller with 960 A peak current. It keeps balancing if a hall sensor fails.",
+          "BMS 3.0 balances cells between the two blocks and watches temperature in six zones.",
+          "90 mm FastAce hydraulic suspension with a coil and an air chamber, sprung stiffer than the Lynx-S for the heavier pack.",
+          "Hidden trolley handle, folding kickstand, toe hooks and IPX6 water resistance."
+        ]
       },
-      "specs": { "motorW": 2500, "peakW": 6000, "batteryWh": 1800, "voltage": 126, "topSpeedKmh": 65, "rangeKm": 100, "tire": "16″", "weightKg": 34, "suspensionMm": 120 },
-      "images": ["kingsong-s19-pro-1.webp", "kingsong-s19-pro-2.webp", "kingsong-s19-pro-3.webp"]
-    },
-    {
-      "id": "kingsong-s22-pro",
-      "brand": "kingsong",
-      "model": "S22 Pro",
-      "badge": "sale",
-      "stock": "in",
-      "priceGel": 6590,
-      "oldPriceGel": 7490,
-      "blurb": {
-        "ka": "126V, 2220 Wh და სრული ამორტიზაცია 18-ინჩიან ბორბალზე. S22 Pro ფასის მიხედვით ყველაზე მეტ სიმძლავრეს გვთავაზობს კატალოგში.",
-        "en": "126V, 2220 Wh and full suspension on an 18-inch wheel. Per lari, the S22 Pro is the most power in this catalogue."
-      },
-      "specs": { "motorW": 3300, "peakW": 8000, "batteryWh": 2220, "voltage": 126, "topSpeedKmh": 70, "rangeKm": 110, "tire": "18″", "weightKg": 40, "suspensionMm": 130 },
-      "images": ["kingsong-s22-pro-1.webp", "kingsong-s22-pro-2.webp", "kingsong-s22-pro-3.webp"]
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 100, "rangeKm": 200, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" },
+      "images": ["leaperkim-sherman-p-1.webp", "leaperkim-sherman-p-2.webp", "leaperkim-sherman-p-3.webp"]
     }
   ]
 };

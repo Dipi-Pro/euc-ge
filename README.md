@@ -1,11 +1,12 @@
 # ZIPI.GE
 
 A Georgian storefront for electric unicycles, laid out the way cfmoto.ge is: sticky header,
-a flagship slider, brand tiles, a top models row, a filterable catalogue, service section,
-contact panel.
+a flagship slider, brand tiles, a top models row, a filterable catalogue with side-by-side
+comparison, service section, contact panel.
 
-Four brands, sixteen models: NOSFET, LEAPERKIM (Veteran), INMOTION and KINGSONG. Georgian and
-English, dark and light, prices in lari.
+Two brands, seven models: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM (Patton-S, Lynx-S,
+Sherman-P). Georgian by default with an English switch, dark by default with light and auto,
+prices in lari.
 
 No build step, no npm, no framework. Open `index.html` and it runs.
 
@@ -13,21 +14,21 @@ No build step, no npm, no framework. Open `index.html` and it runs.
 
 | File | What it holds |
 |---|---|
-| `data/catalog.js` | every model: price, old price, badge, stock, specs, photo names |
+| `data/catalog.js` | every model: price, badge, stock, specs, descriptions, photo names; the WhatsApp number and warranty length in `meta` |
 | `data/i18n.js` | every piece of text on the page, in Georgian and English |
-| `index.html` | page structure, phone numbers, email |
+| `index.html` | page structure, the visible phone number, opening hours |
 | `assets/styles.css` | colors, fonts, spacing, all in the token block at the top |
-| `assets/app.js` | rendering, filtering, sorting, language, theme, the two popups |
-| `assets/wheels/` | 47 product photos, three per model |
+| `assets/app.js` | rendering, filtering, sorting, comparison, WhatsApp links, language, theme |
+| `assets/wheels/` | 21 product photos, three per model |
 
 ## Changing a price
 
 Open `data/catalog.js`, find the model, change the number after `priceGel`. Save, reload.
 
 ```js
-"priceGel": 9990,        // current price in lari, no spaces or commas
-"oldPriceGel": 12890,    // crossed-out price, or null for no discount
-"badge": "sale",         // flagship, new, sale, range, offroad, bestseller, beginner, null
+"priceGel": 9600,        // current price in lari, no spaces or commas
+"oldPriceGel": null,     // crossed-out price, or null for no discount
+"badge": "flagship",     // flagship, new, sale, range, offroad, bestseller, beginner, light, city, null
 "stock": "in",           // "in" = in stock, "order" = to order
 ```
 
@@ -36,6 +37,38 @@ quote went missing.
 
 The monthly instalment under each price is calculated, not typed. It comes from
 `installmentMonths` and `installmentRate` in the `meta` block at the top of the same file.
+
+## Specs and comparison
+
+Each model has a `specs` block. The model window and the comparison table both read from it,
+so a value only has to be right in one place. The field list is in the comment at the top of
+`data/catalog.js`. An unknown value is `null`: it shows as a dash and is left out when the
+table picks the best value in a row.
+
+Visitors tick "+ შედარება" on up to four cards, and a tray appears at the bottom of the screen.
+The comparison table marks two things. A row where the wheels differ gets an orange bar on the
+left. The best value in a row (lowest price or weight, highest power, battery, speed, range and
+so on) is coloured. A "differences only" switch hides rows where every wheel is the same.
+
+The figures come from ewheels.com, ecodrift.ru and nosfet.com, checked on 2026-11-06. Where the
+sources disagreed, the catalogue uses the manufacturer figure, or the retailer figure that the
+arithmetic supports (for example the Apex is 151V, not the 121V printed on nosfet.com). The
+model descriptions are written for this site from those facts. They are not translations of
+the retailers' copy.
+
+## Contact: WhatsApp instead of calls
+
+There is no call-back form. Every contact button opens a WhatsApp chat with +995 598 66 61 11,
+with a message already typed: a general hello, a test ride request, or the name of the model
+the visitor was looking at. The number used for the links is `meta.whatsapp` in
+`data/catalog.js` (digits only). The number shown as text sits in `index.html`, in the contact
+panel and the footer. Change both if the number changes.
+
+## Warranty
+
+Every model carries 12 months on the motor, the controller and the battery cells. The length
+is `meta.warrantyMonths`. The wording is in `data/i18n.js` under `warranty.*`, `svc.1*` and
+`contact.warranty*`.
 
 ## Changing text
 
@@ -47,36 +80,33 @@ models in `data/catalog.js`, also as a `ka` / `en` pair.
 
 1. Drop three photos into `assets/wheels/`, named `brand-model-1.webp`, `-2`, `-3`.
 2. Copy an existing block inside `wheels` and edit it. The `id` must be unique, and `brand`
-   must match one of the four brand ids.
+   must match one of the brand ids.
+
+The model count in the strip under the hero is counted from the catalogue, so it updates by
+itself.
 
 ## Language and theme
 
-The language switch is Georgian by default and remembers the visitor's choice in their
-browser. The theme switch has three positions: auto follows the visitor's operating system,
-the other two force light or dark. Auto is the default, and the choice is remembered.
+Georgian is the default. The switch remembers a visitor's choice in their browser. The theme
+is dark by default; the switch also offers light and auto (follow the operating system), and
+remembers the choice.
 
 ## Before this goes live
 
-These are placeholders and need a real decision:
-
-- Phone numbers (`+995 500 00 00 00`), the address (`თბილისი, [მისამართი]`) and the email.
-  They sit in `index.html`, `data/i18n.js` and `assets/app.js`. Search for `500 00 00 00`.
-- Prices are converted from international dealer prices at 1 USD = 2.7 GEL. A realistic
-  starting point, not your margins. Same for stock status.
-- Specs come from vendor listings. Close, but not audited. Check them per model.
-- The photos are manufacturer press images taken from retailer catalogues (Alien Rides,
-  NextGen Mobility, InMotion). Fine for a mockup, not something to sell against without the
+- Specs come from retailer listings and nosfet.com. Close, but check them against the
+  distributor's sheets for the batch you actually import. The Sherman-P is new (pre-order at
+  both retailers in November 2026), so its figures may still move.
+- The photos are manufacturer press renders taken from retailer catalogues (the Sherman-P set
+  from ecodrift.ru). Fine for a mockup, not something to sell against without the
   distributor's blessing. Replace them with your own, or ask for a media kit.
-- The call request form validates and confirms, but sends nowhere. Point it at a form service
-  (Formspree, Getform, Basin): give `<form id="callForm">` an `action` and `method="post"` in
-  `index.html`, then delete the submit handler at the bottom of `assets/app.js`.
+- The street address is only "Tbilisi" for now.
 
 ## Running it
 
 Double click `index.html`. It works straight off the filesystem, no server needed.
 
-The published copy runs on GitHub Pages through `.github/workflows/pages.yml`, which deploys
-on every push to `main`. Turn it on once under Settings, Pages, Source: GitHub Actions.
+The published copy runs on GitHub Pages. `.github/workflows/pages.yml` deploys on every push
+to `main`, but only if Settings, Pages, Source is set to "GitHub Actions".
 
 ## Notes on the video
 
@@ -85,25 +115,22 @@ by unicycle is worth it. The player is a click-to-load facade: until someone pre
 page only fetches the thumbnail, so no YouTube script or cookie is involved. Pressing play
 swaps in a `youtube-nocookie.com` iframe.
 
-Embedding is what YouTube's embed feature is for, and the channel is credited with a link.
-Still worth a message to the author once this is a commercial storefront, and worth checking
-they have not since disabled embedding. To swap the video, change the id in the `data-video`
-attribute and the thumbnail URL in `index.html`, and `video.name` in `data/i18n.js`.
+To swap the video, change the id in the `data-video` attribute and the thumbnail URL in
+`index.html`, and `video.name` in `data/i18n.js`.
 
 ## Notes on the photos
 
 Press photos arrive at wildly different sizes, some on white backgrounds, some as cutouts
-with transparency, several with the retailer's own sale banners burned into the corner. The
-banner ones were swapped for clean studio shots, then every photo was converted to webp and
-had its flat border trimmed off, which is why they sit at a consistent size on the cards.
-Cards render them on a light plate with `mix-blend-mode: multiply`, so whatever background
-survives blends into the plate instead of showing as a pale rectangle.
+with transparency. Every photo was converted to webp and had its flat border trimmed off,
+which is why they sit at a consistent size on the cards. Cards render them on a light plate
+with `mix-blend-mode: multiply`, so whatever background survives blends into the plate
+instead of showing as a pale rectangle.
 
 ## Design notes
 
 Dark is the primary theme, light is its inverse, and both are built from the same CSS
 variables. Type is Nunito for Latin model names and numbers, Noto Sans Georgian for Georgian,
-both from Google Fonts. One accent, a signal orange, on prices and calls to action; the rest
-is a cool near-black.
+both from Google Fonts. One accent, a signal orange, on prices, calls to action and the best
+values in the comparison table; the rest is a cool near-black.
 
-*Collaboration by Claude*
+*opus5.5*

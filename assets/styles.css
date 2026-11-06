@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ZIPI.GE — სტილები
+   ZIPI.GE: სტილები
    სამი ნაწილი: 1) ტოკენები  2) კომპონენტები  3) სექციები
    საიტი მუქ თემაზეა აწყობილი, ღია თემა მისი ინვერსიაა. ფერს ან ზომას რომ
    შეცვლი, ჯერ ტოკენებში ეძებე: თითო მნიშვნელობა ერთხელაა გამოცხადებული.
@@ -65,7 +65,7 @@
     --shadow: 0 20px 50px -28px rgba(16, 20, 26, 0.45);
   }
 }
-/* ღია თემა: ხელით არჩეული — სისტემის პარამეტრს გადაწონის */
+/* ღია თემა: ხელით არჩეული: სისტემის პარამეტრს გადაწონის */
 :root[data-theme="light"] {
   --ground: #eef0f4;
   --ground-2: #e5e8ee;
@@ -243,7 +243,7 @@ p { margin: 0; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 10px; }
 .hero__marks { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--lat); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; color: var(--muted); }
 
-/* ფლაგმანების ბარათი — ბენტოს ყველაზე დიდი ფილა */
+/* ფლაგმანების ბარათი: ბენტოს ყველაზე დიდი ფილა */
 .flag { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(16px, 2vw, 22px); box-shadow: var(--shadow); }
 .flag__stage { position: relative; aspect-ratio: 16 / 11; }
 .flag__slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 0.45s ease; display: flex; flex-direction: column; gap: 12px; }
@@ -332,9 +332,8 @@ p { margin: 0; }
 @media (max-width: 900px) { .vid__in { grid-template-columns: 1fr; } }
 
 /* --- ბრენდების ბენტო ---------------------------------------------------- */
-.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.bento > :nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.bento > :nth-child(2) { grid-column: span 2; }
+/* ორი ბრენდი: ორი თანაბარი დიდი ფილა გვერდიგვერდ */
+.bento { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .tile {
   position: relative;
   overflow: hidden;
@@ -342,7 +341,7 @@ p { margin: 0; }
   border: 1px solid var(--line);
   border-radius: var(--r);
   padding: clamp(20px, 2.2vw, 30px);
-  min-height: 230px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -350,19 +349,18 @@ p { margin: 0; }
 }
 .tile:hover { border-color: var(--line-2); transform: translateY(-2px); }
 /* ტექსტი ფოტოს ზემოთ დგას და სიგანეც შეზღუდულია, რომ ფოტოს არ შეეხოს */
-.tile > * { position: relative; z-index: 1; max-width: 60%; }
-.bento > :nth-child(1) > * { max-width: 54%; }
+.tile > * { position: relative; z-index: 1; max-width: 54%; }
 .tile__name { font-family: var(--lat); font-size: clamp(1.25rem, 1.8vw, 1.7rem); font-weight: 800; letter-spacing: -0.02em; }
 .tile__count { font-family: var(--lat); font-variant-numeric: tabular-nums; font-size: 0.95rem; color: var(--muted); font-weight: 700; }
 .tile__tag { font-size: 0.85rem; color: var(--ink-2); margin-top: 6px; }
 .tile__from { margin-top: auto; font-family: var(--lat); font-variant-numeric: tabular-nums; font-weight: 800; font-size: 1.05rem; }
-/* ფოტო მრგვალ ფირფიტაზე, ფილის ქვედა კუთხიდან "გამოდის" — ბენტოს ხრიკი.
+/* ფოტო მრგვალ ფირფიტაზე, ფილის ქვედა კუთხიდან "გამოდის": ბენტოს ხრიკი.
    მრგვალი ღია ფონი საჭიროა, რადგან ქარხნული ფოტოები თეთრ ფონზეა გადაღებული */
 .tile__shot {
   position: absolute;
-  right: -5%;
-  bottom: -12%;
-  width: 46%;
+  right: 4%;
+  bottom: -6%;
+  width: 42%;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
@@ -373,19 +371,13 @@ p { margin: 0; }
   pointer-events: none;
   z-index: 0;
 }
-.bento > :nth-child(1) .tile__shot { width: 42%; right: 4%; bottom: -6%; }
 .tile__shot img { width: 82%; height: 82%; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.35s ease; }
 .tile:hover .tile__shot img { transform: scale(1.05) rotate(-2deg); }
 
-@media (max-width: 900px) {
-  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .bento > :nth-child(1) { grid-column: span 2; grid-row: auto; }
-  .bento > :nth-child(2) { grid-column: span 2; }
-}
-@media (max-width: 560px) {
+@media (max-width: 720px) {
   .bento { grid-template-columns: 1fr; }
-  .bento > :nth-child(1), .bento > :nth-child(2) { grid-column: span 1; }
-  .tile__shot { width: 46%; }
+  .tile { min-height: 240px; }
+  .tile__shot { width: 46%; right: -5%; bottom: -12%; }
 }
 
 /* --- ფილტრები ---------------------------------------------------------- */
@@ -408,6 +400,7 @@ p { margin: 0; }
 /* --- პროდუქტის ბარათი -------------------------------------------------- */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(262px, 1fr)); gap: 12px; }
 .card {
+  position: relative;
   background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
   padding: 14px; display: flex; flex-direction: column; gap: 12px;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -434,6 +427,21 @@ p { margin: 0; }
 .stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .stock--in { color: var(--ok); }
 .stock--order { color: var(--wait); }
+
+/* მარაგი და გარანტია ერთ ხაზზე */
+.card__tags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.warr { font-size: 0.72rem; color: var(--ink-2); }
+
+/* "+ შედარება" ფოტოს ზედა მარჯვენა კუთხეში. ფოტოს ფირფიტა ორივე თემაში
+   ღიაა, ამიტომ ღილაკს საკუთარი მუქი ფონი აქვს და არა თემის ფერი */
+.pick {
+  position: absolute; top: 24px; right: 24px; z-index: 1;
+  background: rgba(12, 13, 16, 0.78); color: #f3f5f8; border: 1px solid transparent;
+  border-radius: 999px; padding: 5px 11px; font-size: 0.68rem; font-weight: 700;
+  cursor: pointer; backdrop-filter: blur(6px); transition: background 0.15s, border-color 0.15s;
+}
+.pick:hover { border-color: var(--accent); }
+.pick[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 
 .card__price { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
 .price { font-family: var(--lat); font-variant-numeric: tabular-nums; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.025em; display: flex; align-items: baseline; gap: 8px; }
@@ -497,6 +505,10 @@ dialog::backdrop { background: rgba(4, 6, 9, 0.72); backdrop-filter: blur(4px); 
 .sheet__info { padding: clamp(20px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 13px; overflow-y: auto; }
 .sheet__name { font-family: var(--lat); font-size: clamp(1.45rem, 2.4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
 .sheet__blurb { font-size: 0.92rem; color: var(--muted); }
+/* მოდელის მთავარი თავისებურებები ფოტოების ქვეშ */
+.feats { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--ink-2); }
+.feats li { position: relative; padding-inline-start: 16px; }
+.feats li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
 .table th, .table td { padding: 9px 0; border-bottom: 1px solid var(--line); text-align: left; }
 .table th { font-weight: 400; color: var(--muted); font-size: 0.81rem; }
@@ -507,18 +519,64 @@ dialog::backdrop { background: rgba(4, 6, 9, 0.72); backdrop-filter: blur(4px); 
 
 @media (max-width: 820px) { .sheet { grid-template-columns: 1fr; } }
 
-/* --- ზარის ფორმა ------------------------------------------------------- */
-.callform { padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 14px; max-width: 470px; }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field label { font-size: 0.8rem; color: var(--muted); }
-.field input, .field textarea {
-  font-family: var(--ka); font-size: 0.95rem; padding: 12px 14px; background: var(--ground-2);
-  color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-xs); resize: vertical;
+/* --- შედარების ზოლი ---------------------------------------------------- */
+/* ზოლი ეკრანის ქვედა კიდეზე "ცურავს"; body-ს ქვედა დაშორებას ვუმატებთ,
+   რომ ფუტერის ბოლო ხაზი ზოლის ქვეშ არ დაიმალოს */
+body.has-tray { padding-bottom: 96px; }
+.tray { position: fixed; inset-inline: 0; bottom: 14px; z-index: 50; padding-inline: var(--rail); pointer-events: none; }
+.tray[hidden] { display: none; }
+.tray__in {
+  pointer-events: auto; max-width: 920px; margin-inline: auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+  background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(16px);
+  border: 1px solid var(--line-2); border-radius: var(--r); padding: 10px 12px 10px 18px; box-shadow: var(--shadow);
 }
-.field input:focus, .field textarea:focus { border-color: var(--accent); }
-.field--bad input { border-color: var(--accent); }
-.field__err { font-size: 0.74rem; color: var(--accent); min-height: 1em; }
-.done { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.tray__picks { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.tray__label { font-size: 0.78rem; color: var(--muted); margin-inline-end: 6px; }
+.tray__label--warn { color: var(--accent); }
+.tray__pick {
+  background: var(--card-2); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+  font-family: var(--lat); font-size: 0.78rem; font-weight: 700; cursor: pointer;
+}
+.tray__pick span { color: var(--muted); margin-inline-start: 4px; }
+.tray__pick:hover { border-color: var(--accent); }
+.tray__acts { display: flex; gap: 6px; }
+.btn:disabled { opacity: 0.5; cursor: default; transform: none; filter: none; }
+
+/* --- შედარების ფანჯარა ------------------------------------------------- */
+.cmp { max-width: min(1180px, calc(100vw - 20px)); }
+.cmp[open] { display: flex; flex-direction: column; }
+.cmp__head { padding: clamp(20px, 2.6vw, 30px) clamp(20px, 2.6vw, 30px) 12px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.cmp__only { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; }
+.cmp__only input { accent-color: var(--accent); width: 16px; height: 16px; }
+/* ფართო ცხრილი ტელეფონზე გვერდულად სქროლდება, პირველი სვეტი ადგილზე რჩება */
+.cmp__scroll { overflow: auto; padding: 0 clamp(12px, 2vw, 22px) clamp(16px, 2vw, 24px); }
+.cmp__table { width: 100%; min-width: calc(150px + var(--cols) * 150px); border-collapse: separate; border-spacing: 0; font-size: 0.86rem; }
+.cmp__table th, .cmp__table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.cmp__table thead th { vertical-align: bottom; border-bottom-color: var(--line-2); }
+.cmp__table tbody th { font-weight: 400; color: var(--muted); font-size: 0.8rem; width: 150px; }
+.cmp__table td { font-family: var(--lat); font-variant-numeric: tabular-nums; font-weight: 700; }
+.cmp__table tr > :first-child { position: sticky; left: 0; z-index: 1; background: var(--card); }
+.cmp__plate {
+  position: relative; height: clamp(90px, 14vw, 140px); border-radius: var(--r-xs); margin-bottom: 8px;
+  background: var(--plate-1); border: 1px solid var(--plate-line); overflow: hidden;
+}
+.cmp__plate img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; mix-blend-mode: multiply; }
+.cmp__name { display: block; font-family: var(--lat); font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.cmp__drop { margin-top: 6px; background: none; border: 0; padding: 0; font-size: 0.72rem; color: var(--muted); cursor: pointer; text-decoration: underline; }
+.cmp__drop:hover { color: var(--accent); }
+/* განსხვავებული სტრიქონი: მარცხნივ აქცენტის ხაზი და ოდნავ ამოწეული ფონი */
+.cmp__table tr.is-diff > * { background: color-mix(in srgb, var(--card-2) 70%, transparent); }
+.cmp__table tr.is-diff > th:first-child { box-shadow: inset 3px 0 0 var(--accent); color: var(--ink-2); background: var(--card-2); }
+/* საუკეთესო მნიშვნელობა სტრიქონში */
+.cmp__table td.is-best { color: var(--accent); }
+.cmp__table td.is-best::after { content: " ●"; font-size: 0.6em; vertical-align: middle; }
+/* ტელეფონზე: ვიწრო სათაურის სვეტი, რომ ერთ ეკრანზე მეტი მოდელი ჩანდეს */
+@media (max-width: 600px) {
+  .cmp__table { min-width: calc(104px + var(--cols) * 128px); font-size: 0.8rem; }
+  .cmp__table th, .cmp__table td { padding: 9px 8px; }
+  .cmp__table tbody th { width: 104px; font-size: 0.74rem; }
+}
 
 /* --- გამოჩენა ---------------------------------------------------------- */
 .rise { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
