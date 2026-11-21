@@ -639,8 +639,21 @@
     if (e.target.id === "burger") {
       var open = $("#nav").classList.toggle("nav--open");
       e.target.setAttribute("aria-expanded", String(open));
+      navOpenY = window.pageYOffset;
     }
   });
+
+  /* მობილური მენიუ: გვერდის ჩამოსქროლვისას თავისით იკეცება.
+     მცირე რყევაზე (30px-მდე) არ იხურება. თვითონ მენიუს შიგნით სქროლი
+     გვერდს არ ამოძრავებს (CSS: overscroll-behavior), ამიტომ მას არ ხურავს. */
+  var navOpenY = 0;
+  window.addEventListener("scroll", function () {
+    var nav = $("#nav");
+    if (!nav.classList.contains("nav--open")) return;
+    if (Math.abs(window.pageYOffset - navOpenY) < 30) return;
+    nav.classList.remove("nav--open");
+    $("#burger").setAttribute("aria-expanded", "false");
+  }, { passive: true });
 
   $$("dialog").forEach(function (d) {
     d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
