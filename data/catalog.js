@@ -108,7 +108,7 @@ window.CATALOG = {
           "Kickstand, trolley handle, two-piece mudguard and three-mode lights with a daytime running light."
         ]
       },
-      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 55, "rangeKm": 55, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
       "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp", "nosfet-aero-4.jpg"]
     },
     {
@@ -139,7 +139,7 @@ window.CATALOG = {
           "Kickstand and folding trolley handle."
         ]
       },
-      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 64, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 60, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
       "images": ["nosfet-aeon-1.jpg", "nosfet-aeon-2.jpg", "nosfet-aeon-3.jpg", "nosfet-aeon-4.jpg", "nosfet-aeon-5.jpg", "nosfet-aeon-6.jpg", "nosfet-aeon-7.jpg", "nosfet-aeon-8.jpg", "nosfet-aeon-9.jpg"]
     },
     {
@@ -168,7 +168,7 @@ window.CATALOG = {
           "Over-the-air firmware updates from the Nosfet app. The BMS protects against short circuit, overcharge and overheating."
         ]
       },
-      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 110, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
+      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
       "images": ["nosfet-xeno-1.jpg", "nosfet-xeno-2.jpg", "nosfet-xeno-3.jpg", "nosfet-xeno-4.jpg", "nosfet-xeno-5.jpg", "nosfet-xeno-6.jpg", "nosfet-xeno-7.jpg", "nosfet-xeno-8.jpg", "nosfet-xeno-9.jpg", "nosfet-xeno-10.jpg", "nosfet-xeno-11.jpg", "nosfet-xeno-12.jpg", "nosfet-xeno-13.jpg", "nosfet-xeno-14.jpg"]
     },
     {
@@ -199,7 +199,7 @@ window.CATALOG = {
           "The kickstand folds away on a hard drop instead of snapping, and the mudguard breaks away on impact."
         ]
       },
-      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 88, "rangeKm": 95, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" },
+      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 90, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" },
       "images": ["nosfet-apex-1.webp", "nosfet-apex-2.webp", "nosfet-apex-3.webp", "nosfet-apex-4.webp", "nosfet-apex-5.webp"]
     },
     {
@@ -259,7 +259,7 @@ window.CATALOG = {
           "Charging up to 20 A (about 3 kW): at 10 A the pack fills in about 2 hours."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 95, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null },
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 100, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null },
       "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp", "leaperkim-lynx-s-4.webp", "leaperkim-lynx-s-5.webp"]
     },
     {
@@ -290,7 +290,7 @@ window.CATALOG = {
           "Hidden trolley handle, folding kickstand, toe hooks and IPX6 water resistance."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 100, "rangeKm": 200, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" },
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 120, "rangeKm": 230, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" },
       "images": ["leaperkim-sherman-p-1.jpg", "leaperkim-sherman-p-2.jpg", "leaperkim-sherman-p-3.jpg", "leaperkim-sherman-p-4.jpg", "leaperkim-sherman-p-5.jpg", "leaperkim-sherman-p-6.jpg", "leaperkim-sherman-p-7.jpg", "leaperkim-sherman-p-8.jpg"]
     }
   ]
