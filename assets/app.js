@@ -586,6 +586,24 @@
   $(".flag").addEventListener("mouseleave", function () { autoFlag(true); });
   $(".flag").addEventListener("focusin", function () { autoFlag(false); });
 
+  /* სლაიდშოუ ტელეფონზე: მარცხნივ გადასმა = შემდეგი, მარჯვნივ = წინა.
+     ვერტიკალური მოძრაობა გვერდის ჩვეულებრივ გადახვევად რჩება. */
+  var swipeX = null, swipeY = null;
+  $("#flagStage").addEventListener("touchstart", function (e) {
+    if (e.touches.length !== 1) { swipeX = null; return; }
+    swipeX = e.touches[0].clientX; swipeY = e.touches[0].clientY;
+    autoFlag(false);
+  }, { passive: true });
+  $("#flagStage").addEventListener("touchend", function (e) {
+    if (swipeX === null) return;
+    var dx = e.changedTouches[0].clientX - swipeX;
+    var dy = e.changedTouches[0].clientY - swipeY;
+    swipeX = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) showFlag(flagIdx + (dx < 0 ? 1 : -1));
+    autoFlag(true);
+  }, { passive: true });
+  $("#flagStage").addEventListener("touchcancel", function () { swipeX = null; autoFlag(true); }, { passive: true });
+
   function init() {
     /* შენახული არჩევანი თუ არ არის (ან ძველი "auto"-ა), სისტემის თემას მივყვებით */
     setTheme(recall(STORE_THEME));
