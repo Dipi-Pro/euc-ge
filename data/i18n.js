@@ -37,8 +37,8 @@ window.I18N = {
     "wa.hello": "გამარჯობა! მაინტერესებს ელექტრო მონობორბალი.",
     "wa.model": "გამარჯობა! მაინტერესებს {x}.",
 
-    "hero.h1b": "მთელი თბილისი",
-    "hero.h1c": "გზაა",
+    "hero.h1b": "ქალაქი",
+    "hero.h1c": "დგას, შენ მოძრაობ",
     "hero.lead": "მაღალი სიმძლავრის ელექტრო მონობორბლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
 
     "strip.models": "მოდელი კატალოგში",
@@ -175,8 +175,8 @@ window.I18N = {
     "wa.hello": "Hello! I'm interested in an electric unicycle.",
     "wa.model": "Hello! I'm interested in the {x}.",
 
-    "hero.h1b": "all of Tbilisi",
-    "hero.h1c": "is the road",
+    "hero.h1b": "The city",
+    "hero.h1c": "stands still, you keep moving",
     "hero.lead": "High-power electric unicycles from NOSFET and LEAPERKIM. Prices in lari, a 12-month warranty and service on site.",
 
     "strip.models": "models in the catalogue",
