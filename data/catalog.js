@@ -41,13 +41,50 @@ window.CATALOG = {
     /* გარანტია ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე, ყველა მოდელზე */
     "warrantyMonths": 12
   },
-  /* კატალოგის დამატებითი განყოფილებები (მონობორბლების გარდა).
-     id გამოიყენება extras-ში cat ველად; სახელები i18n.js-შია (cat.<id>). */
-  "categories": ["accessories", "protection", "print3d"],
-  /* აქსესუარები, დამცავები და 3D ბეჭდვის ნაწარმი. თითო პროდუქტი ასე იწერება:
+  /* კატალოგის განყოფილებები და ქვეკატეგორიები (მონობორბლების გარდა, რომლებიც
+     ბრენდებით იყოფა). ეს სია ავსებს ჰედერის ჩამოსაშლელ მენიუს და კატალოგის
+     ღილაკებს. ახალი ქვეკატეგორია: დაამატე { "id", "name" } შესაბამის children-ში.
+     id: მხოლოდ ლათინური ასოები, ციფრები და "-". */
+  "categories": [
+    { "id": "parts", "name": { "ka": "ნაწილები", "en": "Parts" }, "children": [
+      { "id": "tires", "name": { "ka": "საბურავი", "en": "Tyres" } },
+      { "id": "lubricants", "name": { "ka": "საპოხი მასალები", "en": "Lubricants" } }
+    ] },
+    { "id": "accessories", "name": { "ka": "აქსესუარები", "en": "Accessories" }, "children": [
+      { "id": "pads", "name": { "ka": "პადები", "en": "Pads" } },
+      { "id": "seats", "name": { "ka": "დასაჯდომი", "en": "Seats" } },
+      { "id": "alarms", "name": { "ka": "სიგნალი/სიგნალიზაცია", "en": "Horns & alarms" } },
+      { "id": "lights", "name": { "ka": "ციმციმა", "en": "Flashing lights" } },
+      { "id": "locks", "name": { "ka": "საკეტი", "en": "Locks" } }
+    ] },
+    { "id": "protection", "name": { "ka": "დამცავები", "en": "Protective gear" }, "children": [
+      { "id": "helmets", "name": { "ka": "ჩაფხუტი", "en": "Helmets" } },
+      { "id": "knee", "name": { "ka": "სამუხლე", "en": "Knee guards" } },
+      { "id": "elbow", "name": { "ka": "საიდაყვე", "en": "Elbow guards" } },
+      { "id": "wrist", "name": { "ka": "მაჯის დამცავი", "en": "Wrist guards" } },
+      { "id": "body", "name": { "ka": "სხეულის დამცავი", "en": "Body armour" } },
+      { "id": "shorts", "name": { "ka": "შორტი", "en": "Padded shorts" } },
+      { "id": "shoes", "name": { "ka": "ფეხსაცმელი", "en": "Shoes" } }
+    ] },
+    { "id": "print3d", "name": { "ka": "3D ბეჭდვა", "en": "3D printing" }, "children": [
+      { "id": "leaperkim", "name": { "ka": "LEAPERKIM", "en": "LEAPERKIM" }, "children": [
+        { "id": "sherman-p", "name": { "ka": "Sherman-P", "en": "Sherman-P" } },
+        { "id": "lynx-s", "name": { "ka": "Lynx-S", "en": "Lynx-S" } },
+        { "id": "patton-s", "name": { "ka": "Patton-S", "en": "Patton-S" } }
+      ] },
+      { "id": "nosfet", "name": { "ka": "NOSFET", "en": "NOSFET" }, "children": [
+        { "id": "aero", "name": { "ka": "Aero", "en": "Aero" } },
+        { "id": "aeon", "name": { "ka": "Aeon", "en": "Aeon" } },
+        { "id": "xeno", "name": { "ka": "Xeno", "en": "Xeno" } },
+        { "id": "apex", "name": { "ka": "Apex", "en": "Apex" } }
+      ] }
+    ] }
+  ],
+  /* ნაწილები, აქსესუარები, დამცავები და 3D ბეჭდვის ნაწარმი. თითო პროდუქტი ასე იწერება:
      {
        "id": "unique-id",
-       "cat": "accessories",              // accessories, protection ან print3d
+       "cat": "accessories/pads",         // განყოფილების გზა id-ებით, "/"-ით გაყოფილი,
+                                          // მაგ. "parts/tires" ან "print3d/nosfet/xeno"
        "name": { "ka": "სახელი", "en": "Name" },
        "blurb": { "ka": "მოკლე აღწერა", "en": "Short description" },
        "priceGel": 120,                   // ან null, თუ ფასი WhatsApp-ზე

@@ -19,9 +19,6 @@
   var STORE_LANG = "zipi-lang";
   var STORE_THEME = "zipi-theme";
 
-  /* TOP მოდელები: ორი ქალაქური და ორი ფლაგმანი */
-  var TOP = ["nosfet-aero", "nosfet-aeon", "nosfet-apex", "leaperkim-sherman-p"];
-
   /* შედარებაში ერთდროულად მაქსიმუმ ამდენი მოდელი ეტევა: მეტი ტელეფონზე
      უკვე წაუკითხავი ხდება */
   var CMP_MAX = 4;
@@ -239,34 +236,93 @@
     }
   }
 
-  /* --- ბრენდების ბენტო -------------------------------------------------- */
-  function buildBrands() {
-    $("#brandGrid").innerHTML = BRANDS.map(function (b) {
-      var mine = WHEELS.filter(function (w) { return w.brand === b.id; });
-      var min = Math.min.apply(null, mine.map(function (w) { return w.priceGel; }));
-      /* ფილაზე ბრენდის ყველაზე ძვირი მოდელის ფოტოს ვდებთ */
-      var star = mine.slice().sort(function (x, y) { return y.priceGel - x.priceGel; })[0];
-      return (
-        '<a class="tile rise" href="#catalog" data-jump="' + b.id + '">' +
-          '<span class="tile__name">' + esc(b.name) + "</span>" +
-          '<span class="tile__count">' + t("brands.models", { n: mine.length }) + "</span>" +
-          '<span class="tile__tag">' + esc(loc(b.tagline)) + "</span>" +
-          '<span class="tile__from">' + t("brands.from", { x: price(min) }) + "</span>" +
-          '<span class="tile__shot"><img src="' + photo(star.images[0]) + '" alt="" loading="lazy"></span>' +
-        "</a>"
-      );
-    }).join("");
-  }
-
   /* --- კატალოგის განყოფილებები ------------------------------------------ */
-  var CATS = ["wheels"].concat(DATA.categories || []);
+  /* TREE: catalog.js-ის categories (ნაწილები, აქსესუარები, ...), ქვეკატეგორიებით.
+     path: არჩეული განყოფილების გზა id-ებით, მაგ. ["print3d", "nosfet", "xeno"].
+     მონობორბლები ცალკეა: path = ["wheels"], ბრენდს კი filter ირჩევს. */
+  var TREE = DATA.categories || [];
+  var CATS = ["wheels"].concat(TREE.map(function (n) { return n.id; }));
   var EXTRAS = DATA.extras || [];
   var cat = "wheels";
+  var path = ["wheels"];
+
+  /* გზის მიხედვით კვანძების სია: [მთავარი, ქვე, ქვე-ქვე, ...] */
+  function nodesOf(p) {
+    var list = TREE, out = [];
+    for (var i = 0; i < p.length; i++) {
+      var n = list.filter(function (x) { return x.id === p[i]; })[0];
+      if (!n) break;
+      out.push(n);
+      list = n.children || [];
+    }
+    return out;
+  }
+  var nodeName = function (n) { return loc(n.name); };
+  var isLat = function (s) { return /^[\x20-\x7E]+$/.test(s); };
+  function catLabel(c) {
+    if (c === "wheels") return t("cat.wheels");
+    var n = nodesOf([c])[0];
+    return n ? nodeName(n) : c;
+  }
+  /* შეტყობინებისთვის: "3D ბეჭდვა / NOSFET / Xeno" */
+  function trail(p) { return nodesOf(p).map(nodeName).join(" / "); }
+
+  function goTo(p) {
+    path = p.length ? p : ["wheels"];
+    cat = path[0];
+    renderGrid();
+  }
 
   function buildCats() {
     $("#cats").innerHTML = CATS.map(function (c) {
-      return '<button class="chip" data-cat="' + c + '" aria-pressed="' + (c === cat) + '">' + esc(t("cat." + c)) + "</button>";
+      return '<button class="chip" data-cat="' + c + '" aria-pressed="' + (c === cat) + '">' + esc(catLabel(c)) + "</button>";
     }).join("");
+  }
+
+  /* კატალოგში ქვეკატეგორიების რიგები: ყოველ დონეზე "ყველა" + შვილები */
+  function subcatsHTML() {
+    var html = "", nodes = nodesOf(path);
+    nodes.forEach(function (n, i) {
+      if (!n.children || !n.children.length) return;
+      var base = path.slice(0, i + 1), cur = path[i + 1];
+      var chip = function (p, label, on) {
+        return '<button class="chip" data-path="' + p.join("/") + '" aria-pressed="' + on + '">' +
+          (isLat(label) ? '<span class="lat">' + esc(label) + "</span>" : esc(label)) + "</button>";
+      };
+      html += '<div class="chips" role="group">' + chip(base, t("cat.all"), !cur) +
+        n.children.map(function (ch) { return chip(base.concat(ch.id), nodeName(ch), cur === ch.id); }).join("") +
+        "</div>";
+    });
+    return html;
+  }
+
+  /* ჰედერის ჩამოსაშლელი მენიუ, ნებისმიერი სიღრმით */
+  function navLink(attr, label, popup) {
+    return '<a href="#catalog" ' + attr + (isLat(label) ? ' class="nav__lat"' : "") +
+      (popup ? ' aria-haspopup="true"' : "") + ">" + esc(label) + "</a>";
+  }
+  function navNode(attr, label, inner) {
+    return '<div class="nav__sub"><div class="nav__row">' + navLink(attr, label, true) +
+      '<button class="nav__toggle" data-sub-toggle aria-expanded="false" aria-label="' + esc(label) + '">▾</button>' +
+      '</div><div class="nav__submenu">' + inner + "</div></div>";
+  }
+  function navTree(n, p) {
+    var attr = 'data-path="' + p.join("/") + '"';
+    if (!n.children || !n.children.length) return navLink(attr, nodeName(n));
+    return navNode(attr, nodeName(n), n.children.map(function (ch) { return navTree(ch, p.concat(ch.id)); }).join(""));
+  }
+  function buildNav() {
+    var wheels = navNode('data-cat="wheels"', t("cat.wheels"),
+      BRANDS.map(function (b) { return navLink('data-jump="' + b.id + '"', b.name); }).join(""));
+    $("#navCats").innerHTML = wheels + TREE.map(function (n) { return navTree(n, [n.id]); }).join("");
+  }
+
+  /* ჰედერის სიიდან არჩევისას სიას და მობილურ მენიუს ვხურავთ */
+  function closeNav(el) {
+    if (!el.closest(".nav")) return;
+    el.blur();
+    $("#nav").classList.remove("nav--open");
+    $("#burger").setAttribute("aria-expanded", "false");
   }
 
   /* აქსესუარის / დამცავის / 3D ნაწარმის ბარათი: ფოტო, სახელი, ფასი, WhatsApp */
@@ -303,13 +359,20 @@
   function renderGrid() {
     $$("#cats .chip").forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.cat === cat)); });
     $(".tools").hidden = cat !== "wheels";
+    $("#subcats").hidden = cat === "wheels";
 
     if (cat !== "wheels") {
-      var items = EXTRAS.filter(function (x) { return x.cat === cat; });
+      /* არჩეულ განყოფილებაში და მის ყველა ქვეკატეგორიაში არსებული პროდუქტები */
+      var key = path.join("/");
+      var items = EXTRAS.filter(function (x) {
+        var c = String(x.cat || "");
+        return c === key || c.indexOf(key + "/") === 0;
+      });
+      $("#subcats").innerHTML = subcatsHTML();
       $("#grid").innerHTML = items.map(extraCardHTML).join("");
       $("#empty").hidden = true;
       $("#soon").hidden = items.length > 0;
-      $("#soonWa").href = waHref(t("cat." + cat));
+      $("#soonWa").href = waHref(trail(path));
       return;
     }
     $("#soon").hidden = true;
@@ -524,10 +587,9 @@
   /* --- ჩვენება ---------------------------------------------------------- */
   function render() {
     buildFlag();
-    buildBrands();
+    buildNav();
     buildCats();
     buildChips();
-    $("#topGrid").innerHTML = TOP.map(wheelOf).filter(Boolean).map(cardHTML).join("");
     renderGrid();
     renderTray();
     $("#modelCount").textContent = WHEELS.length;
@@ -557,14 +619,21 @@
       el.setAttribute("aria-expanded", String(drop));
       return;
     }
+    /* მობილურ მენიუში ქვეკატეგორიის ▾ ღილაკი */
+    if ((el = hit("[data-sub-toggle]"))) {
+      var sub = el.closest(".nav__sub").classList.toggle("nav__sub--open");
+      el.setAttribute("aria-expanded", String(sub));
+      return;
+    }
+    if ((el = hit("[data-path]"))) { goTo(el.dataset.path.split("/")); closeNav(el); return; }
     if ((el = hit("[data-cat]"))) {
-      cat = el.dataset.cat; renderGrid();
-      /* ჰედერის სიიდან არჩევისას ფოკუსს ვხსნით, რომ სია დაიხუროს და მობილური მენიუც */
-      if (el.closest(".nav")) { el.blur(); $("#nav").classList.remove("nav--open"); $("#burger").setAttribute("aria-expanded", "false"); }
+      /* ჰედერიდან "მონობორბლები" ყველა ბრენდს აჩვენებს */
+      if (el.dataset.cat === "wheels" && el.closest(".nav")) filter = "all";
+      goTo([el.dataset.cat]); closeNav(el);
       return;
     }
     if ((el = hit("[data-filter]"))) { filter = el.dataset.filter; renderGrid(); return; }
-    if ((el = hit("[data-jump]"))) { cat = "wheels"; filter = el.dataset.jump; renderGrid(); return; }
+    if ((el = hit("[data-jump]"))) { filter = el.dataset.jump; goTo(["wheels"]); closeNav(el); return; }
     if ((el = hit("[data-close]"))) { el.closest("dialog").close(); return; }
 
     if (e.target.id === "burger") {

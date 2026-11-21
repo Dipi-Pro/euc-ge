@@ -45,11 +45,10 @@
         <a href="#catalog" data-t="nav.catalog" aria-haspopup="true">კატალოგი</a>
         <!-- მობილურ მენიუში: ღილაკი, რომელიც განყოფილებების სიას შლის/კეცავს -->
         <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navCats" data-t-aria="nav.catalogMenu" aria-label="კატალოგის განყოფილებები">▾</button>
+        <!-- განყოფილებები და ქვეკატეგორიები: app.js ავსებს catalog.js-ის categories-დან.
+             კომპიუტერზე მაუსის მიტანით იშლება, ტელეფონზე ▾ ღილაკით. -->
         <div class="nav__menu" id="navCats">
           <a href="#catalog" data-cat="wheels" data-t="cat.wheels">მონობორბლები</a>
-          <a href="#catalog" data-cat="accessories" data-t="cat.accessories">აქსესუარები</a>
-          <a href="#catalog" data-cat="protection" data-t="cat.protection">დამცავები</a>
-          <a href="#catalog" data-cat="print3d" data-t="cat.print3d">3D ბეჭდვა</a>
         </div>
       </div>
       <a href="#service" data-t="nav.service">სერვისი</a>
@@ -116,37 +115,6 @@
     </div>
   </section>
 
-  <!-- ==================== ბრენდები (ბენტო) ==================== -->
-  <section class="sec" id="brands">
-    <div class="wrap">
-      <div class="sec__head">
-        <div>
-          <p class="eyebrow" data-t="brands.eyebrow">ბრენდები</p>
-          <h2 data-t="brands.h2">ორი მწარმოებელი, ორი ხასიათი</h2>
-        </div>
-        <p class="lead" data-t="brands.lead">
-          ერთი და იმავე ფასის მოდელები სხვადასხვა ამოცანას ხსნის. აირჩიე ბრენდი,
-          ან პირდაპირ კატალოგში გაფილტრე.
-        </p>
-      </div>
-      <div class="bento" id="brandGrid"></div>
-    </div>
-  </section>
-
-  <!-- ==================== TOP მოდელები ==================== -->
-  <section class="sec" id="top-models">
-    <div class="wrap">
-      <div class="sec__head">
-        <div>
-          <p class="eyebrow" data-t="top.eyebrow">ყველაზე მოთხოვნადი</p>
-          <h2 data-t="top.h2">TOP მოდელები</h2>
-        </div>
-        <p class="lead" data-t="top.lead">ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ.</p>
-      </div>
-      <div class="grid" id="topGrid"></div>
-    </div>
-  </section>
-
   <!-- ==================== კატალოგი ==================== -->
   <section class="sec" id="catalog">
     <div class="wrap">
@@ -155,11 +123,12 @@
           <p class="eyebrow" data-t="cat.eyebrow">კატალოგი</p>
           <h2 data-t="cat.h2">ყველა მონობორბალი</h2>
         </div>
-        <p class="lead" data-t="cat.lead">ფასები მოცემულია ლარში. მონიშნე ორი ან მეტი მოდელი და შეადარე მახასიათებლები ერთ ცხრილში.</p>
       </div>
 
       <!-- კატალოგის განყოფილებები: მონობორბლები, აქსესუარები, დამცავები, 3D ბეჭდვა -->
       <div class="cats" id="cats" role="group"></div>
+      <!-- არჩეული განყოფილების ქვეკატეგორიები (ერთი ან რამდენიმე რიგი) -->
+      <div class="subcats" id="subcats" hidden></div>
 
       <div class="tools">
         <div class="chips" id="chips" role="group"></div>
@@ -239,7 +208,7 @@
         <p class="eyebrow" data-t="contact.eyebrow">კონტაქტი</p>
         <dl class="facts">
           <div class="fact"><dt data-t="contact.phone">ტელეფონი / WhatsApp</dt><dd class="num"><a href="tel:+995598666111">+995 598 66 61 11</a></dd></div>
-          <div class="fact"><dt data-t="contact.address">მისამართი</dt><dd data-t="contact.addressValue">თბილისი</dd></div>
+          <div class="fact"><dt data-t="contact.address">მისამართი</dt><dd data-t="contact.addressValue">თბილისი, საქართველო</dd></div>
           <div class="fact"><dt data-t="contact.hours">საკონტაქტო საათები</dt><dd class="num">12:00-22:00</dd></div>
         </dl>
         <a class="btn" data-wa href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.wa">მოგვწერე WhatsApp-ზე</a>
@@ -280,7 +249,7 @@
         <h4 data-t="foot.contact">კონტაქტი</h4>
         <ul>
           <li><a class="num" href="tel:+995598666111">+995 598 66 61 11</a></li>
-          <li data-t="contact.addressValue">თბილისი</li>
+          <li data-t="contact.addressValue">თბილისი, საქართველო</li>
           <li class="num">12:00-22:00</li>
         </ul>
       </div>

@@ -46,24 +46,12 @@ window.I18N = {
     "strip.from": "საწყისი ფასი",
 
 
-    "brands.eyebrow": "ბრენდები",
-    "brands.h2": "ორი მწარმოებელი, ორი ხასიათი",
-    "brands.lead": "ერთი და იმავე ფასის მოდელები სხვადასხვა ამოცანას ხსნის. აირჩიე ბრენდი, ან პირდაპირ კატალოგში გაფილტრე.",
-    "brands.models": "{n} მოდელი",
-    "brands.from": "{x}-დან",
 
-    "top.eyebrow": "ყველაზე მოთხოვნადი",
-    "top.h2": "TOP მოდელები",
-    "top.lead": "ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ.",
 
     "cat.eyebrow": "კატალოგი",
     "cat.h2": "ყველა მონობორბალი",
-    "cat.lead": "ფასები მოცემულია ლარში. მონიშნე ორი ან მეტი მოდელი და შეადარე მახასიათებლები ერთ ცხრილში.",
     "cat.all": "ყველა",
     "cat.wheels": "მონობორბლები",
-    "cat.accessories": "აქსესუარები",
-    "cat.protection": "დამცავები",
-    "cat.print3d": "3D ბეჭდვა",
     "cat.soon": "ამ განყოფილებაში პროდუქცია მალე დაემატება. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.",
     "cat.sort": "სორტირება",
     "cat.empty": "ამ ფილტრით მოდელი ვერ მოიძებნა.",
@@ -151,7 +139,7 @@ window.I18N = {
     "contact.eyebrow": "კონტაქტი",
     "contact.phone": "ტელეფონი / WhatsApp",
     "contact.address": "მისამართი",
-    "contact.addressValue": "თბილისი",
+    "contact.addressValue": "თბილისი, საქართველო",
     "contact.hours": "საკონტაქტო საათები",
 
     "foot.blurb": "NOSFET და LEAPERKIM მონობორბლები, ნაწილები და სერვისი თბილისში.",
@@ -196,24 +184,12 @@ window.I18N = {
     "strip.from": "starting price",
 
 
-    "brands.eyebrow": "Brands",
-    "brands.h2": "Two makers, two characters",
-    "brands.lead": "Wheels at the same price solve different problems. Pick a brand, or filter the catalogue directly.",
-    "brands.models": "{n} models",
-    "brands.from": "from {x}",
 
-    "top.eyebrow": "Most asked for",
-    "top.h2": "Top models",
-    "top.lead": "The four wheels people choose most often.",
 
     "cat.eyebrow": "Catalogue",
     "cat.h2": "Every wheel",
-    "cat.lead": "Prices are in lari. Tick two or more wheels and compare their specs side by side.",
     "cat.all": "All",
     "cat.wheels": "Unicycles",
-    "cat.accessories": "Accessories",
-    "cat.protection": "Protective gear",
-    "cat.print3d": "3D printing",
     "cat.soon": "Products for this section are coming soon. Message us on WhatsApp about anything you need.",
     "cat.sort": "Sort by",
     "cat.empty": "Nothing matches this filter.",
@@ -300,7 +276,7 @@ window.I18N = {
     "contact.eyebrow": "Contact",
     "contact.phone": "Phone / WhatsApp",
     "contact.address": "Address",
-    "contact.addressValue": "Tbilisi",
+    "contact.addressValue": "Tbilisi, Georgia",
     "contact.hours": "Contact hours",
 
     "foot.blurb": "NOSFET and LEAPERKIM wheels, parts and service in Tbilisi.",

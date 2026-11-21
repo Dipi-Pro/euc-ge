@@ -1,7 +1,7 @@
 # ZIPI.GE
 
 A Georgian storefront for electric unicycles, laid out the way cfmoto.ge is: sticky header,
-a flagship slider, brand tiles, a top models row, a filterable catalogue with side-by-side
+a model slideshow, a filterable catalogue with side-by-side
 comparison, service section, contact panel.
 
 Two brands, seven models: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM (Patton-S, Lynx-S,
