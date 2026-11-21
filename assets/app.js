@@ -220,8 +220,9 @@
     }).join("");
 
     $("#flagDots").innerHTML = slides.map(function (w, i) {
-      return '<button class="flag__dot" role="tab" aria-selected="' + (i === flagIdx) + '" data-flag="' + i + '">' +
-        esc(w.model) + "</button>";
+      /* მხოლოდ წერტილი; მოდელის სახელი მხოლოდ ეკრანის წამკითხველისთვისაა */
+      return '<button class="flag__dot" role="tab" aria-selected="' + (i === flagIdx) + '" data-flag="' + i + '"' +
+        ' aria-label="' + esc(fullName(w)) + '" title="' + esc(fullName(w)) + '"></button>';
     }).join("");
   }
 
@@ -549,6 +550,11 @@
     if ((el = hit("[data-thumb]"))) {
       $("#sheetBig").src = el.dataset.thumb;
       $$("#sheetBody .sheet__thumbs button").forEach(function (b) { b.setAttribute("aria-current", String(b === el)); });
+      return;
+    }
+    if ((el = hit("[data-nav-toggle]"))) {
+      var drop = el.closest(".nav__drop").classList.toggle("nav__drop--open");
+      el.setAttribute("aria-expanded", String(drop));
       return;
     }
     if ((el = hit("[data-cat]"))) {

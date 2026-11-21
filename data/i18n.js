@@ -20,6 +20,7 @@ window.I18N = {
     "nav.about": "ჩვენ შესახებ",
     "nav.contact": "კონტაქტი",
     "nav.menu": "მენიუ",
+    "nav.catalogMenu": "კატალოგის განყოფილებები",
 
     "theme.label": "თემა",
     "theme.light": "ღია",
@@ -89,7 +90,7 @@ window.I18N = {
     "spec.peak": "ძრავი, პიკური სიმძლავრე",
     "spec.battery": "ბატარეის ტევადობა",
     "spec.voltage": "ძაბვა",
-    "spec.cells": "ბატარეის ელემენტები",
+    "spec.cells": "ბატარეა",
     "spec.speed": "მაქს. სიჩქარე",
     "spec.range": "გარბენი ერთი დატენვით",
     "spec.tire": "საბურავი",
@@ -170,6 +171,7 @@ window.I18N = {
     "nav.about": "About",
     "nav.contact": "Contact",
     "nav.menu": "Menu",
+    "nav.catalogMenu": "Catalogue sections",
 
     "theme.label": "Theme",
     "theme.light": "Light",
@@ -238,7 +240,7 @@ window.I18N = {
     "spec.peak": "Motor, peak",
     "spec.battery": "Battery capacity",
     "spec.voltage": "Voltage",
-    "spec.cells": "Battery cells",
+    "spec.cells": "Battery",
     "spec.speed": "Top speed",
     "spec.range": "Range per charge",
     "spec.tire": "Tyre",

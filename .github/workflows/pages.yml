@@ -48,14 +48,20 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      # 3. Package the site. `path: .` means "the repo root", because index.html
-      #    already sits there. Nothing is compiled or minified.
+      # 3. Copy only the files the site needs into _site, so README, the
+      #    workflow folder and other repo files are not published.
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp -r index.html CNAME assets data _site/
+
+      # 4. Package the site. Nothing is compiled or minified.
       - name: Package the site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
-      # 4. Push the package live.
+      # 5. Push the package live.
       - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4

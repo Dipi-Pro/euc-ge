@@ -121,5 +121,3 @@ Dark is the primary theme, light is its inverse, and both are built from the sam
 variables. Type is Nunito for Latin model names and numbers, Noto Sans Georgian for Georgian,
 both from Google Fonts. One accent, a signal orange, on prices, calls to action and the best
 values in the comparison table; the rest is a cool near-black.
-
-*opus5.5*

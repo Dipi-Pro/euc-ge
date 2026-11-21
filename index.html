@@ -43,7 +43,9 @@
       <!-- კატალოგი: მაუსის მიტანისას ჩამოიშლება განყოფილებების სია -->
       <div class="nav__drop">
         <a href="#catalog" data-t="nav.catalog" aria-haspopup="true">კატალოგი</a>
-        <div class="nav__menu">
+        <!-- მობილურ მენიუში: ღილაკი, რომელიც განყოფილებების სიას შლის/კეცავს -->
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navCats" data-t-aria="nav.catalogMenu" aria-label="კატალოგის განყოფილებები">▾</button>
+        <div class="nav__menu" id="navCats">
           <a href="#catalog" data-cat="wheels" data-t="cat.wheels">მონობორბლები</a>
           <a href="#catalog" data-cat="accessories" data-t="cat.accessories">აქსესუარები</a>
           <a href="#catalog" data-cat="protection" data-t="cat.protection">დამცავები</a>
