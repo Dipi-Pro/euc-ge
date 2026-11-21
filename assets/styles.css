@@ -188,6 +188,24 @@ p { margin: 0; }
 .nav a { white-space: nowrap; font-size: 0.92rem; color: var(--ink-2); padding: 8px 4px; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; }
 .nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 
+/* კატალოგის ჩამოსაშლელი სია: მაუსის მიტანისას ან კლავიატურით ფოკუსზე ჩანს */
+.nav__drop { position: relative; display: flex; }
+.nav__drop > a::after { content: "▾"; font-size: 0.7em; margin-inline-start: 5px; color: var(--muted); }
+.nav__menu {
+  position: absolute; top: 100%; left: -10px; z-index: 50;
+  min-width: 210px; padding: 6px; margin-top: 4px;
+  display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r-sm); box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+}
+/* უხილავი ხიდი ბმულსა და სიას შორის, რომ მაუსის გადატანისას სია არ დაიხუროს */
+.nav__menu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.nav__drop:hover .nav__menu,
+.nav__drop:focus-within .nav__menu { opacity: 1; visibility: visible; transform: none; }
+.nav__menu a { padding: 10px 12px; border-bottom: 0; border-radius: var(--r-xs); }
+.nav__menu a:hover { background: var(--card-2); }
+
 /* ენა და თემა: ორივე პატარა სეგმენტური გადამრთველია */
 .seg { display: flex; gap: 2px; padding: 3px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; flex: none; }
 .seg button {
@@ -220,6 +238,14 @@ p { margin: 0; }
     padding: 8px var(--rail) 18px; gap: 0; margin: 0;
   }
   .nav--open a { padding: 13px 0; border-bottom: 1px solid var(--line); }
+  /* მობილურ მენიუში განყოფილებები ყოველთვის ჩანს, შეწეულად */
+  .nav--open .nav__drop { flex-direction: column; }
+  .nav--open .nav__drop > a::after { content: none; }
+  .nav--open .nav__menu {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    min-width: 0; margin: 0; padding: 0 0 0 16px; background: none; border: 0; box-shadow: none;
+  }
+  .nav--open .nav__menu a { padding: 11px 0; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 0.88rem; }
   .top__burger { display: block; }
 }
 @media (max-width: 640px) {
@@ -241,7 +267,9 @@ p { margin: 0; }
 .hero__copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero__marks { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--lat); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; color: var(--muted); }
+/* ბრენდების სახელები ჰეროში: დიდად და თვალსაჩინოდ */
+.hero__marks { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--lat); font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: 0.12em; color: var(--ink); }
+.hero__marks span:first-child { color: var(--accent); }
 
 /* ფლაგმანების ბარათი: ბენტოს ყველაზე დიდი ფილა */
 .flag { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(16px, 2vw, 22px); box-shadow: var(--shadow); }
@@ -259,7 +287,9 @@ p { margin: 0; }
 /* multiply: ქარხნული ფოტოების თეთრი ფონი ფირფიტაში ითქვიფება და კიდე არ ჩანს */
 .flag__plate img { position: absolute; inset: 5%; width: 90%; height: 90%; object-fit: contain; mix-blend-mode: multiply; }
 .flag__meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; }
-.flag__brand { font-family: var(--lat); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; color: var(--accent); }
+.flag__specs { margin-top: 8px; }
+button.flag__plate { display: block; width: 100%; padding: 0; cursor: pointer; font: inherit; }
+.flag__brand { font-family: var(--lat); font-size: 0.95rem; font-weight: 800; letter-spacing: 0.16em; color: var(--accent); }
 .flag__name { font-family: var(--lat); font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
 .flag__price { text-align: right; font-family: var(--lat); font-variant-numeric: tabular-nums; font-weight: 800; font-size: 1.15rem; white-space: nowrap; }
 .flag__price small { display: block; font-family: var(--ka); font-size: 0.62rem; font-weight: 400; letter-spacing: 0.1em; color: var(--muted); }
@@ -286,50 +316,6 @@ p { margin: 0; }
 .sec--tight { padding-block: clamp(20px, 3vw, 34px); }
 .sec__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: clamp(20px, 3vw, 34px); }
 .sec__head > div { display: flex; flex-direction: column; gap: 12px; }
-
-/* --- ვიდეო -------------------------------------------------------------- */
-.vid__in { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(18px, 3vw, 40px); align-items: center; }
-.vid__frame {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--r);
-  overflow: hidden;
-  background: var(--card-2);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-}
-.vid__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-/* პლეერამდე მხოლოდ სურათი და ღილაკი ჩანს */
-.vid__facade {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: linear-gradient(150deg, var(--card-2), var(--ground-2));
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-.vid__facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.vid__play {
-  position: relative;
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--accent-ink);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
-  transition: transform 0.2s ease;
-}
-.vid__play svg { margin-inline-start: 3px; }
-.vid__facade:hover .vid__play { transform: scale(1.08); }
-.vid__copy { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
-.vid__name { font-weight: 700; font-size: 0.95rem; }
-
-@media (max-width: 900px) { .vid__in { grid-template-columns: 1fr; } }
 
 /* --- ბრენდების ბენტო ---------------------------------------------------- */
 /* ორი ბრენდი: ორი თანაბარი დიდი ფილა გვერდიგვერდ */
@@ -382,6 +368,13 @@ p { margin: 0; }
 
 /* --- ფილტრები ---------------------------------------------------------- */
 .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
+.tools[hidden], .soon[hidden] { display: none; }
+
+/* კატალოგის განყოფილებები: ბრენდის ფილტრზე უფრო დიდი ღილაკები */
+.cats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.cats .chip { font-size: 0.92rem; font-weight: 700; padding: 10px 18px; }
+.soon { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.soon p { margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   background: var(--card); border: 1px solid var(--line); border-radius: 999px;
@@ -419,7 +412,7 @@ p { margin: 0; }
   font-size: 0.64rem; font-weight: 800; letter-spacing: 0.05em; padding: 5px 10px; border-radius: 999px;
 }
 .card__body { display: flex; flex-direction: column; gap: 9px; flex: 1; padding-inline: 4px; }
-.card__brand { font-family: var(--lat); font-size: 0.63rem; font-weight: 800; letter-spacing: 0.2em; color: var(--muted); }
+.card__brand { font-family: var(--lat); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.16em; color: var(--accent); }
 .card__name { font-family: var(--lat); font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
 .specs { display: flex; flex-wrap: wrap; gap: 5px; }
 .spec { font-size: 0.7rem; padding: 4px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
@@ -427,10 +420,20 @@ p { margin: 0; }
 .stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .stock--in { color: var(--ok); }
 .stock--order { color: var(--wait); }
+.stock--ask { color: var(--ink-2); font-weight: 600; }
+.stock--ask::before { display: none; }
 
 /* მარაგი და გარანტია ერთ ხაზზე */
 .card__tags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
-.warr { font-size: 0.72rem; color: var(--ink-2); }
+.warr { font-size: 0.72rem; color: var(--ink-2); display: inline-flex; align-items: center; gap: 5px; }
+.warr .shield { color: var(--accent); font-size: 1.05rem; flex: none; }
+
+/* გარანტიის ბლოკი მოდელის ფანჯარაში */
+.guar { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--card-2); }
+.guar__icon { color: var(--accent); font-size: 1.9rem; line-height: 0; flex: none; }
+.guar__t { display: block; font-size: 0.95rem; }
+.guar__p { margin: 4px 0 0; font-size: 0.83rem; color: var(--ink-2); }
+.sheet__h { margin: 8px 0 0; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 
 /* "+ შედარება" ფოტოს ზედა მარჯვენა კუთხეში. ფოტოს ფირფიტა ორივე თემაში
    ღიაა, ამიტომ ღილაკს საკუთარი მუქი ფონი აქვს და არა თემის ფერი */
@@ -446,8 +449,6 @@ p { margin: 0; }
 .card__price { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
 .price { font-family: var(--lat); font-variant-numeric: tabular-nums; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.025em; display: flex; align-items: baseline; gap: 8px; }
 .price s { font-size: 0.84rem; font-weight: 600; color: var(--muted); }
-.price__mo { font-size: 0.72rem; color: var(--muted); }
-.price__mo b { font-family: var(--lat); font-variant-numeric: tabular-nums; color: var(--ink-2); }
 .card__acts { display: flex; gap: 6px; margin-top: 12px; }
 .card__acts .btn { flex: 1; }
 
@@ -467,6 +468,8 @@ p { margin: 0; }
 .fact:last-child { border-bottom: 0; }
 .fact dt { font-size: 0.79rem; color: var(--muted); }
 .fact dd { margin: 0; font-weight: 700; font-size: 0.92rem; }
+.fact dd a { color: inherit; text-decoration: none; }
+.fact dd a:hover { color: var(--accent); }
 
 /* --- ფუტერი ------------------------------------------------------------ */
 .foot { border-top: 1px solid var(--line); padding-block: clamp(34px, 4vw, 56px) 22px; margin-top: clamp(24px, 4vw, 50px); }
@@ -495,9 +498,10 @@ dialog::backdrop { background: rgba(4, 6, 9, 0.72); backdrop-filter: blur(4px); 
   background: var(--plate-1); border: 1px solid var(--plate-line); overflow: hidden;
 }
 .sheet__big img { position: absolute; inset: 5%; width: 90%; height: 90%; object-fit: contain; mix-blend-mode: multiply; }
-.sheet__thumbs { display: flex; gap: 8px; }
+/* გალერეა: 5-დან 14 ფოტომდე, ბადეში რამდენიმე რიგად */
+.sheet__thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; }
 .sheet__thumbs button {
-  flex: 1; aspect-ratio: 4 / 3; border: 1px solid var(--plate-line); border-radius: var(--r-xs);
+  aspect-ratio: 4 / 3; border: 1px solid var(--plate-line); border-radius: var(--r-xs);
   background: var(--plate-1); cursor: pointer; padding: 5px;
 }
 .sheet__thumbs button[aria-current="true"] { border-color: var(--accent); }

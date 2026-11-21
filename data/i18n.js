@@ -12,7 +12,7 @@
 window.I18N = {
   ka: {
     "html.lang": "ka",
-    "logo.sub": "ელექტრო მონოციკლები",
+    "logo.sub": "ელექტრო მონობორბლები",
 
     "nav.home": "მთავარი",
     "nav.catalog": "კატალოგი",
@@ -22,7 +22,6 @@ window.I18N = {
     "nav.menu": "მენიუ",
 
     "theme.label": "თემა",
-    "theme.auto": "ავტო",
     "theme.light": "ღია",
     "theme.dark": "მუქი",
     "lang.label": "ენა",
@@ -30,33 +29,21 @@ window.I18N = {
     "cta.wa": "მოგვწერე WhatsApp-ზე",
     "cta.waShort": "WhatsApp",
     "cta.catalog": "კატალოგის ნახვა",
-    "cta.testride": "დაჯავშნე ტესტ-სვლა",
     "cta.details": "დეტალები",
     "cta.close": "დახურვა",
 
     /* WhatsApp-ის ჩატში წინასწარ ჩაწერილი შეტყობინებები */
-    "wa.hello": "გამარჯობა! მაინტერესებს ელექტრო მონოციკლი.",
-    "wa.test": "გამარჯობა! მინდა ტესტ-სვლის დაჯავშნა.",
+    "wa.hello": "გამარჯობა! მაინტერესებს ელექტრო მონობორბალი.",
     "wa.model": "გამარჯობა! მაინტერესებს {x}.",
 
-    "hero.eyebrow": "მარაგი თბილისში",
     "hero.h1b": "მთელი თბილისი",
     "hero.h1c": "გზაა",
-    "hero.lead": "მაღალი სიმძლავრის ელექტრო მონოციკლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
-    "hero.flagship": "ფლაგმანი",
+    "hero.lead": "მაღალი სიმძლავრის ელექტრო მონობორბლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
 
     "strip.models": "მოდელი კატალოგში",
     "strip.warranty": "თვე გარანტია",
-    "strip.months": "თვემდე განვადება",
     "strip.from": "საწყისი ფასი",
 
-    "video.eyebrow": "ვიდეო მიმოხილვა",
-    "video.h2": "ნახე, როგორია ეს რეალურ ქუჩაში",
-    "video.lead": "ქართული არხის ვიდეო იმაზე, ღირს თუ არა მონოციკლით კურიერობა. კარგი შესავალია, თუ ჯერ ეჭვი გაქვს, რამდენად პრაქტიკულია ეს ყოველდღიურად.",
-    "video.name": "ღირს თუ არა მონობორბლით კურიერობა?",
-    "video.credit": "არხი",
-    "video.play": "ვიდეოს გახსნა",
-    "video.watch": "YouTube-ზე ნახვა",
 
     "brands.eyebrow": "ბრენდები",
     "brands.h2": "ორი მწარმოებელი, ორი ხასიათი",
@@ -66,12 +53,17 @@ window.I18N = {
 
     "top.eyebrow": "ყველაზე მოთხოვნადი",
     "top.h2": "TOP მოდელები",
-    "top.lead": "ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ: ორი ქალაქური და ორი ფლაგმანი.",
+    "top.lead": "ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ.",
 
     "cat.eyebrow": "კატალოგი",
-    "cat.h2": "ყველა მონოციკლი",
+    "cat.h2": "ყველა მონობორბალი",
     "cat.lead": "ფასები მოცემულია ლარში. მონიშნე ორი ან მეტი მოდელი და შეადარე მახასიათებლები ერთ ცხრილში.",
     "cat.all": "ყველა",
+    "cat.wheels": "მონობორბლები",
+    "cat.accessories": "აქსესუარები",
+    "cat.protection": "დამცავები",
+    "cat.print3d": "3D ბეჭდვა",
+    "cat.soon": "ამ განყოფილებაში პროდუქცია მალე დაემატება. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.",
     "cat.sort": "სორტირება",
     "cat.empty": "ამ ფილტრით მოდელი ვერ მოიძებნა.",
 
@@ -80,24 +72,17 @@ window.I18N = {
     "sort.powerDesc": "სიმძლავრე: მაღლიდან",
     "sort.rangeDesc": "გარბენი: მაღლიდან",
 
-    "stock.in": "მარაგშია",
-    "stock.order": "შეკვეთით",
+    "stock.ask": "მარაგის შესამოწმებლად დაგვიკავშირდით",
 
     "warranty.short": "გარანტია {n} თვე",
     "warranty.long": "{n} თვე: ძრავი, კონტროლერი, ელემენტები",
+    "warranty.title": "გარანტია {n} თვე",
+    "warranty.body": "ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე. თუ რომელიმე მათგანი ქარხნული დეფექტის გამო მწყობრიდან გამოვა, უფასოდ შევაკეთებთ ან შევცვლით.",
 
-    "badge.flagship": "ფლაგმანი",
-    "badge.new": "ახალი",
-    "badge.sale": "აქცია",
-    "badge.range": "შორი გარბენი",
-    "badge.offroad": "ოფ-როუდი",
-    "badge.bestseller": "ბესტსელერი",
-    "badge.beginner": "დამწყებთათვის",
-    "badge.light": "მსუბუქი",
-    "badge.city": "ქალაქური",
+    "sheet.about": "აღწერა",
+    "sheet.feats": "მთავარი თავისებურებები",
+    "sheet.specs": "ტექნიკური მახასიათებლები",
 
-    "price.mo": "განვადება {x} / თვე",
-    "price.moLong": "განვადება {x} / თვე, {n} თვეზე",
 
     "spec.price": "ფასი",
     "spec.motor": "ძრავი, ნომინალური სიმძლავრე",
@@ -156,28 +141,22 @@ window.I18N = {
     "svc.2p": "ელემენტების შეცვლა, BMS-ის დიაგნოსტიკა, დატენვის და ავტონომიის დაცემის მიზეზის დადგენა.",
     "svc.3t": "მექანიკა",
     "svc.3h": "საბურავი და ამორტიზაცია",
-    "svc.3p": "საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება მოსიარულეზე.",
+    "svc.3p": "საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება რაიდერზე.",
 
     "about.eyebrow": "ჩვენ შესახებ",
-    "about.h2": "მაღაზია, რომელსაც მოსიარულეები აკეთებენ",
-    "about.p1": "ZIPI.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
-    "about.p2": "გინდა უბრალოდ დაჯდომა და ცდა? მოგვწერე WhatsApp-ზე და ტესტ-სვლას დაგიჯავშნით: დამწყებთათვის დამცავებს და სასწავლო სივრცეს უფასოდ ვაძლევთ.",
+    "about.h2": "მაღაზია, რომელსაც რაიდერები ქმნიან",
+    "about.p1": "ZIPI.GE თბილისში ელექტრო მონობორბლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს, რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია. ყველა მონობორბალი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.",
 
     "contact.eyebrow": "კონტაქტი",
     "contact.phone": "ტელეფონი / WhatsApp",
     "contact.address": "მისამართი",
     "contact.addressValue": "თბილისი",
-    "contact.hours": "სამუშაო საათები",
-    "contact.warranty": "გარანტია",
-    "contact.warrantyValue": "12 თვე: ძრავი, კონტროლერი, ელემენტები",
-    "contact.installment": "განვადება",
-    "contact.installmentValue": "12 თვემდე, ბანკის პარტნიორობით",
+    "contact.hours": "საკონტაქტო საათები",
 
-    "foot.blurb": "NOSFET და LEAPERKIM მონოციკლები, ნაწილები და სერვისი თბილისში.",
+    "foot.blurb": "NOSFET და LEAPERKIM მონობორბლები, ნაწილები და სერვისი თბილისში.",
     "foot.catalog": "კატალოგი",
     "foot.shop": "მაღაზია",
     "foot.contact": "კონტაქტი",
-    "foot.disclaimer": "ფასები საინფორმაციო ხასიათისაა და არ არის საჯარო შეთავაზება.",
     "skip": "გადადი მთავარ შიგთავსზე"
   },
 
@@ -193,7 +172,6 @@ window.I18N = {
     "nav.menu": "Menu",
 
     "theme.label": "Theme",
-    "theme.auto": "Auto",
     "theme.light": "Light",
     "theme.dark": "Dark",
     "lang.label": "Language",
@@ -201,32 +179,20 @@ window.I18N = {
     "cta.wa": "Message us on WhatsApp",
     "cta.waShort": "WhatsApp",
     "cta.catalog": "See the catalogue",
-    "cta.testride": "Book a test ride",
     "cta.details": "Details",
     "cta.close": "Close",
 
     "wa.hello": "Hello! I'm interested in an electric unicycle.",
-    "wa.test": "Hello! I'd like to book a test ride.",
     "wa.model": "Hello! I'm interested in the {x}.",
 
-    "hero.eyebrow": "In stock in Tbilisi",
     "hero.h1b": "all of Tbilisi",
     "hero.h1c": "is the road",
     "hero.lead": "High-power electric unicycles from NOSFET and LEAPERKIM. Prices in lari, a 12-month warranty and service on site.",
-    "hero.flagship": "Flagship",
 
     "strip.models": "models in the catalogue",
     "strip.warranty": "months of warranty",
-    "strip.months": "months of instalments",
     "strip.from": "starting price",
 
-    "video.eyebrow": "Video review",
-    "video.h2": "See what this looks like on a real street",
-    "video.lead": "A Georgian channel on whether couriering by unicycle is worth it. A good place to start if you are still unsure how practical one of these is day to day.",
-    "video.name": "ღირს თუ არა მონობორბლით კურიერობა?",
-    "video.credit": "Channel",
-    "video.play": "Play the video",
-    "video.watch": "Watch on YouTube",
 
     "brands.eyebrow": "Brands",
     "brands.h2": "Two makers, two characters",
@@ -236,12 +202,17 @@ window.I18N = {
 
     "top.eyebrow": "Most asked for",
     "top.h2": "Top models",
-    "top.lead": "The four wheels people choose most often: two for the city, two flagships.",
+    "top.lead": "The four wheels people choose most often.",
 
     "cat.eyebrow": "Catalogue",
     "cat.h2": "Every wheel",
     "cat.lead": "Prices are in lari. Tick two or more wheels and compare their specs side by side.",
     "cat.all": "All",
+    "cat.wheels": "Unicycles",
+    "cat.accessories": "Accessories",
+    "cat.protection": "Protective gear",
+    "cat.print3d": "3D printing",
+    "cat.soon": "Products for this section are coming soon. Message us on WhatsApp about anything you need.",
     "cat.sort": "Sort by",
     "cat.empty": "Nothing matches this filter.",
 
@@ -250,24 +221,17 @@ window.I18N = {
     "sort.powerDesc": "Power: highest first",
     "sort.rangeDesc": "Range: longest first",
 
-    "stock.in": "In stock",
-    "stock.order": "To order",
+    "stock.ask": "Contact us to check stock",
 
     "warranty.short": "{n}-month warranty",
     "warranty.long": "{n} months: motor, controller, cells",
+    "warranty.title": "{n}-month warranty",
+    "warranty.body": "Covers the motor, the controller and the battery cells. If any of them fails from a factory defect, we repair or replace it free of charge.",
 
-    "badge.flagship": "Flagship",
-    "badge.new": "New",
-    "badge.sale": "Sale",
-    "badge.range": "Long range",
-    "badge.offroad": "Off-road",
-    "badge.bestseller": "Bestseller",
-    "badge.beginner": "For beginners",
-    "badge.light": "Lightweight",
-    "badge.city": "City",
+    "sheet.about": "Description",
+    "sheet.feats": "Key features",
+    "sheet.specs": "Specifications",
 
-    "price.mo": "{x} / month",
-    "price.moLong": "{x} a month over {n} months",
 
     "spec.price": "Price",
     "spec.motor": "Motor, nominal",
@@ -330,23 +294,17 @@ window.I18N = {
     "about.eyebrow": "About us",
     "about.h2": "A shop run by riders",
     "about.p1": "ZIPI.GE is an electric unicycle shop in Tbilisi. We only sell the brands we ride ourselves and can get parts for. Every wheel is opened, tested and reassembled before it is handed over.",
-    "about.p2": "Just want to stand on one and try? Message us on WhatsApp and we'll book you a test ride: pads and a space to learn in are free.",
 
     "contact.eyebrow": "Contact",
     "contact.phone": "Phone / WhatsApp",
     "contact.address": "Address",
     "contact.addressValue": "Tbilisi",
-    "contact.hours": "Opening hours",
-    "contact.warranty": "Warranty",
-    "contact.warrantyValue": "12 months: motor, controller, cells",
-    "contact.installment": "Instalments",
-    "contact.installmentValue": "Up to 12 months, through partner banks",
+    "contact.hours": "Contact hours",
 
     "foot.blurb": "NOSFET and LEAPERKIM wheels, parts and service in Tbilisi.",
     "foot.catalog": "Catalogue",
     "foot.shop": "Shop",
     "foot.contact": "Contact",
-    "foot.disclaimer": "Prices are for information only and are not a public offer.",
     "skip": "Skip to main content"
   }
 };

@@ -51,9 +51,11 @@
   }
   var loc = function (obj) { return obj && (obj[lang] || obj.ka); };
   var price = function (n) { return nf.format(n) + " ₾"; };
-  var monthly = function (n) {
-    return nf.format(Math.round((n * META.installmentRate) / META.installmentMonths / 10) * 10) + " ₾";
-  };
+
+  /* გარანტიის მინიმალისტური ლოგო: ფარი ნიშნით */
+  var SHIELD = '<svg class="shield" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.8"/></svg>';
   var esc = function (s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -62,12 +64,10 @@
 
   /* --- WhatsApp ----------------------------------------------------------
      ზარის ფორმის ნაცვლად ყველა ღილაკი WhatsApp-ის ჩატს ხსნის, უკვე
-     შევსებული შეტყობინებით: ზოგადი მისალმება, ტესტ-სვლა ან კონკრეტული
-     მოდელი. ნომერი catalog.js-ის meta.whatsapp-შია (მხოლოდ ციფრები). */
+     შევსებული შეტყობინებით: ზოგადი მისალმება ან კონკრეტული მოდელი.
+     ნომერი catalog.js-ის meta.whatsapp-შია (მხოლოდ ციფრები). */
   function waHref(topic) {
-    var text = topic === "test" ? t("wa.test")
-      : topic ? t("wa.model", { x: topic })
-      : t("wa.hello");
+    var text = topic ? t("wa.model", { x: topic }) : t("wa.hello");
     return "https://wa.me/" + META.whatsapp + "?text=" + encodeURIComponent(text);
   }
   var waAttrs = function (topic) {
@@ -96,16 +96,34 @@
     if ($("#cmp").open) renderCompare();
   }
 
-  /* --- თემა: dark (ნაგულისხმევი), light, auto (სისტემა) -----------------
-     არჩევანი ყოველთვის ინახება, "auto"-ც, რადგან ცარიელი მეხსიერება
-     ახლა "მუქს" ნიშნავს და არა "სისტემურს". */
-  function setTheme(mode) {
-    if (mode === "auto") delete document.documentElement.dataset.theme;
-    else document.documentElement.dataset.theme = mode;
-    remember(STORE_THEME, mode);
+  /* --- თემა: ნაგულისხმევად სისტემას მიჰყვება ----------------------------
+     ღილაკები მხოლოდ ღია და მუქია. ხელით არჩეული ინახება; სანამ ვიზიტორი
+     არაფერს აირჩევს, გვერდი სისტემის თემას მიჰყვება და მონიშნულია ის
+     ღილაკი, რომელიც სისტემის ამჟამინდელ თემას ემთხვევა. */
+  var sysDark = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function markTheme() {
+    var cur = document.documentElement.dataset.theme ||
+      (sysDark && !sysDark.matches ? "light" : "dark");
     $$("[data-theme-set]").forEach(function (b) {
-      b.setAttribute("aria-pressed", String(b.dataset.themeSet === mode));
+      b.setAttribute("aria-pressed", String(b.dataset.themeSet === cur));
     });
+  }
+
+  function setTheme(mode) {
+    if (mode === "light" || mode === "dark") {
+      document.documentElement.dataset.theme = mode;
+      remember(STORE_THEME, mode);
+    } else {
+      delete document.documentElement.dataset.theme;
+    }
+    markTheme();
+  }
+
+  if (sysDark) {
+    var onSys = function () { markTheme(); };
+    if (sysDark.addEventListener) sysDark.addEventListener("change", onSys);
+    else if (sysDark.addListener) sysDark.addListener(onSys);
   }
 
   /* --- შედარების მდგომარეობა ------------------------------------------- */
@@ -141,7 +159,6 @@
     return (
       '<article class="card">' +
         '<button class="card__plate" data-open="' + w.id + '" aria-label="' + esc(full) + '">' +
-          (w.badge ? '<span class="badge">' + esc(t("badge." + w.badge)) + "</span>" : "") +
           '<img src="' + photo(w.images[0]) + '" alt="' + esc(full) + '" loading="lazy" decoding="async">' +
         "</button>" +
         /* შედარების ღილაკი ფოტოს კუთხეშია, მაგრამ ფოტოს ღილაკის გარეთ:
@@ -157,12 +174,11 @@
             '<span class="spec">' + w.specs.topSpeedKmh + " " + t("unit.kmh") + "</span>" +
           "</div>" +
           '<div class="card__tags">' +
-            '<span class="stock stock--' + w.stock + '">' + esc(t("stock." + w.stock)) + "</span>" +
-            '<span class="warr">' + esc(t("warranty.short", { n: META.warrantyMonths })) + "</span>" +
+            '<span class="stock stock--ask">' + esc(t("stock.ask")) + "</span>" +
+            '<span class="warr">' + SHIELD + esc(t("warranty.short", { n: META.warrantyMonths })) + "</span>" +
           "</div>" +
           '<div class="card__price">' +
             '<div class="price">' + price(w.priceGel) + (w.oldPriceGel ? "<s>" + price(w.oldPriceGel) + "</s>" : "") + "</div>" +
-            '<div class="price__mo">' + t("price.mo", { x: "<b>" + monthly(w.priceGel) + "</b>" }) + "</div>" +
             '<div class="card__acts">' +
               '<button class="btn btn--sm" data-open="' + w.id + '">' + t("cta.details") + "</button>" +
               '<a class="btn btn--sm btn--soft" ' + waAttrs(full) + ">" + t("cta.waShort") + "</a>" +
@@ -173,39 +189,44 @@
     );
   }
 
-  /* --- ჰეროს ფლაგმანები: თითო ბრენდის ყველაზე ძვირი მოდელი ------------- */
+  /* --- ჰეროს სლაიდშოუ: ყველა მოდელი, მხოლოდ მთავარი მონაცემები და ფასი -- */
   var flagIdx = 0;
   var flagTimer = null;
-  var flagship = BRANDS.map(function (b) {
-    return WHEELS.filter(function (w) { return w.brand === b.id; })
-      .sort(function (x, y) { return y.priceGel - x.priceGel; })[0];
-  });
+  var slides = WHEELS.slice();
 
   function buildFlag() {
-    $("#flagStage").innerHTML = flagship.map(function (w, i) {
+    $("#flagStage").innerHTML = slides.map(function (w, i) {
       var b = brandOf(w.brand);
+      var s = w.specs;
       return (
-        '<div class="flag__slide" data-on="' + (i === flagIdx ? 1 : 0) + '" role="tabpanel" aria-label="' + esc(b.name) + '">' +
-          '<div class="flag__plate"><img src="' + photo(w.images[0]) + '" alt="' + esc(fullName(w)) + '"' + (i ? ' loading="lazy"' : "") + "></div>" +
+        '<div class="flag__slide" data-on="' + (i === flagIdx ? 1 : 0) + '" role="tabpanel" aria-label="' + esc(fullName(w)) + '">' +
+          '<button class="flag__plate" data-open="' + w.id + '" aria-label="' + esc(fullName(w)) + '">' +
+            '<img src="' + photo(w.images[0]) + '" alt="' + esc(fullName(w)) + '"' + (i ? ' loading="lazy"' : "") + "></button>" +
           '<div class="flag__meta">' +
             "<div>" +
               '<div class="flag__brand">' + esc(b.name) + "</div>" +
               '<div class="flag__name">' + esc(w.model) + "</div>" +
+              '<div class="specs flag__specs">' +
+                '<span class="spec">' + nf.format(s.motorW) + " W</span>" +
+                '<span class="spec">' + nf.format(s.batteryWh) + " Wh</span>" +
+                '<span class="spec">' + s.topSpeedKmh + " " + t("unit.kmh") + "</span>" +
+                '<span class="spec">' + s.rangeKm + " " + t("unit.km") + "</span>" +
+              "</div>" +
             "</div>" +
-            '<div class="flag__price">' + price(w.priceGel) + "<small>" + t("hero.flagship") + "</small></div>" +
+            '<div class="flag__price">' + price(w.priceGel) + "</div>" +
           "</div>" +
         "</div>"
       );
     }).join("");
 
-    $("#flagDots").innerHTML = flagship.map(function (w, i) {
+    $("#flagDots").innerHTML = slides.map(function (w, i) {
       return '<button class="flag__dot" role="tab" aria-selected="' + (i === flagIdx) + '" data-flag="' + i + '">' +
-        esc(brandOf(w.brand).name) + "</button>";
+        esc(w.model) + "</button>";
     }).join("");
   }
 
   function showFlag(i) {
-    flagIdx = (i + flagship.length) % flagship.length;
+    flagIdx = (i + slides.length) % slides.length;
     $$("#flagStage .flag__slide").forEach(function (el, n) { el.setAttribute("data-on", n === flagIdx ? "1" : "0"); });
     $$("#flagDots .flag__dot").forEach(function (el, n) { el.setAttribute("aria-selected", String(n === flagIdx)); });
   }
@@ -213,7 +234,7 @@
   function autoFlag(on) {
     clearInterval(flagTimer);
     if (on && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      flagTimer = setInterval(function () { showFlag(flagIdx + 1); }, 5500);
+      flagTimer = setInterval(function () { showFlag(flagIdx + 1); }, 4500);
     }
   }
 
@@ -236,6 +257,37 @@
     }).join("");
   }
 
+  /* --- კატალოგის განყოფილებები ------------------------------------------ */
+  var CATS = ["wheels"].concat(DATA.categories || []);
+  var EXTRAS = DATA.extras || [];
+  var cat = "wheels";
+
+  function buildCats() {
+    $("#cats").innerHTML = CATS.map(function (c) {
+      return '<button class="chip" data-cat="' + c + '" aria-pressed="' + (c === cat) + '">' + esc(t("cat." + c)) + "</button>";
+    }).join("");
+  }
+
+  /* აქსესუარის / დამცავის / 3D ნაწარმის ბარათი: ფოტო, სახელი, ფასი, WhatsApp */
+  function extraCardHTML(x) {
+    var name = loc(x.name);
+    return (
+      '<article class="card">' +
+        '<div class="card__plate">' +
+          (x.images && x.images[0] ? '<img src="' + photo(x.images[0]) + '" alt="' + esc(name) + '" loading="lazy" decoding="async">' : "") +
+        "</div>" +
+        '<div class="card__body">' +
+          '<h3 class="card__name">' + esc(name) + "</h3>" +
+          (x.blurb ? '<p class="sheet__blurb">' + esc(loc(x.blurb)) + "</p>" : "") +
+          '<div class="card__price">' +
+            (x.priceGel != null ? '<div class="price">' + price(x.priceGel) + "</div>" : "") +
+            '<div class="card__acts"><a class="btn btn--sm" ' + waAttrs(name) + ">" + t("cta.waShort") + "</a></div>" +
+          "</div>" +
+        "</div>" +
+      "</article>"
+    );
+  }
+
   /* --- ფილტრი და სორტირება ---------------------------------------------- */
   var filter = "all";
 
@@ -248,6 +300,19 @@
   }
 
   function renderGrid() {
+    $$("#cats .chip").forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.cat === cat)); });
+    $(".tools").hidden = cat !== "wheels";
+
+    if (cat !== "wheels") {
+      var items = EXTRAS.filter(function (x) { return x.cat === cat; });
+      $("#grid").innerHTML = items.map(extraCardHTML).join("");
+      $("#empty").hidden = true;
+      $("#soon").hidden = items.length > 0;
+      $("#soonWa").href = waHref(t("cat." + cat));
+      return;
+    }
+    $("#soon").hidden = true;
+
     var by = {
       "price-asc": function (a, b) { return a.priceGel - b.priceGel; },
       "price-desc": function (a, b) { return b.priceGel - a.priceGel; },
@@ -314,19 +379,28 @@
           }).join("") +
         "</div>" +
         (feats.length
-          ? '<ul class="feats">' + feats.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>"
+          ? '<h3 class="sheet__h">' + t("sheet.feats") + "</h3>" +
+            '<ul class="feats">' + feats.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>"
           : "") +
       "</div>" +
       '<div class="sheet__info">' +
         '<span class="card__brand">' + esc(b.name) + "</span>" +
         '<h2 class="sheet__name">' + esc(w.model) + "</h2>" +
         '<div class="card__tags">' +
-          '<span class="stock stock--' + w.stock + '">' + esc(t("stock." + w.stock)) + "</span>" +
-          '<span class="warr">' + esc(t("warranty.short", { n: META.warrantyMonths })) + "</span>" +
+          '<span class="stock stock--ask">' + esc(t("stock.ask")) + "</span>" +
         "</div>" +
-        '<p class="sheet__blurb">' + esc(loc(w.blurb)) + "</p>" +
         '<div class="price">' + price(w.priceGel) + (w.oldPriceGel ? "<s>" + price(w.oldPriceGel) + "</s>" : "") + "</div>" +
-        '<div class="price__mo">' + t("price.moLong", { x: "<b>" + monthly(w.priceGel) + "</b>", n: META.installmentMonths }) + "</div>" +
+        '<h3 class="sheet__h">' + t("sheet.about") + "</h3>" +
+        '<p class="sheet__blurb">' + esc(loc(w.blurb)) + "</p>" +
+        /* გარანტიის ბლოკი ლოგოთი */
+        '<div class="guar">' +
+          '<span class="guar__icon">' + SHIELD + "</span>" +
+          "<div>" +
+            '<strong class="guar__t">' + esc(t("warranty.title", { n: META.warrantyMonths })) + "</strong>" +
+            '<p class="guar__p">' + esc(t("warranty.body")) + "</p>" +
+          "</div>" +
+        "</div>" +
+        '<h3 class="sheet__h">' + t("sheet.specs") + "</h3>" +
         '<table class="table"><tbody>' +
           rows().filter(function (r) { return !r.onlyCmp; })
             .map(function (r) { return "<tr><th>" + t(r.k) + "</th><td>" + esc(r.show(w)) + "</td></tr>"; }).join("") +
@@ -431,18 +505,6 @@
     $("#cmp").showModal();
   }
 
-  /* --- ვიდეო ------------------------------------------------------------ */
-  /* პლეერი მხოლოდ დაწკაპუნებაზე ჩნდება: სანამ არ დააჭერ, YouTube-სთან
-     კავშირი არ იხსნება და გვერდი მალე იტვირთება. */
-  function playVideo(id) {
-    var frame = document.getElementById("videoFrame");
-    if (!frame || !/^[\w-]{6,20}$/.test(id)) return;
-    frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
-      '?autoplay=1&rel=0&hl=' + lang + '" title="' + esc(t("video.name")) +
-      '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" ' +
-      'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-  }
-
   /* --- გამოჩენის ანიმაცია ----------------------------------------------- */
   var io = null;
   function watchRise() {
@@ -462,6 +524,7 @@
   function render() {
     buildFlag();
     buildBrands();
+    buildCats();
     buildChips();
     $("#topGrid").innerHTML = TOP.map(wheelOf).filter(Boolean).map(cardHTML).join("");
     renderGrid();
@@ -488,9 +551,14 @@
       $$("#sheetBody .sheet__thumbs button").forEach(function (b) { b.setAttribute("aria-current", String(b === el)); });
       return;
     }
-    if ((el = hit("[data-video]"))) { playVideo(el.dataset.video); return; }
+    if ((el = hit("[data-cat]"))) {
+      cat = el.dataset.cat; renderGrid();
+      /* ჰედერის სიიდან არჩევისას ფოკუსს ვხსნით, რომ სია დაიხუროს და მობილური მენიუც */
+      if (el.closest(".nav")) { el.blur(); $("#nav").classList.remove("nav--open"); $("#burger").setAttribute("aria-expanded", "false"); }
+      return;
+    }
     if ((el = hit("[data-filter]"))) { filter = el.dataset.filter; renderGrid(); return; }
-    if ((el = hit("[data-jump]"))) { filter = el.dataset.jump; renderGrid(); return; }
+    if ((el = hit("[data-jump]"))) { cat = "wheels"; filter = el.dataset.jump; renderGrid(); return; }
     if ((el = hit("[data-close]"))) { el.closest("dialog").close(); return; }
 
     if (e.target.id === "burger") {
@@ -513,9 +581,8 @@
   $(".flag").addEventListener("focusin", function () { autoFlag(false); });
 
   function init() {
-    /* შენახული არჩევანი თუ არ არის (ან უცნობია), მუქი თემა რჩება */
-    var saved = recall(STORE_THEME);
-    setTheme(saved === "light" || saved === "auto" ? saved : "dark");
+    /* შენახული არჩევანი თუ არ არის (ან ძველი "auto"-ა), სისტემის თემას მივყვებით */
+    setTheme(recall(STORE_THEME));
     applyStatic();
     render();
     autoFlag(true);

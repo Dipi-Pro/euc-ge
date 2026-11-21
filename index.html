@@ -1,15 +1,15 @@
 <!doctype html>
-<!-- data-theme="dark": მუქი თემა ნაგულისხმევია. თავში მდგარი სკრიპტი მას მხოლოდ
-     მაშინ ცვლის, თუ ვიზიტორს თვითონ აურჩევია "ღია" ან "ავტო". -->
-<html lang="ka" data-theme="dark">
+<!-- ნაგულისხმევად თემა სისტემას მიჰყვება (data-theme არ წერია). თავში მდგარი
+     სკრიპტი data-theme-ს მხოლოდ მაშინ სვამს, თუ ვიზიტორს თვითონ აურჩევია "ღია" ან "მუქი". -->
+<html lang="ka">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>ZIPI.GE — ელექტრო მონოციკლები თბილისში</title>
-<meta name="description" content="NOSFET და LEAPERKIM ელექტრო მონოციკლები თბილისში. ფასები ლარში, მოდელების შედარება, 12 თვიანი გარანტია, განვადება და სერვისი.">
-<meta property="og:title" content="ZIPI.GE — ელექტრო მონოციკლები">
-<meta property="og:description" content="NOSFET და LEAPERKIM მონოციკლები. ფასები ლარში, 12 თვიანი გარანტია ძრავზე, კონტროლერზე და ელემენტებზე.">
+<title>ZIPI.GE — ელექტრო მონობორბლები თბილისში</title>
+<meta name="description" content="NOSFET და LEAPERKIM ელექტრო მონობორბლები თბილისში. ფასები ლარში, მოდელების შედარება, 12 თვიანი გარანტია და სერვისი.">
+<meta property="og:title" content="ZIPI.GE — ელექტრო მონობორბლები">
+<meta property="og:description" content="NOSFET და LEAPERKIM მონობორბლები. ფასები ლარში, 12 თვიანი გარანტია ძრავზე, კონტროლერზე და ელემენტებზე.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +17,12 @@
 <link rel="stylesheet" href="assets/styles.css">
 <script>
   /* თემას თავშივე ვსვამთ, რომ გვერდი არასწორი ფერით არ აციმციმდეს.
-     ნაგულისხმევი მუქია (ატრიბუტი უკვე <html>-ზე წერია). შენახული არჩევანი:
-     "light" ღიას რთავს, "auto" სისტემის თემას მიჰყვება, სხვა შემთხვევაში მუქი რჩება. */
+     ნაგულისხმევად სისტემის თემას მივყვებით. შენახული არჩევანი "light" ან "dark"
+     მას გადაწონის. */
   try {
     var t = localStorage.getItem("zipi-theme");
-    if (t === "light") document.documentElement.dataset.theme = "light";
-    else if (t === "auto") delete document.documentElement.dataset.theme;
-  } catch (e) { /* localStorage გამორთულია: ვრჩებით მუქ თემაზე */ }
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) { /* localStorage გამორთულია: ვრჩებით სისტემის თემაზე */ }
 </script>
 </head>
 <body>
@@ -34,14 +33,23 @@
   <div class="wrap top__in">
     <a class="logo" href="#" aria-label="ZIPI.GE">
       <span class="logo__mark">ZIPI<span>.GE</span></span>
-      <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
+      <span class="logo__sub" data-t="logo.sub">ელექტრო მონობორბლები</span>
     </a>
 
     <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" data-t-aria="nav.menu" aria-label="მენიუ">☰</button>
 
     <nav class="nav" id="nav">
       <a href="#hero" data-t="nav.home">მთავარი</a>
-      <a href="#catalog" data-t="nav.catalog">კატალოგი</a>
+      <!-- კატალოგი: მაუსის მიტანისას ჩამოიშლება განყოფილებების სია -->
+      <div class="nav__drop">
+        <a href="#catalog" data-t="nav.catalog" aria-haspopup="true">კატალოგი</a>
+        <div class="nav__menu">
+          <a href="#catalog" data-cat="wheels" data-t="cat.wheels">მონობორბლები</a>
+          <a href="#catalog" data-cat="accessories" data-t="cat.accessories">აქსესუარები</a>
+          <a href="#catalog" data-cat="protection" data-t="cat.protection">დამცავები</a>
+          <a href="#catalog" data-cat="print3d" data-t="cat.print3d">3D ბეჭდვა</a>
+        </div>
+      </div>
       <a href="#service" data-t="nav.service">სერვისი</a>
       <a href="#about" data-t="nav.about">ჩვენ შესახებ</a>
       <a href="#contact" data-t="nav.contact">კონტაქტი</a>
@@ -53,11 +61,10 @@
       <button data-lang="en" aria-pressed="false">ENG</button>
     </div>
 
-    <!-- თემის გადამრთველი: ავტო ნიშნავს სისტემის თემას, ნაგულისხმევი მუქია -->
+    <!-- თემის გადამრთველი: ნაგულისხმევად სისტემის თემაა, ღილაკი ხელით არჩევისთვისაა -->
     <div class="seg seg--theme" data-t-aria="theme.label" aria-label="თემა">
-      <button data-theme-set="auto" aria-pressed="false" title="ავტო" data-t-title="theme.auto">◐</button>
       <button data-theme-set="light" aria-pressed="false" title="ღია" data-t-title="theme.light">☀</button>
-      <button data-theme-set="dark" aria-pressed="true" title="მუქი" data-t-title="theme.dark">☾</button>
+      <button data-theme-set="dark" aria-pressed="false" title="მუქი" data-t-title="theme.dark">☾</button>
     </div>
 
     <!-- ზარის ნაცვლად WhatsApp: href-ს app.js სვამს არჩეულ ენაზე შედგენილი ტექსტით -->
@@ -71,24 +78,22 @@
   <section class="hero" id="hero">
     <div class="wrap hero__in">
       <div class="hero__copy">
-        <p class="eyebrow" data-t="hero.eyebrow">მარაგი თბილისში</p>
         <h1>
           <em data-t="hero.h1b">მთელი თბილისი</em> <span data-t="hero.h1c">გზაა</span>
         </h1>
         <p class="lead" data-t="hero.lead">
-          მაღალი სიმძლავრის ელექტრო მონოციკლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში,
+          მაღალი სიმძლავრის ელექტრო მონობორბლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში,
           12 თვიანი გარანტია და სერვისი ადგილზე.
         </p>
         <div class="hero__cta">
           <a class="btn" href="#catalog" data-t="cta.catalog">კატალოგის ნახვა</a>
-          <a class="btn btn--ghost" data-wa="test" href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.testride">დაჯავშნე ტესტ-სვლა</a>
         </div>
         <p class="hero__marks">
           <span>NOSFET</span><span>LEAPERKIM</span>
         </p>
       </div>
 
-      <!-- ბრენდების ფლაგმანები, JS ავსებს -->
+      <!-- მოდელების სლაიდშოუ: ფოტო, მთავარი მონაცემები და ფასი. JS ავსებს -->
       <div class="flag">
         <div class="flag__stage" id="flagStage"></div>
         <div class="flag__dots" id="flagDots" role="tablist"></div>
@@ -104,38 +109,7 @@
       <div class="strip__in">
         <div class="strip__cell"><span class="strip__n" id="modelCount">—</span><span class="strip__l" data-t="strip.models">მოდელი კატალოგში</span></div>
         <div class="strip__cell"><span class="strip__n">12</span><span class="strip__l" data-t="strip.warranty">თვე გარანტია</span></div>
-        <div class="strip__cell"><span class="strip__n">12</span><span class="strip__l" data-t="strip.months">თვემდე განვადება</span></div>
         <div class="strip__cell"><span class="strip__n" id="fromPrice">—</span><span class="strip__l" data-t="strip.from">საწყისი ფასი</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ვიდეო ====================
-       პლეერი მხოლოდ დაწკაპუნების შემდეგ იტვირთება: სანამ არ დააჭერ,
-       YouTube-ს არც მოთხოვნა მიდის და არც cookie ჩნდება. -->
-  <section class="sec" id="video">
-    <div class="wrap vid__in">
-      <div class="vid__frame" id="videoFrame">
-        <button class="vid__facade" data-video="Al8V_a5caJc" data-t-aria="video.play" aria-label="ვიდეოს გახსნა">
-          <img src="https://i.ytimg.com/vi/Al8V_a5caJc/maxresdefault.jpg" alt="" onerror="this.remove()">
-          <span class="vid__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-          </span>
-        </button>
-      </div>
-      <div class="vid__copy">
-        <p class="eyebrow" data-t="video.eyebrow">ვიდეო მიმოხილვა</p>
-        <h2 data-t="video.h2">ნახე, როგორია ეს რეალურ ქუჩაში</h2>
-        <p class="lead" data-t="video.lead">
-          ქართული არხის ვიდეო იმაზე, ღირს თუ არა მონოციკლით კურიერობა.
-          კარგი შესავალია, თუ ჯერ ეჭვი გაქვს, რამდენად პრაქტიკულია ეს ყოველდღიურად.
-        </p>
-        <p class="vid__name" data-t="video.name">ღირს თუ არა მონობორბლით კურიერობა?</p>
-        <p class="note">
-          <span data-t="video.credit">არხი</span>:
-          <a href="https://www.youtube.com/@%E1%83%93%E1%83%98%E1%83%A4%E1%83%98" target="_blank" rel="noopener">დიფი • DIPI</a>
-        </p>
-        <a class="btn btn--ghost" href="https://www.youtube.com/watch?v=Al8V_a5caJc" target="_blank" rel="noopener" data-t="video.watch">YouTube-ზე ნახვა</a>
       </div>
     </div>
   </section>
@@ -165,7 +139,7 @@
           <p class="eyebrow" data-t="top.eyebrow">ყველაზე მოთხოვნადი</p>
           <h2 data-t="top.h2">TOP მოდელები</h2>
         </div>
-        <p class="lead" data-t="top.lead">ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ: ორი ქალაქური და ორი ფლაგმანი.</p>
+        <p class="lead" data-t="top.lead">ოთხი მოდელი, რომელსაც ყველაზე ხშირად ირჩევენ.</p>
       </div>
       <div class="grid" id="topGrid"></div>
     </div>
@@ -177,10 +151,13 @@
       <div class="sec__head">
         <div>
           <p class="eyebrow" data-t="cat.eyebrow">კატალოგი</p>
-          <h2 data-t="cat.h2">ყველა მონოციკლი</h2>
+          <h2 data-t="cat.h2">ყველა მონობორბალი</h2>
         </div>
         <p class="lead" data-t="cat.lead">ფასები მოცემულია ლარში. მონიშნე ორი ან მეტი მოდელი და შეადარე მახასიათებლები ერთ ცხრილში.</p>
       </div>
+
+      <!-- კატალოგის განყოფილებები: მონობორბლები, აქსესუარები, დამცავები, 3D ბეჭდვა -->
+      <div class="cats" id="cats" role="group"></div>
 
       <div class="tools">
         <div class="chips" id="chips" role="group"></div>
@@ -197,6 +174,11 @@
 
       <div class="grid" id="grid"></div>
       <p class="empty" id="empty" data-t="cat.empty" hidden>ამ ფილტრით მოდელი ვერ მოიძებნა.</p>
+      <!-- ცარიელი განყოფილება: სანამ catalog.js-ის extras-ში პროდუქტი არ დაემატება -->
+      <div class="empty soon" id="soon" hidden>
+        <p data-t="cat.soon">ამ განყოფილებაში პროდუქცია მალე დაემატება. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.</p>
+        <a class="btn btn--sm" id="soonWa" href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.wa">მოგვწერე WhatsApp-ზე</a>
+      </div>
     </div>
   </section>
 
@@ -227,7 +209,7 @@
         <div class="svc__item">
           <span data-t="svc.3t">მექანიკა</span>
           <h3 data-t="svc.3h">საბურავი და ამორტიზაცია</h3>
-          <p data-t="svc.3p">საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება მოსიარულეზე.</p>
+          <p data-t="svc.3p">საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება რაიდერზე.</p>
         </div>
       </div>
     </div>
@@ -238,15 +220,11 @@
     <div class="wrap about__in">
       <div class="panel">
         <p class="eyebrow" data-t="about.eyebrow">ჩვენ შესახებ</p>
-        <h2 data-t="about.h2">მაღაზია, რომელსაც მოსიარულეები აკეთებენ</h2>
+        <h2 data-t="about.h2">მაღაზია, რომელსაც რაიდერები ქმნიან</h2>
         <p class="lead" data-t="about.p1">
-          ZIPI.GE თბილისში ელექტრო მონოციკლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს,
+          ZIPI.GE თბილისში ელექტრო მონობორბლების მაღაზიაა. ვყიდით მხოლოდ იმ ბრენდებს,
           რომლებსაც თვითონ დავდივართ და რომლებზეც ნაწილების მოტანა შეგვიძლია.
-          ყველა მონოციკლი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.
-        </p>
-        <p class="lead" data-t="about.p2">
-          გინდა უბრალოდ დაჯდომა და ცდა? მოგვწერე WhatsApp-ზე და ტესტ-სვლას დაგიჯავშნით:
-          დამწყებთათვის დამცავებს და სასწავლო სივრცეს უფასოდ ვაძლევთ.
+          ყველა მონობორბალი მოწოდებამდე იხსნება, იტესტება და ხელახლა იკვრება.
         </p>
         <div class="hero__cta">
           <a class="btn" data-wa href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.wa">მოგვწერე WhatsApp-ზე</a>
@@ -254,15 +232,13 @@
         </div>
       </div>
 
-      <!-- კონტაქტი: ნომერი აქ ჩანს სრულად, დაკავშირება კი WhatsApp-ით ხდება -->
+      <!-- კონტაქტი: ნომერზე დაჭერა ზარს რთავს (tel:), ღილაკი კი WhatsApp-ს ხსნის -->
       <div class="panel" id="contact">
         <p class="eyebrow" data-t="contact.eyebrow">კონტაქტი</p>
         <dl class="facts">
-          <div class="fact"><dt data-t="contact.phone">ტელეფონი / WhatsApp</dt><dd class="num">+995 598 66 61 11</dd></div>
+          <div class="fact"><dt data-t="contact.phone">ტელეფონი / WhatsApp</dt><dd class="num"><a href="tel:+995598666111">+995 598 66 61 11</a></dd></div>
           <div class="fact"><dt data-t="contact.address">მისამართი</dt><dd data-t="contact.addressValue">თბილისი</dd></div>
-          <div class="fact"><dt data-t="contact.hours">სამუშაო საათები</dt><dd class="num">12:00-22:00</dd></div>
-          <div class="fact"><dt data-t="contact.warranty">გარანტია</dt><dd data-t="contact.warrantyValue">12 თვე: ძრავი, კონტროლერი, ელემენტები</dd></div>
-          <div class="fact"><dt data-t="contact.installment">განვადება</dt><dd data-t="contact.installmentValue">12 თვემდე, ბანკის პარტნიორობით</dd></div>
+          <div class="fact"><dt data-t="contact.hours">საკონტაქტო საათები</dt><dd class="num">12:00-22:00</dd></div>
         </dl>
         <a class="btn" data-wa href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.wa">მოგვწერე WhatsApp-ზე</a>
       </div>
@@ -277,10 +253,10 @@
       <div>
         <a class="logo" href="#">
           <span class="logo__mark">ZIPI<span>.GE</span></span>
-          <span class="logo__sub" data-t="logo.sub">ელექტრო მონოციკლები</span>
+          <span class="logo__sub" data-t="logo.sub">ელექტრო მონობორბლები</span>
         </a>
         <p style="margin-top:14px;font-size:0.86rem;max-width:32ch;color:var(--muted)" data-t="foot.blurb">
-          NOSFET და LEAPERKIM მონოციკლები, ნაწილები და სერვისი თბილისში.
+          NOSFET და LEAPERKIM მონობორბლები, ნაწილები და სერვისი თბილისში.
         </p>
       </div>
       <div>
@@ -301,7 +277,7 @@
       <div>
         <h4 data-t="foot.contact">კონტაქტი</h4>
         <ul>
-          <li><a class="num" data-wa href="https://wa.me/995598666111" target="_blank" rel="noopener">+995 598 66 61 11</a></li>
+          <li><a class="num" href="tel:+995598666111">+995 598 66 61 11</a></li>
           <li data-t="contact.addressValue">თბილისი</li>
           <li class="num">12:00-22:00</li>
         </ul>
@@ -309,7 +285,6 @@
     </div>
     <div class="foot__bar">
       <span>© <span class="num">2026</span> ZIPI.GE</span>
-      <span data-t="foot.disclaimer">ფასები საინფორმაციო ხასიათისაა და არ არის საჯარო შეთავაზება.</span>
     </div>
   </div>
 </footer>

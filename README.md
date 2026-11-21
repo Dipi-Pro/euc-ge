@@ -5,8 +5,8 @@ a flagship slider, brand tiles, a top models row, a filterable catalogue with si
 comparison, service section, contact panel.
 
 Two brands, seven models: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM (Patton-S, Lynx-S,
-Sherman-P). Georgian by default with an English switch, dark by default with light and auto,
-prices in lari.
+Sherman-P). Georgian by default with an English switch, theme follows the system by default
+with a light / dark switch, prices in lari.
 
 No build step, no npm, no framework. Open `index.html` and it runs.
 
@@ -14,12 +14,12 @@ No build step, no npm, no framework. Open `index.html` and it runs.
 
 | File | What it holds |
 |---|---|
-| `data/catalog.js` | every model: price, badge, stock, specs, descriptions, photo names; the WhatsApp number and warranty length in `meta` |
+| `data/catalog.js` | every model: price, specs, descriptions, photo names; the WhatsApp number and warranty length in `meta` |
 | `data/i18n.js` | every piece of text on the page, in Georgian and English |
 | `index.html` | page structure, the visible phone number, opening hours |
 | `assets/styles.css` | colors, fonts, spacing, all in the token block at the top |
 | `assets/app.js` | rendering, filtering, sorting, comparison, WhatsApp links, language, theme |
-| `assets/wheels/` | 21 product photos, three per model |
+| `assets/wheels/` | 55 product photos, 5 to 14 per model (`id-1`, `id-2`, …; the first is the card photo) |
 
 ## Changing a price
 
@@ -28,15 +28,14 @@ Open `data/catalog.js`, find the model, change the number after `priceGel`. Save
 ```js
 "priceGel": 9600,        // current price in lari, no spaces or commas
 "oldPriceGel": null,     // crossed-out price, or null for no discount
-"badge": "flagship",     // flagship, new, sale, range, offroad, bestseller, beginner, light, city, null
-"stock": "in",           // "in" = in stock, "order" = to order
 ```
+
+Cards carry no badges and no stock status; every card says "contact us to check stock"
+(`stock.ask` in `data/i18n.js`).
 
 Keep the quotes and commas exactly as they are. If the catalogue stops loading, a comma or a
 quote went missing.
 
-The monthly instalment under each price is calculated, not typed. It comes from
-`installmentMonths` and `installmentRate` in the `meta` block at the top of the same file.
 
 ## Specs and comparison
 
@@ -56,10 +55,11 @@ arithmetic supports (for example the Apex is 151V, not the 121V printed on nosfe
 model descriptions are written for this site from those facts. They are not translations of
 the retailers' copy.
 
-## Contact: WhatsApp instead of calls
+## Contact: WhatsApp and calls
 
-There is no call-back form. Every contact button opens a WhatsApp chat with +995 598 66 61 11,
-with a message already typed: a general hello, a test ride request, or the name of the model
+There is no call-back form. The phone number in the contact panel and the footer is a `tel:`
+link, so tapping it starts a call. Every contact button opens a WhatsApp chat with +995 598 66 61 11,
+with a message already typed: a general hello, or the name of the model
 the visitor was looking at. The number used for the links is `meta.whatsapp` in
 `data/catalog.js` (digits only). The number shown as text sits in `index.html`, in the contact
 panel and the footer. Change both if the number changes.
@@ -67,8 +67,7 @@ panel and the footer. Change both if the number changes.
 ## Warranty
 
 Every model carries 12 months on the motor, the controller and the battery cells. The length
-is `meta.warrantyMonths`. The wording is in `data/i18n.js` under `warranty.*`, `svc.1*` and
-`contact.warranty*`.
+is `meta.warrantyMonths`. The wording is in `data/i18n.js` under `warranty.*` and `svc.1*`.
 
 ## Changing text
 
@@ -88,8 +87,8 @@ itself.
 ## Language and theme
 
 Georgian is the default. The switch remembers a visitor's choice in their browser. The theme
-is dark by default; the switch also offers light and auto (follow the operating system), and
-remembers the choice.
+follows the operating system by default; the switch offers light and dark, and remembers the
+choice once a visitor picks one.
 
 ## Before this goes live
 
@@ -107,16 +106,6 @@ Double click `index.html`. It works straight off the filesystem, no server neede
 
 The published copy runs on GitHub Pages. `.github/workflows/pages.yml` deploys on every push
 to `main`, but only if Settings, Pages, Source is set to "GitHub Actions".
-
-## Notes on the video
-
-The video section embeds a YouTube video from the channel დიფი • DIPI, on whether couriering
-by unicycle is worth it. The player is a click-to-load facade: until someone presses play the
-page only fetches the thumbnail, so no YouTube script or cookie is involved. Pressing play
-swaps in a `youtube-nocookie.com` iframe.
-
-To swap the video, change the id in the `data-video` attribute and the thumbnail URL in
-`index.html`, and `video.name` in `data/i18n.js`.
 
 ## Notes on the photos
 

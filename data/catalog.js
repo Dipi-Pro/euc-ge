@@ -3,9 +3,6 @@
 
    priceGel: მიმდინარე ფასი ლარში (მთელი რიცხვი, გამყოფების გარეშე)
    oldPriceGel: ძველი, გადახაზული ფასი; null, თუ ფასდაკლება არ არის
-   badge: წარწერა ფოტოზე. დასაშვები მნიშვნელობები:
-                  flagship, new, sale, range, offroad, bestseller, beginner, light, city, null
-   stock: "in" (მარაგშია) ან "order" (შეკვეთით)
    blurb: მოკლე აღწერა (ka / en), ჩანს მოდელის ფანჯარაში
    features: მთავარი თავისებურებები სიად (ka / en), ჩანს ფოტოების ქვეშ
    images: ფაილების სახელები assets/wheels/ საქაღალდიდან
@@ -42,10 +39,22 @@ window.CATALOG = {
     /* WhatsApp-ის ნომერი საერთაშორისო ფორმატში, მხოლოდ ციფრები (+995 598 66 61 11) */
     "whatsapp": "995598666111",
     /* გარანტია ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე, ყველა მოდელზე */
-    "warrantyMonths": 12,
-    "installmentMonths": 12,
-    "installmentRate": 1.09
+    "warrantyMonths": 12
   },
+  /* კატალოგის დამატებითი განყოფილებები (მონობორბლების გარდა).
+     id გამოიყენება extras-ში cat ველად; სახელები i18n.js-შია (cat.<id>). */
+  "categories": ["accessories", "protection", "print3d"],
+  /* აქსესუარები, დამცავები და 3D ბეჭდვის ნაწარმი. თითო პროდუქტი ასე იწერება:
+     {
+       "id": "unique-id",
+       "cat": "accessories",              // accessories, protection ან print3d
+       "name": { "ka": "სახელი", "en": "Name" },
+       "blurb": { "ka": "მოკლე აღწერა", "en": "Short description" },
+       "priceGel": 120,                   // ან null, თუ ფასი WhatsApp-ზე
+       "images": ["extras/unique-id-1.jpg"]   // assets/wheels/ საქაღალდიდან
+     }
+     სანამ განყოფილებაში პროდუქტი არ არის, საიტზე "მალე დაემატება" ჩანს. */
+  "extras": [],
   "brands": [
     {
       "id": "nosfet",
@@ -67,7 +76,7 @@ window.CATALOG = {
         "en": "The Veteran line: power and range"
       },
       "blurb": {
-        "ka": "შორ მანძილზე მოსიარულეების არჩევანი. 4700 Wh-მდე ბატარეა და ჩარჩო, რომელიც უსწორმასწორო გზას ითმენს.",
+        "ka": "შორ მანძილზე რაიდერების არჩევანი. 4700 Wh-მდე ბატარეა და ჩარჩო, რომელიც უსწორმასწორო გზას ითმენს.",
         "en": "What long-distance riders pick. Up to 4700 Wh and a frame that tolerates broken tarmac."
       }
     }
@@ -77,8 +86,6 @@ window.CATALOG = {
       "id": "nosfet-aero",
       "brand": "nosfet",
       "model": "Aero",
-      "badge": "light",
-      "stock": "in",
       "priceGel": 6000,
       "oldPriceGel": null,
       "blurb": {
@@ -88,7 +95,7 @@ window.CATALOG = {
       "features": {
         "ka": [
           "ჩარჩო ერთიანი მაგნიუმის შენადნობისგანაა ჩამოსხმული, პედლების სამაგრიც მასშია ჩაშენებული.",
-          "თუ ჰოლის სენსორი (ძრავის მდებარეობის სენსორი) მწყობრიდან გამოვიდა, მონოციკლი ბალანსს არ კარგავს და უსაფრთხოდ გაჩერების საშუალებას გაძლევს.",
+          "თუ ჰოლის სენსორი (ძრავის მდებარეობის სენსორი) მწყობრიდან გამოვიდა, მონობორბალი ბალანსს არ კარგავს და უსაფრთხოდ გაჩერების საშუალებას გაძლევს.",
           "ჭკვიანი BMS (ბატარეის მართვის სისტემა) Bluetooth-ით: ბატარეის მდგომარეობა ტელეფონის აპლიკაციაში ჩანს.",
           "საბურავის შესაცვლელად გვერდითი პანელი რამდენიმე ჭანჭიკით იხსნება.",
           "სადგამი, სატარებელი სახელური, ორნაწილიანი ფრთა და სამრეჟიმიანი განათება დღის სანათით."
@@ -102,14 +109,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 55, "rangeKm": 55, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp"]
+      "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp", "nosfet-aero-4.jpg"]
     },
     {
       "id": "nosfet-aeon",
       "brand": "nosfet",
       "model": "Aeon",
-      "badge": "city",
-      "stock": "in",
       "priceGel": 6500,
       "oldPriceGel": null,
       "blurb": {
@@ -135,14 +140,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 64, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-aeon-1.webp", "nosfet-aeon-2.webp", "nosfet-aeon-3.webp"]
+      "images": ["nosfet-aeon-1.jpg", "nosfet-aeon-2.jpg", "nosfet-aeon-3.jpg", "nosfet-aeon-4.jpg", "nosfet-aeon-5.jpg", "nosfet-aeon-6.jpg", "nosfet-aeon-7.jpg", "nosfet-aeon-8.jpg", "nosfet-aeon-9.jpg"]
     },
     {
       "id": "nosfet-xeno",
       "brand": "nosfet",
       "model": "Xeno",
-      "badge": null,
-      "stock": "in",
       "priceGel": 8000,
       "oldPriceGel": null,
       "blurb": {
@@ -166,14 +169,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 110, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-xeno-1.webp", "nosfet-xeno-2.webp", "nosfet-xeno-3.webp"]
+      "images": ["nosfet-xeno-1.jpg", "nosfet-xeno-2.jpg", "nosfet-xeno-3.jpg", "nosfet-xeno-4.jpg", "nosfet-xeno-5.jpg", "nosfet-xeno-6.jpg", "nosfet-xeno-7.jpg", "nosfet-xeno-8.jpg", "nosfet-xeno-9.jpg", "nosfet-xeno-10.jpg", "nosfet-xeno-11.jpg", "nosfet-xeno-12.jpg", "nosfet-xeno-13.jpg", "nosfet-xeno-14.jpg"]
     },
     {
       "id": "nosfet-apex",
       "brand": "nosfet",
       "model": "Apex",
-      "badge": "flagship",
-      "stock": "in",
       "priceGel": 9600,
       "oldPriceGel": null,
       "blurb": {
@@ -199,14 +200,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 88, "rangeKm": 95, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-apex-1.webp", "nosfet-apex-2.webp", "nosfet-apex-3.webp"]
+      "images": ["nosfet-apex-1.webp", "nosfet-apex-2.webp", "nosfet-apex-3.webp", "nosfet-apex-4.webp", "nosfet-apex-5.webp"]
     },
     {
       "id": "leaperkim-patton-s",
       "brand": "leaperkim",
       "model": "Patton-S",
-      "badge": null,
-      "stock": "in",
       "priceGel": 8000,
       "oldPriceGel": null,
       "blurb": {
@@ -232,14 +231,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "maxLoadKg": 145, "climbDeg": 40, "ip": null },
-      "images": ["leaperkim-patton-s-1.webp", "leaperkim-patton-s-2.webp", "leaperkim-patton-s-3.webp"]
+      "images": ["leaperkim-patton-s-1.webp", "leaperkim-patton-s-2.webp", "leaperkim-patton-s-3.webp", "leaperkim-patton-s-4.webp", "leaperkim-patton-s-5.webp", "leaperkim-patton-s-6.webp", "leaperkim-patton-s-7.webp"]
     },
     {
       "id": "leaperkim-lynx-s",
       "brand": "leaperkim",
       "model": "Lynx-S",
-      "badge": "offroad",
-      "stock": "in",
       "priceGel": 9900,
       "oldPriceGel": null,
       "blurb": {
@@ -263,14 +260,12 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 95, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null },
-      "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp"]
+      "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp", "leaperkim-lynx-s-4.webp", "leaperkim-lynx-s-5.webp"]
     },
     {
       "id": "leaperkim-sherman-p",
       "brand": "leaperkim",
       "model": "Sherman-P",
-      "badge": "new",
-      "stock": "order",
       "priceGel": 11500,
       "oldPriceGel": null,
       "blurb": {
@@ -296,7 +291,7 @@ window.CATALOG = {
         ]
       },
       "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 100, "rangeKm": 200, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" },
-      "images": ["leaperkim-sherman-p-1.webp", "leaperkim-sherman-p-2.webp", "leaperkim-sherman-p-3.webp"]
+      "images": ["leaperkim-sherman-p-1.jpg", "leaperkim-sherman-p-2.jpg", "leaperkim-sherman-p-3.jpg", "leaperkim-sherman-p-4.jpg", "leaperkim-sherman-p-5.jpg", "leaperkim-sherman-p-6.jpg", "leaperkim-sherman-p-7.jpg", "leaperkim-sherman-p-8.jpg"]
     }
   ]
 };
