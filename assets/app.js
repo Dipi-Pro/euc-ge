@@ -273,9 +273,26 @@
     renderGrid();
   }
 
+  /* მთავარი განყოფილებების ხატულები (ხაზოვანი, 24×24). ქვეკატეგორიებს ხატულა
+     არ აქვს, მხოლოდ მკრთალი წერტილი/დეფისი (CSS). */
+  var ICON_PATHS = {
+    wheel: '<circle cx="12" cy="14" r="6.5"/><circle cx="12" cy="14" r="2"/><path d="M8.5 7.5V4h7v3.5"/>',
+    wrench: '<path d="M14.5 4.5a4.5 4.5 0 0 0-5.4 5.9L3.5 16l4.5 4.5 5.6-5.6a4.5 4.5 0 0 0 5.9-5.4l-2.8 2.8-3.2-.8-.8-3.2z"/>',
+    bag: '<path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+    shield: '<path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/>',
+    cube: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>'
+  };
+  var ICON_OF = { wheels: "wheel", parts: "wrench", accessories: "bag", protection: "shield", print3d: "cube" };
+  function icon(id) {
+    var p = ICON_PATHS[ICON_OF[id]];
+    return p ? '<svg class="ico" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" ' +
+      'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + "</svg>" : "";
+  }
+
   function buildCats() {
     $("#cats").innerHTML = CATS.map(function (c) {
-      return '<button class="chip" data-cat="' + c + '" aria-pressed="' + (c === cat) + '">' + esc(catLabel(c)) + "</button>";
+      return '<button class="chip" data-cat="' + c + '" aria-pressed="' + (c === cat) + '">' +
+        icon(c) + esc(catLabel(c)) + "</button>";
     }).join("");
   }
 
@@ -297,23 +314,25 @@
   }
 
   /* ჰედერის ჩამოსაშლელი მენიუ, ნებისმიერი სიღრმით */
-  function navLink(attr, label, popup) {
+  /* ico: ხატულის HTML მხოლოდ მთავარი განყოფილებისთვის, დანარჩენებისთვის "" */
+  function navLink(attr, label, popup, ico) {
     return '<a href="#catalog" ' + attr + (isLat(label) ? ' class="nav__lat"' : "") +
-      (popup ? ' aria-haspopup="true"' : "") + ">" + esc(label) + "</a>";
+      (popup ? ' aria-haspopup="true"' : "") + ">" + (ico || "") + '<span class="nav__label">' + esc(label) + "</span></a>";
   }
-  function navNode(attr, label, inner) {
-    return '<div class="nav__sub"><div class="nav__row">' + navLink(attr, label, true) +
+  function navNode(attr, label, inner, ico) {
+    return '<div class="nav__sub"><div class="nav__row">' + navLink(attr, label, true, ico) +
       '<button class="nav__toggle" data-sub-toggle aria-expanded="false" aria-label="' + esc(label) + '">▾</button>' +
       '</div><div class="nav__submenu">' + inner + "</div></div>";
   }
   function navTree(n, p) {
     var attr = 'data-path="' + p.join("/") + '"';
-    if (!n.children || !n.children.length) return navLink(attr, nodeName(n));
-    return navNode(attr, nodeName(n), n.children.map(function (ch) { return navTree(ch, p.concat(ch.id)); }).join(""));
+    var ico = p.length === 1 ? icon(n.id) : "";
+    if (!n.children || !n.children.length) return navLink(attr, nodeName(n), false, ico);
+    return navNode(attr, nodeName(n), n.children.map(function (ch) { return navTree(ch, p.concat(ch.id)); }).join(""), ico);
   }
   function buildNav() {
     var wheels = navNode('data-cat="wheels"', t("cat.wheels"),
-      BRANDS.map(function (b) { return navLink('data-jump="' + b.id + '"', b.name); }).join(""));
+      BRANDS.map(function (b) { return navLink('data-jump="' + b.id + '"', b.name); }).join(""), icon("wheels"));
     $("#navCats").innerHTML = wheels + TREE.map(function (n) { return navTree(n, [n.id]); }).join("");
   }
 
