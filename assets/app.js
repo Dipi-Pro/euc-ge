@@ -265,6 +265,26 @@
   }
   function initGallery() {
     thumbs = $$(".sheet__thumbs [data-thumb]");
+    /* მოდელის გვერდზე დიდ ფოტოზე თითით გადასმა = შემდეგი / წინა ფოტო;
+       გადასმის შემდეგ ფოტო სრულ ეკრანზე აღარ იხსნება */
+    var big = $(".sheet__big");
+    if (big && thumbs.length > 1) {
+      var bx = null, by = null, bSwiped = false;
+      big.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1) { bx = null; return; }
+        bx = e.touches[0].clientX; by = e.touches[0].clientY; bSwiped = false;
+      }, { passive: true });
+      big.addEventListener("touchend", function (e) {
+        if (bx === null) return;
+        var dx = e.changedTouches[0].clientX - bx, dy = e.changedTouches[0].clientY - by;
+        bx = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { bSwiped = true; showPhoto(viewIdx + (dx < 0 ? 1 : -1)); }
+      }, { passive: true });
+      big.addEventListener("click", function (e) {
+        if (!bSwiped) return;
+        bSwiped = false; e.stopPropagation(); e.preventDefault();
+      }, true);
+    }
     var v = $("#viewer");
     if (!v) return;
     v.addEventListener("keydown", function (e) {
@@ -296,6 +316,7 @@
     if ((el = hit("[data-thumb]"))) { showPhoto(Number(el.dataset.thumb)); return; }
     if (hit("[data-view-open]")) { openView(); return; }
     if ((el = hit("[data-view-step]"))) { showPhoto(viewIdx + Number(el.dataset.viewStep)); return; }
+    if ((el = hit("[data-photo-step]"))) { showPhoto(viewIdx + Number(el.dataset.photoStep)); return; }
     if ((el = hit("[data-close]"))) { el.closest("dialog").close(); return; }
     if ((el = hit("[data-nav-toggle]"))) {
       el.setAttribute("aria-expanded", String(el.closest(".nav__drop").classList.toggle("nav__drop--open")));

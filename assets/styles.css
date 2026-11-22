@@ -887,3 +887,16 @@ a.tile { color: inherit; }
 /* ტექსტში: ნომერზე დაჭერა რეკავს, "მოგვწერე WhatsApp-ზე" WhatsApp-ს ხსნის */
 .tel-inline, .wa-inline { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .tel-inline:hover, .wa-inline:hover { text-decoration-thickness: 2px; }
+/* მოდელის გვერდი: ისრები დიდ ფოტოზე (ყველა ეკრანზე ჩანს) */
+.sheet__big { touch-action: pan-y; }
+.sheet__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  display: grid; place-items: center; width: 42px; height: 42px; padding: 0 0 3px;
+  border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  font: 700 1.6rem/1 var(--lat); cursor: pointer; box-shadow: var(--shadow);
+  opacity: 0.9; transition: opacity 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+}
+.sheet__arrow:hover { opacity: 1; background: var(--accent); border-color: var(--accent); color: #fff; }
+.sheet__arrow--prev { left: 10px; }
+.sheet__arrow--next { right: 10px; }
+@media (max-width: 600px) { .sheet__arrow { width: 36px; height: 36px; font-size: 1.35rem; } .sheet__arrow--prev { left: 6px; } .sheet__arrow--next { right: 6px; } }

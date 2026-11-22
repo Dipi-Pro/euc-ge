@@ -699,7 +699,13 @@
         '<div class="sheet__media">' +
           '<div class="sheet__big"><button class="sheet__zoom" data-view-open aria-label="' + esc(L.t("viewer.open")) + '">' +
             picture(w.images[0], full, "(max-width: 820px) 92vw, 620px", ' id="pBig" fetchpriority="high"') + "</button>" +
-            '<button class="sheet__full" data-view-open aria-hidden="true" tabindex="-1">⤢</button></div>' +
+            '<button class="sheet__full" data-view-open aria-hidden="true" tabindex="-1">⤢</button>' +
+            /* ისრები: ფოტოებს შორის გადასვლა სრული ეკრანის გარეშეც */
+            (w.images.length > 1
+              ? '<button class="sheet__arrow sheet__arrow--prev" data-photo-step="-1" aria-label="' + esc(L.t("viewer.prev")) + '">‹</button>' +
+                '<button class="sheet__arrow sheet__arrow--next" data-photo-step="1" aria-label="' + esc(L.t("viewer.next")) + '">›</button>'
+              : "") +
+          "</div>" +
           '<div class="sheet__thumbs">' + thumbs + "</div>" +
         "</div>\n" +
         '<div class="sheet__info">' +
