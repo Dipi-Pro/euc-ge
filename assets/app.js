@@ -631,8 +631,6 @@
     buildChips();
     renderGrid();
     renderTray();
-    $("#modelCount").textContent = WHEELS.length;
-    $("#fromPrice").textContent = price(Math.min.apply(null, WHEELS.map(function (w) { return w.priceGel; })));
     watchRise();
   }
 

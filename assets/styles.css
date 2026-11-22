@@ -403,12 +403,6 @@ button.flag__plate { display: block; width: 100%; padding: 0; cursor: pointer; f
 
 @media (max-width: 900px) { .hero__in { grid-template-columns: 1fr; } .flag { order: -1; } }
 
-/* --- ციფრების ზოლი ------------------------------------------------------ */
-.strip__in { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-.strip__cell { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 18px 20px; display: flex; flex-direction: column; gap: 2px; }
-.strip__n { font-family: var(--lat); font-variant-numeric: tabular-nums; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; }
-.strip__l { font-size: 0.78rem; color: var(--muted); }
-
 /* --- სექციის თავი ------------------------------------------------------- */
 .sec { padding-block: clamp(44px, 6vw, 86px); }
 .sec--tight { padding-block: clamp(20px, 3vw, 34px); }

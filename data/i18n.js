@@ -45,9 +45,6 @@ window.I18N = {
     "hero.h1c": "დგას, შენ მოძრაობ",
     "hero.lead": "მაღალი სიმძლავრის ელექტრო მონობორბლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
 
-    "strip.models": "მოდელი კატალოგში",
-    "strip.warranty": "თვე გარანტია",
-    "strip.from": "საწყისი ფასი",
 
 
 
@@ -187,9 +184,6 @@ window.I18N = {
     "hero.h1c": "stands still, you keep moving",
     "hero.lead": "High-power electric unicycles from NOSFET and LEAPERKIM. Prices in lari, a 12-month warranty and service on site.",
 
-    "strip.models": "models in the catalogue",
-    "strip.warranty": "months of warranty",
-    "strip.from": "starting price",
 
 
 
