@@ -5,7 +5,10 @@
    oldPriceGel: ძველი, გადახაზული ფასი; null, თუ ფასდაკლება არ არის
    blurb: მოკლე აღწერა (ka / en), ჩანს მოდელის ფანჯარაში
    features: მთავარი თავისებურებები სიად (ka / en), ჩანს ფოტოების ქვეშ
-   images: ფაილების სახელები assets/wheels/ საქაღალდიდან
+   ფოტოები: თითო მოდელს თავისი საქაღალდე აქვს: assets/wheels/<id>/ (მაგ.
+     assets/wheels/nosfet-aero/). ჩაყარე ფოტოები (jpg, png ან webp); მთავარი ფოტო,
+     რომელიც ბარათზე ჩანს, დაარქვი "1" (მაგ. 1.jpg), დანარჩენები 2, 3, 4...
+     ამ რიგით ჩანს გალერეაში. აქ ჩამოწერა საჭირო აღარ არის.
 
    specs: ყველა ველი ჩანს მოდელის ფანჯარაშიც და შედარების ცხრილშიც.
      motorW / peakW: ძრავის ნომინალური / პიკური სიმძლავრე, ვატი
@@ -19,7 +22,7 @@
      suspType: air, coil, hydraulic, hydraulicAir ან none
      weightKg: წონა, კგ
      chargerA: კომპლექტში შემავალი დამტენის დენი, ამპერი
-     maxLoadKg: მხედრის მაქსიმალური წონა, კგ
+     maxLoadKg: რაიდერის მაქსიმალური წონა, კგ
      climbDeg: მაქსიმალური აღმართი, გრადუსი
      ip: წყალგამძლეობის კლასი (ტექსტი)
    უცნობი მნიშვნელობა: null. საიტზე "—" გამოჩნდება და შედარებაში
@@ -123,6 +126,18 @@ window.CATALOG = {
         "ka": "შორ მანძილზე რაიდერების არჩევანი. 4700 Wh-მდე ბატარეა და ჩარჩო, რომელიც უსწორმასწორო გზას ითმენს.",
         "en": "What long-distance riders pick. Up to 4700 Wh and a frame that tolerates broken tarmac."
       }
+    },
+    {
+      "id": "kingsong",
+      "name": "KINGSONG",
+      "tagline": {
+        "ka": "ქალაქის მოდელებიდან ოფროუდამდე",
+        "en": "From city wheels to off-road"
+      },
+      "blurb": {
+        "ka": "მსუბუქი ქალაქის მოდელებიდან (14D Pro, 16S Pro) ოფროუდის F-სერიამდე (F16, F18): 420-დან 2664 Wh-მდე ბატარეა და ყველაზე ხელმისაწვდომი ფასები კატალოგში.",
+        "en": "From light city wheels (14D Pro, 16S Pro) to the off-road F series (F16, F18): 420 to 2664 Wh and the most affordable prices in the catalogue."
+      }
     }
   ],
   "wheels": [
@@ -152,8 +167,7 @@ window.CATALOG = {
           "Kickstand, trolley handle, two-piece mudguard and three-mode lights with a daytime running light."
         ]
       },
-      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-aero-1.webp", "nosfet-aero-2.webp", "nosfet-aero-3.webp", "nosfet-aero-4.jpg"]
+      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-aeon",
@@ -183,8 +197,7 @@ window.CATALOG = {
           "Kickstand and folding trolley handle."
         ]
       },
-      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 60, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-aeon-1.jpg", "nosfet-aeon-2.jpg", "nosfet-aeon-3.jpg", "nosfet-aeon-4.jpg", "nosfet-aeon-5.jpg", "nosfet-aeon-6.jpg", "nosfet-aeon-7.jpg", "nosfet-aeon-8.jpg", "nosfet-aeon-9.jpg"]
+      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 60, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-xeno",
@@ -198,7 +211,7 @@ window.CATALOG = {
       },
       "features": {
         "ka": [
-          "ქარხნულ ტესტში 80 კგ წონის მხედარმა საშუალოდ 36 კმ/სთ სიჩქარით ერთი დატენვით 103 კმ გაიარა.",
+          "ქარხნულ ტესტში 80 კგ წონის რაიდერმა საშუალოდ 36 კმ/სთ სიჩქარით ერთი დატენვით 103 კმ გაიარა.",
           "90 მმ ჰიდრავლიკური ამორტიზაცია რეგულირებადი შეკუმშვით და დაბრუნებით.",
           "სამი უკამერო საბურავის არჩევანი: ჰიბრიდული, კბილიანი და ქუჩის.",
           "სატარებელი სახელური ყველაზე მაღალ მდგომარეობაში იკეტება, რაც დაჯდომით სიარულს ამარტივებს.",
@@ -212,8 +225,7 @@ window.CATALOG = {
           "Over-the-air firmware updates from the Nosfet app. The BMS protects against short circuit, overcharge and overheating."
         ]
       },
-      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-xeno-1.jpg", "nosfet-xeno-2.jpg", "nosfet-xeno-3.jpg", "nosfet-xeno-4.jpg", "nosfet-xeno-5.jpg", "nosfet-xeno-6.jpg", "nosfet-xeno-7.jpg", "nosfet-xeno-8.jpg", "nosfet-xeno-9.jpg", "nosfet-xeno-10.jpg", "nosfet-xeno-11.jpg", "nosfet-xeno-12.jpg", "nosfet-xeno-13.jpg", "nosfet-xeno-14.jpg"]
+      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-apex",
@@ -243,8 +255,7 @@ window.CATALOG = {
           "The kickstand folds away on a hard drop instead of snapping, and the mudguard breaks away on impact."
         ]
       },
-      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 90, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" },
-      "images": ["nosfet-apex-1.webp", "nosfet-apex-2.webp", "nosfet-apex-3.webp", "nosfet-apex-4.webp", "nosfet-apex-5.webp"]
+      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 90, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "leaperkim-patton-s",
@@ -274,8 +285,7 @@ window.CATALOG = {
           "Two charge ports: up to 20 A with matching chargers."
         ]
       },
-      "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "maxLoadKg": 145, "climbDeg": 40, "ip": null },
-      "images": ["leaperkim-patton-s-1.webp", "leaperkim-patton-s-2.webp", "leaperkim-patton-s-3.webp", "leaperkim-patton-s-4.webp", "leaperkim-patton-s-5.webp", "leaperkim-patton-s-6.webp", "leaperkim-patton-s-7.webp"]
+      "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "maxLoadKg": 145, "climbDeg": 40, "ip": null }
     },
     {
       "id": "leaperkim-lynx-s",
@@ -303,8 +313,7 @@ window.CATALOG = {
           "Charging up to 20 A (about 3 kW): at 10 A the pack fills in about 2 hours."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 100, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null },
-      "images": ["leaperkim-lynx-s-1.webp", "leaperkim-lynx-s-2.webp", "leaperkim-lynx-s-3.webp", "leaperkim-lynx-s-4.webp", "leaperkim-lynx-s-5.webp"]
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 100, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null }
     },
     {
       "id": "leaperkim-sherman-p",
@@ -334,8 +343,124 @@ window.CATALOG = {
           "Hidden trolley handle, folding kickstand, toe hooks and IPX6 water resistance."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 120, "rangeKm": 230, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" },
-      "images": ["leaperkim-sherman-p-1.jpg", "leaperkim-sherman-p-2.jpg", "leaperkim-sherman-p-3.jpg", "leaperkim-sherman-p-4.jpg", "leaperkim-sherman-p-5.jpg", "leaperkim-sherman-p-6.jpg", "leaperkim-sherman-p-7.jpg", "leaperkim-sherman-p-8.jpg"]
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 120, "rangeKm": 230, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" }
+    },
+    /* KingSong: 14D Pro და 16S Pro kingsong.com-ის მონაცემებიდან (16S Pro: მომხმარებლის
+       სახელმძღვანელოც) და ევროპელი გამყიდველებიდან; F18 kingsongeurope.com-ის ცხრილიდან;
+       F16 KingSong-ის ოფიციალური მონაცემებიდან (newatlas.com) და ewheels.com-იდან. 2026-11-22. */
+    {
+      "id": "kingsong-14d-pro",
+      "brand": "kingsong",
+      "model": "14D Pro",
+      "priceGel": 1700,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "800 W ძრავი (2400 W პიკზე), 420 Wh ბატარეა და 14-ინჩიანი ბორბალი 14.5 კილოგრამად. 14D Pro კატალოგში ყველაზე მსუბუქი და ხელმისაწვდომი მოდელია: სწავლისთვის და ქალაქში მოკლე მარშრუტებისთვის.",
+        "en": "An 800 W motor (2400 W peak), a 420 Wh battery and a 14-inch wheel at 14.5 kg. The 14D Pro is the lightest and most affordable wheel here: made for learning and short city trips."
+      },
+      "features": {
+        "ka": [
+          "Samsung 35E ელემენტებით აწყობილი ბატარეა და ჩაშენებული BMS (ბატარეის მართვის სისტემა).",
+          "სრული დატენვა დაახლოებით 3.5 საათში.",
+          "მაქსიმალური სიჩქარე 30 კმ/სთ; დამწყებისთვის ზღვარი აპლიკაციაში შეგიძლია კიდევ შეამცირო.",
+          "14.5 კგ და კომპაქტური 14-ინჩიანი ბორბალი: ხელში ტარება და მანქანაში ჩადება მარტივია.",
+          "რაიდერის მაქსიმალური წონა 120 კგ."
+        ],
+        "en": [
+          "A battery built from Samsung 35E cells with an integrated BMS (battery management system).",
+          "A full charge in about 3.5 hours.",
+          "30 km/h top speed; beginners can set a lower limit in the app.",
+          "14.5 kg and a compact 14-inch wheel: easy to carry and to put in a car.",
+          "Maximum rider weight 120 kg."
+        ]
+      },
+      "specs": { "motorW": 800, "peakW": 2400, "batteryWh": 420, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 30, "rangeKm": 40, "tire": "14x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 14.5, "chargerA": 2, "maxLoadKg": 120, "climbDeg": null, "ip": null }
+    },
+    {
+      "id": "kingsong-16s-pro",
+      "brand": "kingsong",
+      "model": "16S Pro",
+      "priceGel": 2300,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "1200 W ძრავი (3800 W პიკზე), 840 Wh ბატარეა და 16-ინჩიანი ბორბალი 17.4 კილოგრამად. 16S Pro ქალაქის მონობორბალია UL 2272 სერტიფიკატით: 14D Pro-ზე ორჯერ დიდი ბატარეით და გარბენით.",
+        "en": "A 1200 W motor (3800 W peak), an 840 Wh battery and a 16-inch wheel at 17.4 kg. The 16S Pro is a UL 2272 certified city wheel with twice the battery and range of the 14D Pro."
+      },
+      "features": {
+        "ka": [
+          "UL 2272 სერტიფიკატი: ელექტრო და ხანძარსაწინააღმდეგო უსაფრთხოების დამოუკიდებელი შემოწმება.",
+          "Samsung 35E ელემენტები და ჭკვიანი BMS (ბატარეის მართვის სისტემა).",
+          "მაქსიმალური სიჩქარე 40 კმ/სთ, რომელიც პირველი 5 კილომეტრის შემდეგ იხსნება.",
+          "გარბენი 80 კმ-მდე; რეალურად 65-80 კმ, წონის, სიჩქარის და ამინდის მიხედვით.",
+          "კომპლექტის დამტენით დატენვა დაახლოებით 7 საათი, სწრაფი 5 ამპერიანი დამტენით დაახლოებით 3.5 საათი."
+        ],
+        "en": [
+          "UL 2272 certified: independent electrical and fire safety testing.",
+          "Samsung 35E cells and a smart BMS (battery management system).",
+          "40 km/h top speed, unlocked after the first 5 km.",
+          "Up to 80 km of range; 65-80 km in practice depending on weight, speed and weather.",
+          "About 7 hours to charge with the included charger, about 3.5 hours with an optional 5 A fast charger."
+        ]
+      },
+      "specs": { "motorW": 1200, "peakW": 3800, "batteryWh": 840, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 40, "rangeKm": 80, "tire": "16x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 17.4, "chargerA": 2, "maxLoadKg": 120, "climbDeg": null, "ip": null }
+    },
+    {
+      "id": "kingsong-f16",
+      "brand": "kingsong",
+      "model": "F16",
+      "priceGel": 7800,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "3500 W ძრავი (10000 W პიკზე), 2200 Wh ბატარეა და ოთხამორტიზატორიანი შეკიდება 38 კილოგრამად. F16 (Aven) KingSong-ის ახალი ოფროუდ F-სერიის შესასვლელი მოდელია: ქალაქშიც და ბილიკებზეც.",
+        "en": "A 3500 W motor (10000 W peak), a 2200 Wh battery and four-shock suspension at 38 kg. The F16 (Aven) is the entry model of KingSong's new off-road F series, at home in the city and on trails."
+      },
+      "features": {
+        "ka": [
+          "170 ნიუტონ-მეტრი მომენტი; სრული სიჩქარე პირველი 5 კილომეტრის შემდეგ იხსნება.",
+          "ოთხი ამორტიზატორი 80 მმ-მდე სვლით: შეკუმშვა, დაბრუნება და ზამბარის დაჭიმულობა ცალ-ცალკე რეგულირდება.",
+          "ბორბალი ძრავთან ერთად ცხრა ჭანჭიკით იხსნება, ამიტომ საბურავის შეცვლა მარტივია.",
+          "ავტომატური ჩაკეტვა: მონობორბალი პატრონის მიახლოებისას თავისით ირთვება და დაშორებისას იკეტება.",
+          "30 W წინა ფარი, RGB უკანა განათება სამუხრუჭე სანათით და მოხვევის მაჩვენებლებით.",
+          "ნახშირბადის ბოჭკოს სახელური, წერტილოვანი ეკრანი და პროგრამის განახლება ინტერნეტით."
+        ],
+        "en": [
+          "170 Nm of torque; full speed unlocks after the first 5 km.",
+          "Four shocks with up to 80 mm of travel: compression, rebound and spring preload adjust separately.",
+          "The wheel and motor come out after removing nine screws, which makes tyre changes easy.",
+          "Proximity lock: the wheel powers up as its owner walks up and locks when they walk away.",
+          "A 30 W headlight and RGB rear lights with a brake light and turn signals.",
+          "Carbon-fibre handle, dot-matrix display and over-the-air firmware updates."
+        ]
+      },
+      "specs": { "motorW": 3500, "peakW": 10000, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 80, "rangeKm": 110, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 38, "chargerA": 5, "maxLoadKg": 120, "climbDeg": 45, "ip": "IP54" }
+    },
+    {
+      "id": "kingsong-f18",
+      "brand": "kingsong",
+      "model": "F18",
+      "priceGel": 9000,
+      "oldPriceGel": null,
+      "blurb": {
+        "ka": "5000 W ძრავი (9000 W პიკზე), 2664 Wh ბატარეა და 100 მმ ჰაერის ამორტიზაცია 41 კილოგრამად. F18 KingSong-ის ოფროუდ სერიის ძლიერი მოდელია: მოდულური კონსტრუქციით და მაგნიუმის ჩარჩოთი.",
+        "en": "A 5000 W motor (9000 W peak), a 2664 Wh battery and 100 mm of air suspension at 41 kg. The F18 is the muscle of KingSong's off-road series, with a modular build and a magnesium frame."
+      },
+      "features": {
+        "ka": [
+          "ოთხწერტილიანი ჰაერის ამორტიზაცია 100 მმ სვლით და ჩაქრობის 25 დონით.",
+          "მოდულური კონსტრუქცია: ძრავი, განათება და დინამიკები სწრაფად მოსახსნელი შემაერთებლებით უერთდება.",
+          "Samsung 50S ელემენტები, 144 ცალი; კომპლექტის 10 ამპერიანი დამტენით ბატარეა 1-3 საათში ივსება.",
+          "რეგულირებადი პედლები: სიმაღლე 145-დან 245 მმ-მდე და დახრის კუთხე.",
+          "მაგნიუმის შენადნობის ჩარჩო, ნახშირბადის ბოჭკოს სახელური და ჩაშენებული Apple Find My."
+        ],
+        "en": [
+          "Four-point air suspension with 100 mm of travel and 25 damping levels.",
+          "Modular build: motor, lights and speakers plug in with quick-release connectors.",
+          "144 Samsung 50S cells; the included 10 A charger fills the pack in 1-3 hours.",
+          "Adjustable pedals: height from 145 to 245 mm, plus angle.",
+          "Magnesium alloy frame, carbon-fibre handle and built-in Apple Find My."
+        ]
+      },
+      "specs": { "motorW": 5000, "peakW": 9000, "batteryWh": 2664, "voltage": 151, "cells": "Samsung 50S 21700, 36S4P", "topSpeedKmh": 108, "rangeKm": 150, "tire": "2.75-14", "suspensionMm": 100, "suspType": "air", "weightKg": 41, "chargerA": 10, "maxLoadKg": 140, "climbDeg": 45, "ip": "IPX6" }
     }
   ]
 };

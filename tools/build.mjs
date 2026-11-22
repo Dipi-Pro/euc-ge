@@ -36,6 +36,25 @@ for (const f of ["data/catalog.js", "data/i18n.js", "tools/build/site.js"]) {
 }
 if (!ctx.CATALOG || !ctx.I18N || !ctx.ZB) throw new Error("catalog.js, i18n.js or site.js did not load");
 
+/* მოდელის ფოტოები მის საქაღალდეშია: assets/wheels/<id>/1.jpg, 2.jpg, ...
+   "1" მთავარი ფოტოა (ბარათი, სლაიდშოუ), დანარჩენები რიცხვის მიხედვით ლაგდება. */
+const SRC = path.join(ROOT, "assets", "wheels");
+const IMG_RE = /\.(jpe?g|png|webp)$/i;
+const byNumber = (a, b) => {
+  const na = parseFloat(a), nb = parseFloat(b);
+  if (!isNaN(na) && !isNaN(nb) && na !== nb) return na - nb;
+  if (!isNaN(na) !== !isNaN(nb)) return isNaN(na) ? 1 : -1;
+  return a.localeCompare(b);
+};
+for (const w of ctx.CATALOG.wheels) {
+  const dir = path.join(SRC, w.id);
+  if (fs.existsSync(dir)) {
+    const list = fs.readdirSync(dir).filter((n) => IMG_RE.test(n)).sort(byNumber);
+    if (list.length) w.images = list.map((n) => `${w.id}/${n}`);
+  }
+  if (!w.images || !w.images.length) throw new Error(`No photos for model "${w.id}": add them to assets/wheels/${w.id}/`);
+}
+
 const tips = read("content/tips/articles.tsv").split(/\r?\n/).filter((l) => l.trim()).map((line) => {
   const [slug, tka, ten, dka, den] = line.split("\t");
   return {
@@ -82,14 +101,18 @@ fs.mkdirSync(CACHE, { recursive: true });
 
 const SIZES = [480, 1000, 1600];
 const images = [];
-const SRC = path.join(ROOT, "assets", "wheels");
-for (const name of fs.readdirSync(SRC)) {
-  if (!/\.(jpe?g|png|webp)$/i.test(name)) continue;
+/* ყველა ფოტო assets/wheels/-ში, ქვესაქაღალდეების ჩათვლით (მაგ. "nosfet-aero/1.webp") */
+const walk = (dir, rel = "") => fs.readdirSync(dir).flatMap((n) => {
+  const p = path.join(dir, n), r = rel ? `${rel}/${n}` : n;
+  return fs.statSync(p).isDirectory() ? walk(p, r) : IMG_RE.test(n) ? [r] : [];
+});
+for (const name of walk(SRC)) {
   const file = path.join(SRC, name);
   const buf = fs.readFileSync(file);
   const d = dims(buf);
   if (!d) { log(`  skip ${name}: unknown size`); continue; }
   const id = sha(buf), stem = name.replace(/\.[^.]+$/, "");
+  fs.mkdirSync(path.dirname(path.join(OUT, "assets", "img", stem)), { recursive: true });
   const wide = d.w >= d.h, long = Math.max(d.w, d.h);
   for (const size of SIZES) {
     const cached = path.join(CACHE, `${id}-${size}.webp`);

@@ -408,7 +408,7 @@ button.flag__plate { display: block; width: 100%; padding: 0; cursor: pointer; f
 
 /* --- ბრენდების ბენტო ---------------------------------------------------- */
 /* ორი ბრენდი: ორი თანაბარი დიდი ფილა გვერდიგვერდ */
-.bento { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
 .tile {
   position: relative;
   overflow: hidden;
@@ -884,3 +884,6 @@ a.tile { color: inherit; }
 .prose .tbl th a:hover { color: var(--accent); }
 /* ეკრანზე არ ჩანს, ეკრანის წამკითხველი და საძიებო კი კითხულობს */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+/* ტექსტში: ნომერზე დაჭერა რეკავს, "მოგვწერე WhatsApp-ზე" WhatsApp-ს ხსნის */
+.tel-inline, .wa-inline { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.tel-inline:hover, .wa-inline:hover { text-decoration-thickness: 2px; }

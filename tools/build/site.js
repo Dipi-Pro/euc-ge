@@ -143,6 +143,22 @@
     /* ===================================================================== */
     /* ნაწილები                                                               */
     /* ===================================================================== */
+    /* ტექსტში ნახსენები ტელეფონის ნომერი (ნებისმიერი დაშორებით, მაგ. +995 598 66 61 11
+       ან +995 598 666 111) ზარის ბმულად იქცევა, "მოგვწერე WhatsApp-ზე" კი WhatsApp-ის
+       ბმულად. უკვე არსებულ ბმულებს და ტეგების ატრიბუტებს არ ეხება. */
+    var PHONE_RE = new RegExp("\\+?" + String(META.whatsapp).split("").join("[\\s\\u00a0-]*"), "g");
+    var WA_RE = { ka: /მოგვწერე WhatsApp-ზე/g, en: /message us on WhatsApp/gi };
+    function linkify(L, html) {
+      return html.split(/(<a\b[\s\S]*?<\/a>|<[^>]+>)/).map(function (part, i) {
+        if (i % 2) return part;
+        return part
+          .replace(PHONE_RE, function (m) { return '<a class="tel-inline num" href="tel:' + PHONE + '">' + m + "</a>"; })
+          .replace(WA_RE[L.lang] || WA_RE.ka, function (m) {
+            return '<a class="wa-inline" href="' + esc(L.wa()) + '" target="_blank" rel="noopener">' + m + "</a>";
+          });
+      }).join("");
+    }
+
     function waLink(L, topic, cls, label) {
       return '<a class="' + cls + '" href="' + esc(L.wa(topic)) + '" target="_blank" rel="noopener">' + label + "</a>";
     }
@@ -401,7 +417,7 @@
         },
         knowsAbout: ["electric unicycle", "EUC", "monowheel", "e-unicycle", "ელექტრო მონობორბალი", "მონობორბალი",
           "მონოციკლი", "მონოვილი", "ცალბორბალა", "ელექტრო ბორბალი", "უნიციკლი", "ელექტრო უნიციკლი", "моноколесо",
-          "NOSFET", "LEAPERKIM"],
+          "electric unicycle Tbilisi"].concat(BRANDS.map(function (b) { return b.name; })),
         brand: BRANDS.map(function (b) { return { "@type": "Brand", name: b.name }; })
       };
     }
@@ -512,7 +528,7 @@
         '<script src="/assets/app.js?v=' + (VER.js || "1") + '" defer></script>\n' +
         "</head>\n<body>\n" +
         header(L, o.cur, { self: o.path, other: other || L.r.home.replace(/^\/(en\/)?/, L.other === "en" ? "/en/" : "/") }) +
-        '<main id="main">\n' + o.body + "\n</main>\n" +
+        '<main id="main">\n' + linkify(L, o.body) + "\n</main>\n" +
         footer(L) +
         (o.cmp ? trayAndCmp(L) : "") +
         (o.viewer ? viewerDialog(L) : "") +
@@ -577,10 +593,10 @@
 
         '<section class="sec" id="guide">\n<div class="wrap">\n<div class="intro panel">\n' +
         '<p class="eyebrow">' + esc(L.t("home.introEyebrow")) + "</p>\n" +
-        "<h2>" + esc(L.t("home.introH2")) + "</h2>\n" +
-        '<p class="lead">' + esc(L.t("home.introP1")) + "</p>\n" +
-        '<p class="lead">' + esc(L.t("home.introP2")) + "</p>\n" +
-        '<a class="btn btn--ghost" href="' + L.r.guide + '">' + esc(L.t("home.introMore")) + " →</a>\n" +
+        "<h2>" + esc(L.t("home.introTitle")) + "</h2>\n" +
+        /* გზამკვლევის პირველი აბზაცი პირდაპირ სტატიიდან (content/guide.*.html), სრული ტექსტი ღილაკით */
+        '<p class="lead">' + guideLead(L) + "</p>\n" +
+        '<a class="btn btn--ghost" href="' + L.r.guide + '">' + esc(L.t("home.introMore")) + "</a>\n" +
         "</div>\n</div>\n</section>\n" +
 
         '<section class="sec" id="service">\n<div class="wrap">\n<div class="sec__head"><div>' +
@@ -882,7 +898,13 @@
           return w ? U.product(L.lang, w) : L.r.wheels;
         })
         .replace(/(?:\.\.\/)?index\.html\?cat=wheels(?:#catalog)?/g, L.r.wheels)
-        .replace(/href="https:\/\/wa\.me\/\d+"/g, 'href="' + esc(L.wa()) + '" target="_blank" rel="noopener"');
+        .replace(/href="https:\/\/wa\.me\/\d+"/g, 'href="' + esc(L.wa()) + '"');
+    }
+
+    function guideLead(L) {
+      var html = (GUIDE[L.lang] || GUIDE.ka || "").replace(/<!--[\s\S]*?-->/g, "");
+      var m = /<p>([\s\S]*?)<\/p>/.exec(html);
+      return m ? m[1].trim() : "";
     }
 
     function faqItems(L) {
@@ -1055,7 +1077,7 @@
     md.push("> " + K.t("seo.home.desc"));
     md.push("");
     md.push("ZIPI.GE is an electric unicycle (EUC, monowheel; Georgian: ელექტრო მონობორბალი, მონოციკლი, მონოვილი, ცალბორბალა; Russian: моноколесо) shop in Tbilisi, Georgia. " +
-      "It sells NOSFET and LEAPERKIM wheels, with service and parts. Prices are in Georgian lari (GEL, ₾).");
+      "It sells " + BRANDS.map(function (b) { return b.name; }).join(", ") + " wheels, with service and parts. Prices are in Georgian lari (GEL, ₾).");
     md.push("");
     md.push("- Phone / WhatsApp: " + phoneShow + " (https://wa.me/" + META.whatsapp + ")");
     md.push("- Contact hours: " + HOURS + ", every day");

@@ -1,7 +1,7 @@
 # ZIPI.GE
 
-A Georgian storefront for electric unicycles: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM
-(Patton-S, Lynx-S, Sherman-P). Prices in lari, Georgian at the site root and English under
+A Georgian storefront for electric unicycles: NOSFET (Aero, Aeon, Xeno, Apex), LEAPERKIM
+(Patton-S, Lynx-S, Sherman-P) and KINGSONG (14D, 16S, F16, F18). Prices in lari, Georgian at the site root and English under
 `/en/`, theme follows the system with a light / dark switch.
 
 Every page is plain HTML generated ahead of time, so the text, prices and specs are there for
@@ -31,7 +31,7 @@ uses the original photos; the live build has both.
 | `content/tips/` | the tips articles (see below) |
 | `assets/styles.css` | colours, fonts, spacing |
 | `assets/app.js` | the interactive parts: slideshow, sort, comparison, photo gallery and full screen, theme, mobile menu |
-| `assets/wheels/` | original product photos (`id-1`, `id-2`, …; the first is the card photo) |
+| `assets/wheels/<model-id>/` | product photos, one folder per model; `1.jpg` (or .png / .webp) is the main side-profile photo, then 2, 3, … |
 | `assets/icons/` | favicon, logo, default share image |
 | `tools/build/site.js` | the page templates and all SEO output |
 | `tools/build.mjs` | reads the sources, resizes photos, writes `_site/`, checks links |
@@ -116,7 +116,7 @@ language keeps the old wording.
 
 ## Adding a model
 
-1. Drop the photos into `assets/wheels/`, named `brand-model-1.webp`, `-2`, … The build makes
+1. Create the folder `assets/wheels/<id>/` and drop the photos in, named `1`, `2`, … (`1` is the main photo). The build makes
    the small versions by itself.
 2. Copy an existing block inside `wheels` and edit it. The `id` must be unique (it becomes the
    page address), and `brand` must match one of the brand ids.
@@ -132,7 +132,7 @@ language keeps the old wording.
 
 - Specs come from retailer listings and nosfet.com. Check them against the distributor's sheets
   for the batch you import. The Sherman-P is new, so its figures may still move.
-- The photos are manufacturer press renders taken from retailer catalogues. Replace them with
+- The photos are manufacturer press renders taken from retailer catalogues and kingsongeurope.com. The KingSong F16 has only press photos on dark or outdoor backgrounds for now. Replace them with
   your own, or ask for a media kit.
 - The street address is only "Tbilisi" for now.
 
