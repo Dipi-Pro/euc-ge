@@ -740,6 +740,11 @@
       if (brandOf(id)) { path = ["wheels"]; cat = "wheels"; filter = id; }
     }
   }
+  /* ?model=nosfet-aero: გვერდის ჩატვირთვის შემდეგ ამ მოდელის "დეტალებს" ხსნის */
+  function openDeepModel() {
+    var m = /[?&]model=([^&#]+)/.exec(location.search);
+    if (m && wheelOf(decodeURIComponent(m[1]))) openSheet(decodeURIComponent(m[1]));
+  }
 
   function init() {
     /* შენახული არჩევანი თუ არ არის (ან ძველი "auto"-ა), სისტემის თემას მივყვებით */
@@ -747,7 +752,7 @@
     if (IS_HOME) readDeepLink();
     applyStatic();
     render();
-    if (IS_HOME) autoFlag(true);
+    if (IS_HOME) { autoFlag(true); openDeepModel(); }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

@@ -667,7 +667,7 @@ body.has-tray { padding-bottom: 96px; }
 html[lang="en"] [data-only="ka"],
 html:not([lang="en"]) [data-only="en"] { display: none !important; }
 
-.crumbs { font-size: 0.82rem; color: var(--muted); margin: 0 auto 18px; max-width: 70ch; }
+.crumbs { font-size: 0.82rem; color: var(--muted); margin-bottom: 18px; }
 .crumbs a { color: var(--ink-2); }
 .crumbs a:hover { color: var(--accent); }
 
@@ -712,3 +712,30 @@ html:not([lang="en"]) [data-only="en"] { display: none !important; }
 .tip-more li a { display: block; padding: 11px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
 .tip-more li a:hover { color: var(--accent); }
 .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+/* მკაფიო გაფრთხილება სტატიაში */
+.note-box--warn { border-inline-start-width: 4px; background: color-mix(in srgb, var(--accent) 12%, var(--card)); }
+.note-box--warn strong:first-child { color: var(--accent); }
+/* სტატიაში მკვეთრად გამოყოფილი გაფრთხილება */
+.prose .hl-warn { color: var(--accent); font-weight: 800; }
+/* "რა მოდელი რისთვის" (.fit, რადგან .pick შედარების ღილაკია): ჩარჩოს გარეშე, რიგებად; ტელეფონზე თითო რიგი ორ სტრიქონად */
+.prose .fits { margin: 8px 0 22px; display: flex; flex-direction: column; }
+.prose .fit {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 10px 20px; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.prose .fit:first-child { border-top: 1px solid var(--line); }
+.prose .fit__goal { display: flex; flex-direction: column; gap: 3px; }
+.prose .fit__goal strong { font-size: 0.97rem; line-height: 1.35; }
+.prose .fit__goal span { font-size: 0.82rem; color: var(--muted); }
+.prose .fit__models { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.prose .fit__m {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px;
+  font-family: var(--lat); font-weight: 800; font-size: 0.86rem; letter-spacing: 0.02em;
+  color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; transition: border-color 0.15s, color 0.15s;
+}
+.prose .fit__m:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 600px) {
+  .prose .fit { grid-template-columns: 1fr; }
+  .prose .fit__models { justify-content: flex-start; }
+}

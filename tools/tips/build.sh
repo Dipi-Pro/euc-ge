@@ -46,7 +46,7 @@ for ((i = 0; i < n; i++)); do
   s="${slugs[$i]}"
   {
     head_for "${tka[$i]} — ZIPI.GE" "${dka[$i]}" "article" ""
-    printf '    <nav class="crumbs"><a href="index.html" data-t="nav.tips">რჩევები</a> / %s</nav>\n' "$(both "${tka[$i]}" "${ten[$i]}")"
+    printf '    <div class="prose"><nav class="crumbs"><a href="index.html" data-t="nav.tips">რჩევები</a> / %s</nav></div>\n' "$(both "${tka[$i]}" "${ten[$i]}")"
     printf '    <article class="prose" lang="ka" data-only="ka">\n<h1>%s</h1>\n<p class="lead">%s</p>\n' "${tka[$i]}" "${dka[$i]}"
     cat "articles/$s.ka.html"
     printf '    </article>\n'
