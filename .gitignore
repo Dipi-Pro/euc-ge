@@ -3,3 +3,7 @@ node_modules/
 Thumbs.db
 
 new-photos/
+
+# აწყობის შედეგი (GitHub Actions ქმნის)
+_site/
+.cache/

@@ -1,9 +1,10 @@
 /* ==========================================================================
-   ტექსტები ორ ენაზე. HTML-ში ყოველ ტექსტს აქვს data-t="გასაღები" და
-   app.js აქედან ავსებს. {n}, {m} და {x} ადგილს იჭერს რიცხვისთვის ან სახელისთვის.
+   ტექსტები ორ ენაზე. გვერდებს tools/build/site.js აწყობს აქედან (ქართული
+   ვერსია საიტის ძირშია, ინგლისური /en/-ში). {n}, {m}, {x} და სხვა {...}
+   ადგილს იჭერს რიცხვისთვის ან სახელისთვის.
 
-   ახალი ტექსტის დამატება: ჩაწერე გასაღები ორივე ენაზე, მერე HTML-ში
-   დაწერე <span data-t="ახალი.გასაღები">ქართული</span>.
+   ტექსტის შეცვლა: შეცვალე ორივე ენაზე და გაგზავნე (push). საიტი თავისით
+   აეწყობა ხელახლა.
 
    ტერმინები, რომლებიც მთელ საიტზე ერთნაირად უნდა იყოს:
      motor / ძრავი, controller / კონტროლერი, cells / ელემენტები (ბატარეის),
@@ -35,6 +36,9 @@ window.I18N = {
     "flag.hint": "დეტალების ნახვა",
     "flag.prev": "წინა მოდელი",
     "flag.next": "შემდეგი მოდელი",
+    "viewer.open": "ფოტოს გადიდება",
+    "viewer.prev": "წინა ფოტო",
+    "viewer.next": "შემდეგი ფოტო",
     "cta.close": "დახურვა",
 
     /* WhatsApp-ის ჩატში წინასწარ ჩაწერილი შეტყობინებები */
@@ -45,12 +49,8 @@ window.I18N = {
     "hero.h1c": "დგას, შენ მოძრაობ",
     "hero.lead": "მაღალი სიმძლავრის ელექტრო მონობორბლები NOSFET-ისა და LEAPERKIM-ისგან. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
 
-
-
-
-
     "cat.eyebrow": "კატალოგი",
-    "cat.h2": "ყველა მონობორბალი",
+    "cat.h2": "სრული პროდუქტი",
     "cat.all": "ყველა",
     "cat.wheels": "მონობორბლები",
     "cat.soon": "ამ განყოფილებაში პროდუქცია მალე დაემატება. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.",
@@ -72,7 +72,6 @@ window.I18N = {
     "sheet.about": "აღწერა",
     "sheet.feats": "მთავარი თავისებურებები",
     "sheet.specs": "ტექნიკური მახასიათებლები",
-
 
     "spec.price": "ფასი",
     "spec.motor": "ძრავი, ნომინალური სიმძლავრე",
@@ -121,17 +120,8 @@ window.I18N = {
     "cmp.legend": "ფერადად მონიშნულია საუკეთესო მნიშვნელობა, მარცხენა ხაზით კი სტრიქონი, სადაც მოდელები ერთმანეთისგან განსხვავდება.",
 
     "svc.eyebrow": "სერვის ცენტრი",
-    "svc.h2": "ყიდვის შემდეგ არ გვშორდები",
-    "svc.lead": "ყველა მოდელს 12 თვიანი გარანტია აქვს ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე. საბურავს, ამორტიზაციას და ბატარეას ადგილზე ვემსახურებით.",
-    "svc.1t": "გარანტია",
-    "svc.1h": "12 თვე ძრავზე, კონტროლერზე და ელემენტებზე",
-    "svc.1p": "თუ ძრავი, კონტროლერი ან ბატარეის ელემენტი ქარხნული დეფექტის გამო მწყობრიდან გამოვიდა, 12 თვის განმავლობაში უფასოდ ვცვლით ან ვაკეთებთ.",
-    "svc.2t": "ბატარეა",
-    "svc.2h": "ბატარეის შეკეთება და შეცვლა",
-    "svc.2p": "ელემენტების შეცვლა, BMS-ის დიაგნოსტიკა, დატენვის და ავტონომიის დაცემის მიზეზის დადგენა.",
-    "svc.3t": "მექანიკა",
-    "svc.3h": "საბურავი და ამორტიზაცია",
-    "svc.3p": "საბურავის შეცვლა, ამორტიზაციის მომსახურება, პედლების და დამცავების მორგება რაიდერზე.",
+    "svc.h2": "ყიდვის შემდეგ შენს გვერდში ვართ",
+    "svc.lead": "ყველა მოდელს 12 თვიანი გარანტია აქვს ძრავზე, კონტროლერზე და ელემენტებზე. საბურავს, ამორტიზაციას და ნებისმიერ საჭირო სერვისს ვემსახურებით.",
 
     "about.eyebrow": "ჩვენ შესახებ",
     "about.h2": "მაღაზია, რომელსაც რაიდერები ქმნიან",
@@ -147,7 +137,94 @@ window.I18N = {
     "foot.catalog": "კატალოგი",
     "foot.shop": "მაღაზია",
     "foot.contact": "კონტაქტი",
-    "skip": "გადადი მთავარ შიგთავსზე"
+    "foot.models": "მოდელები",
+    "skip": "გადადი მთავარ შიგთავსზე",
+
+    /* --- ცალკე გვერდები ---------------------------------------------------
+       {from} / {to}: ყველაზე იაფი და ძვირი მოდელის ფასი, {n}: მოდელების რაოდენობა,
+       {smin}-{smax}: სიჩქარე, {rmin}-{rmax}: გარბენი. ყველა კატალოგიდან ითვლება. */
+    "nav.guide": "რა არის მონობორბალი?",
+    "lang.ka": "ქარ",
+    "lang.en": "ENG",
+    "crumbs.label": "ნავიგაცია",
+
+    "home.kicker": "ელექტრო მონობორბლები თბილისში",
+    "home.introEyebrow": "გზამკვლევი",
+    "home.introH2": "რა არის ელექტრო მონობორბალი?",
+    "home.introP1": "ელექტრო მონობორბალი ერთბორბლიანი, თვითბალანსირებადი ელექტრო ტრანსპორტია: დგახარ ორ პედალზე, წინ გადახრით მიდიხარ, უკან გადახრით ანელებ. მას ასევე ეძახიან მონოციკლს, მონოვილს, ცალბორბალას, ელექტრო ბორბალს და ელექტრო უნიციკლს, ინგლისურად კი electric unicycle-ს, EUC-ს ან monowheel-ს.",
+    "home.introP2": "ZIPI.GE-ზე {n} მოდელია, ფასები ლარშია: {from}-დან {to}-მდე. ყველა მოდელს 12 თვიანი გარანტია აქვს, სერვისი კი თბილისშია.",
+    "home.introMore": "სრული გზამკვლევი",
+    "home.tipsEyebrow": "რჩევები",
+    "home.tipsH2": "რჩევები რაიდერებისთვის",
+    "home.tipsMore": "ყველა რჩევა",
+
+    "catalog.h1": "ელექტრო მონობორბლები",
+    "catalog.lead": "NOSFET და LEAPERKIM ელექტრო მონობორბლები ფასებით ლარში. შეადარე სიმძლავრე, ბატარეა, სიჩქარე, გარბენი და წონა, ან მოგვწერე და მოდელის არჩევაში დაგეხმარებით.",
+    "catalog.help": "არ იცი, რომელი აირჩიო?",
+    "brand.h1": "{x} ელექტრო მონობორბლები",
+    "product.kind": "ელექტრო მონობორბალი",
+    "product.others": "სხვა მოდელები",
+    "product.quick": "მოკლედ",
+    "cat.lead": "{x} ელექტრო მონობორბლისთვის.",
+
+    "service.cta": "სერვისზე ჩასაწერად ან კითხვის დასასმელად მოგვწერე WhatsApp-ზე ან დაგვირეკე.",
+    "about.brandsH2": "ბრენდები, რომლებსაც ვყიდით",
+    "about.brandModels": "{n} მოდელი, {from}-დან",
+    "contact.h1": "კონტაქტი",
+    "contact.lead": "დაგვირეკე ან მოგვწერე WhatsApp-ზე: მოდელზე, ფასსა და მარაგზე პასუხს სწრაფად მიიღებ.",
+    "contact.call": "დარეკვა",
+
+    "tips.eyebrow": "რჩევები",
+    "tips.h1": "რაიდერის გზამკვლევი",
+    "tips.lead": "მოვლა, უსაფრთხოება და მოდელის არჩევა: მარტივად.",
+    "tips.read": "წაიკითხე",
+    "tips.more": "სხვა რჩევები",
+    "tips.cta": "კითხვა გაქვს? მოგვწერე და დაგეხმარებით.",
+
+    "guide.eyebrow": "გზამკვლევი",
+    "guide.faqH2": "ხშირად დასმული კითხვები",
+    "faq.1q": "რა არის ელექტრო მონობორბალი?",
+    "faq.1a": "ელექტრო მონობორბალი ერთბორბლიანი ელექტრო ტრანსპორტია, რომელიც ბალანსს თვითონ ინარჩუნებს. ბორბლის შიგნით ძრავია, კორპუსში ბატარეა და კონტროლერი. მხედარი ორ პედალზე დგას: წინ გადახრით აჩქარებს, უკან გადახრით ანელებს.",
+    "faq.2q": "რით განსხვავდება მონობორბალი, მონოციკლი, მონოვილი და ცალბორბალა?",
+    "faq.2a": "არაფრით: ეს ერთი და იგივე ტრანსპორტის სხვადასხვა სახელებია. ასევე ეძახიან ელექტრო ბორბალს და ელექტრო უნიციკლს, ინგლისურად electric unicycle-ს, EUC-ს ან monowheel-ს, რუსულად моноколесо-ს.",
+    "faq.3q": "რა ღირს ელექტრო მონობორბალი თბილისში?",
+    "faq.3a": "ZIPI.GE-ზე ფასები {from}-დან {to}-მდეა, მოდელის მიხედვით. ფასი ძირითადად ბატარეის ტევადობაზე, ძრავის სიმძლავრეზე და ამორტიზაციაზეა დამოკიდებული.",
+    "faq.4q": "რამდენ კილომეტრს გადის ერთი დატენვით?",
+    "faq.4a": "მწარმოებლის მონაცემებით {rmin}-დან {rmax} კმ-მდე, მოდელის მიხედვით. რეალური გარბენი ნაკლებია და დამოკიდებულია მხედრის წონაზე, სიჩქარეზე, აღმართებზე და ამინდზე.",
+    "faq.5q": "რა სიჩქარით მოძრაობს?",
+    "faq.5a": "ჩვენი მოდელების მაქსიმალური სიჩქარე {smin}-დან {smax} კმ/სთ-მდეა. სიჩქარის ზღვარი ტელეფონის აპლიკაციაში შეგიძლია შეზღუდო, რაც დამწყებისთვის განსაკუთრებით სასარგებლოა.",
+    "faq.6q": "რამდენ ხანში ვისწავლი მონობორბალზე სიარულს?",
+    "faq.6a": "უმეტესობას ერთი დღიდან ერთ კვირამდე სჭირდება. დაიწყე კედელთან ან მეგობრის დახმარებით, ეკიპირებით და დაბალ სიჩქარეზე.",
+    "faq.7q": "რა გარანტია აქვს?",
+    "faq.7a": "ყველა მოდელს 12 თვიანი გარანტია აქვს ძრავზე, კონტროლერზე და ბატარეის ელემენტებზე. თუ რომელიმე მათგანი ქარხნული დეფექტის გამო მწყობრიდან გამოვა, უფასოდ შევაკეთებთ ან შევცვლით.",
+    "faq.8q": "როგორ ვიყიდო?",
+    "faq.8a": "მოგვწერე WhatsApp-ზე ან დაგვირეკე ნომერზე +995 598 66 61 11. ფასს და მარაგს დაგიდასტურებთ და მოდელის არჩევაშიც დაგეხმარებით.",
+
+    "nf.h1": "გვერდი ვერ მოიძებნა",
+    "nf.lead": "ეს ბმული აღარ მუშაობს ან არასწორადაა აკრეფილი.",
+
+    /* --- Google-ისა და ხელოვნური ინტელექტისთვის: გვერდის სათაური (ჩანს
+       ბრაუზერის ჩანართზე და ძიების შედეგებში) და მოკლე აღწერა --------------- */
+    "seo.home.title": "ელექტრო მონობორბლები თბილისში: ფასები | ZIPI.GE",
+    "seo.home.desc": "ელექტრო მონობორბლები (მონოციკლი, EUC) NOSFET და LEAPERKIM: ფასები ლარში {from}-დან, 12 თვიანი გარანტია, სერვისი და ნაწილები თბილისში.",
+    "seo.catalog.title": "ელექტრო მონობორბლის ფასები: NOSFET, LEAPERKIM | ZIPI.GE",
+    "seo.catalog.desc": "{n} მოდელი, ფასები ლარში {from}-დან {to}-მდე. შეადარე სიმძლავრე, ბატარეა, სიჩქარე და გარბენი. გარანტია 12 თვე, სერვისი თბილისში.",
+    "seo.brand.title": "{x} ელექტრო მონობორბლები: ფასები თბილისში | ZIPI.GE",
+    "seo.brand.desc": "{x} მონობორბლები: {models}. ფასები ლარში {from}-დან, 12 თვიანი გარანტია და სერვისი თბილისში.",
+    "seo.product.title": "{x} ფასი {p}: ელექტრო მონობორბალი | ZIPI.GE",
+    "seo.product.desc": "{x}: {motor} W ძრავი, {wh} Wh ბატარეა, {speed} კმ/სთ, გარბენი {range} კმ-მდე, {kg} კგ. ფასი {p}, 12 თვიანი გარანტია, სერვისი თბილისში.",
+    "seo.cat.title": "{x} მონობორბლისთვის | ZIPI.GE",
+    "seo.cat.desc": "{x} ელექტრო მონობორბლისთვის თბილისში. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.",
+    "seo.service.title": "მონობორბლის სერვისი და გარანტია თბილისში | ZIPI.GE",
+    "seo.service.desc": "ელექტრო მონობორბლის სერვისი თბილისში: საბურავი, ამორტიზაცია და ნებისმიერი საჭირო სერვისი. 12 თვიანი გარანტია ძრავზე, კონტროლერზე და ელემენტებზე.",
+    "seo.about.title": "ჩვენ შესახებ: მონობორბლების მაღაზია თბილისში | ZIPI.GE",
+    "seo.about.desc": "ZIPI.GE თბილისში ელექტრო მონობორბლების მაღაზიაა: NOSFET და LEAPERKIM, სერვისი და ნაწილები.",
+    "seo.contact.title": "კონტაქტი: ZIPI.GE, ელექტრო მონობორბლები თბილისში",
+    "seo.contact.desc": "ტელეფონი და WhatsApp: +995 598 66 61 11. საკონტაქტო საათები 12:00-22:00. ელექტრო მონობორბლები, სერვისი და ნაწილები თბილისში.",
+    "seo.guide.title": "რა არის ელექტრო მონობორბალი (მონოციკლი, EUC)? | ZIPI.GE",
+    "seo.guide.desc": "ელექტრო მონობორბალი, მონოციკლი, მონოვილი, ცალბორბალა: რა არის, როგორ მუშაობს, რა ღირს თბილისში და რამდენ ხანში ისწავლება.",
+    "seo.tips.title": "რჩევები რაიდერებისთვის: მონობორბლის მოვლა | ZIPI.GE",
+    "seo.tips.desc": "ელექტრო მონობორბლის მოვლა, ბატარეა, საბურავის წნევა, უსაფრთხოება და მოდელის არჩევა: მარტივად."
   },
 
   en: {
@@ -175,6 +252,9 @@ window.I18N = {
     "flag.hint": "View details",
     "flag.prev": "Previous model",
     "flag.next": "Next model",
+    "viewer.open": "Enlarge photo",
+    "viewer.prev": "Previous photo",
+    "viewer.next": "Next photo",
     "cta.close": "Close",
 
     "wa.hello": "Hello! I'm interested in an electric unicycle.",
@@ -184,12 +264,8 @@ window.I18N = {
     "hero.h1c": "stands still, you keep moving",
     "hero.lead": "High-power electric unicycles from NOSFET and LEAPERKIM. Prices in lari, a 12-month warranty and service on site.",
 
-
-
-
-
     "cat.eyebrow": "Catalogue",
-    "cat.h2": "Every wheel",
+    "cat.h2": "The full range",
     "cat.all": "All",
     "cat.wheels": "Unicycles",
     "cat.soon": "Products for this section are coming soon. Message us on WhatsApp about anything you need.",
@@ -211,7 +287,6 @@ window.I18N = {
     "sheet.about": "Description",
     "sheet.feats": "Key features",
     "sheet.specs": "Specifications",
-
 
     "spec.price": "Price",
     "spec.motor": "Motor, nominal",
@@ -259,17 +334,8 @@ window.I18N = {
     "cmp.legend": "The best value in each row is coloured; a bar on the left marks rows where the wheels differ.",
 
     "svc.eyebrow": "Service centre",
-    "svc.h2": "We do not disappear after the sale",
-    "svc.lead": "Every wheel carries a 12-month warranty on the motor, the controller and the battery cells. Tyres, suspension and batteries are serviced here.",
-    "svc.1t": "Warranty",
-    "svc.1h": "12 months on motor, controller and cells",
-    "svc.1p": "If the motor, the controller or a battery cell fails from a factory defect within 12 months, we repair or replace it at no charge.",
-    "svc.2t": "Battery",
-    "svc.2h": "Battery repair and replacement",
-    "svc.2p": "Cell replacement, BMS diagnostics, finding out why charging or range has dropped.",
-    "svc.3t": "Mechanics",
-    "svc.3h": "Tyres and suspension",
-    "svc.3p": "Tyre changes, suspension service, pedals and pads set up around the rider.",
+    "svc.h2": "We stay by your side after the sale",
+    "svc.lead": "Every model has a 12-month warranty on the motor, the controller and the cells. We handle tyres, suspension and any service you need.",
 
     "about.eyebrow": "About us",
     "about.h2": "A shop run by riders",
@@ -285,6 +351,88 @@ window.I18N = {
     "foot.catalog": "Catalogue",
     "foot.shop": "Shop",
     "foot.contact": "Contact",
-    "skip": "Skip to main content"
+    "foot.models": "Models",
+    "skip": "Skip to main content",
+
+    "nav.guide": "What is an EUC?",
+    "lang.ka": "ქარ",
+    "lang.en": "ENG",
+    "crumbs.label": "Breadcrumb",
+
+    "home.kicker": "Electric unicycles in Tbilisi",
+    "home.introEyebrow": "Guide",
+    "home.introH2": "What is an electric unicycle?",
+    "home.introP1": "An electric unicycle is a single-wheel, self-balancing electric vehicle: you stand on two pedals, lean forward to go and lean back to slow down. It is also called an EUC, a monowheel or an e-unicycle; in Georgian, მონობორბალი, მონოციკლი, მონოვილი or ცალბორბალა.",
+    "home.introP2": "ZIPI.GE carries {n} models, priced in lari from {from} to {to}. Every model has a 12-month warranty, and service is here in Tbilisi.",
+    "home.introMore": "Read the full guide",
+    "home.tipsEyebrow": "Tips",
+    "home.tipsH2": "Tips for riders",
+    "home.tipsMore": "All tips",
+
+    "catalog.h1": "Electric unicycles",
+    "catalog.lead": "NOSFET and LEAPERKIM electric unicycles with prices in lari. Compare power, battery, speed, range and weight, or message us and we will help you choose.",
+    "catalog.help": "Not sure which one to pick?",
+    "brand.h1": "{x} electric unicycles",
+    "product.kind": "Electric unicycle",
+    "product.others": "Other models",
+    "product.quick": "At a glance",
+    "cat.lead": "{x} for electric unicycles.",
+
+    "service.cta": "To book a service or ask a question, message us on WhatsApp or give us a call.",
+    "about.brandsH2": "The brands we sell",
+    "about.brandModels": "{n} models, from {from}",
+    "contact.h1": "Contact",
+    "contact.lead": "Call or message us on WhatsApp for a quick answer on models, prices and stock.",
+    "contact.call": "Call us",
+
+    "tips.eyebrow": "Tips",
+    "tips.h1": "The rider's guide",
+    "tips.lead": "Care, safety and choosing a model, kept simple.",
+    "tips.read": "Read",
+    "tips.more": "More tips",
+    "tips.cta": "Got a question? Message us and we'll help.",
+
+    "guide.eyebrow": "Guide",
+    "guide.faqH2": "Frequently asked questions",
+    "faq.1q": "What is an electric unicycle?",
+    "faq.1a": "An electric unicycle is a single-wheel electric vehicle that keeps its own balance. The motor sits inside the wheel, with the battery and controller in the shell around it. The rider stands on two pedals, leaning forward to speed up and back to slow down.",
+    "faq.2q": "Is an EUC the same as a monowheel?",
+    "faq.2a": "Yes. Electric unicycle, EUC, monowheel and e-unicycle are names for the same vehicle. In Georgian it is called მონობორბალი, მონოციკლი, მონოვილი or ცალბორბალა, and in Russian моноколесо.",
+    "faq.3q": "How much does an electric unicycle cost in Tbilisi?",
+    "faq.3a": "At ZIPI.GE prices run from {from} to {to}, depending on the model. The price mostly follows battery capacity, motor power and suspension.",
+    "faq.4q": "How far does it go on one charge?",
+    "faq.4a": "From {rmin} to {rmax} km by the manufacturers' figures, depending on the model. Real-world range is lower and depends on rider weight, speed, hills and weather.",
+    "faq.5q": "How fast does it go?",
+    "faq.5a": "Our models top out between {smin} and {smax} km/h. You can cap the speed in the phone app, which is a good idea while you learn.",
+    "faq.6q": "How long does it take to learn?",
+    "faq.6a": "Most people need between a day and a week. Start next to a wall or with a friend, wear protective gear and keep the speed low.",
+    "faq.7q": "What warranty do you give?",
+    "faq.7a": "Every model has a 12-month warranty on the motor, the controller and the battery cells. If any of them fails from a factory defect, we repair or replace it free of charge.",
+    "faq.8q": "How do I buy one?",
+    "faq.8a": "Message us on WhatsApp or call +995 598 66 61 11. We confirm price and stock and help you choose a model.",
+
+    "nf.h1": "Page not found",
+    "nf.lead": "This link no longer works or was mistyped.",
+
+    "seo.home.title": "Electric unicycles in Tbilisi: prices | ZIPI.GE",
+    "seo.home.desc": "NOSFET and LEAPERKIM electric unicycles (EUC, monowheel) in Tbilisi: prices in lari from {from}, a 12-month warranty, service and parts.",
+    "seo.catalog.title": "Electric unicycle prices: NOSFET, LEAPERKIM | ZIPI.GE",
+    "seo.catalog.desc": "{n} models priced in lari from {from} to {to}. Compare power, battery, speed and range. 12-month warranty, service in Tbilisi.",
+    "seo.brand.title": "{x} electric unicycles: prices in Tbilisi | ZIPI.GE",
+    "seo.brand.desc": "{x} electric unicycles: {models}. Prices in lari from {from}, a 12-month warranty and service in Tbilisi.",
+    "seo.product.title": "{x} electric unicycle: price {p} | ZIPI.GE",
+    "seo.product.desc": "{x}: {motor} W motor, {wh} Wh battery, {speed} km/h, up to {range} km range, {kg} kg. Price {p}, 12-month warranty, service in Tbilisi.",
+    "seo.cat.title": "{x} for electric unicycles | ZIPI.GE",
+    "seo.cat.desc": "{x} for electric unicycles in Tbilisi. Message us on WhatsApp about anything you need.",
+    "seo.service.title": "Electric unicycle service and warranty in Tbilisi | ZIPI.GE",
+    "seo.service.desc": "Electric unicycle service in Tbilisi: tyres, suspension and any service you need. 12-month warranty on the motor, controller and cells.",
+    "seo.about.title": "About ZIPI.GE: an electric unicycle shop in Tbilisi",
+    "seo.about.desc": "ZIPI.GE is an electric unicycle shop in Tbilisi: NOSFET and LEAPERKIM wheels, service and parts.",
+    "seo.contact.title": "Contact: ZIPI.GE, electric unicycles in Tbilisi",
+    "seo.contact.desc": "Phone and WhatsApp: +995 598 66 61 11. Contact hours 12:00-22:00. Electric unicycles, service and parts in Tbilisi.",
+    "seo.guide.title": "What is an electric unicycle (EUC, monowheel)? | ZIPI.GE",
+    "seo.guide.desc": "Electric unicycle, EUC, monowheel: what it is, how it works, what it costs in Tbilisi and how long it takes to learn.",
+    "seo.tips.title": "Tips for riders: electric unicycle care | ZIPI.GE",
+    "seo.tips.desc": "Electric unicycle care, batteries, tyre pressure, safety and choosing a model, kept simple."
   }
 };

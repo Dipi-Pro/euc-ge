@@ -1,138 +1,147 @@
 # ZIPI.GE
 
-A Georgian storefront for electric unicycles, laid out the way cfmoto.ge is: sticky header,
-a model slideshow, a filterable catalogue with side-by-side
-comparison, service section, contact panel.
+A Georgian storefront for electric unicycles: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM
+(Patton-S, Lynx-S, Sherman-P). Prices in lari, Georgian at the site root and English under
+`/en/`, theme follows the system with a light / dark switch.
 
-Two brands, seven models: NOSFET (Aero, Aeon, Xeno, Apex) and LEAPERKIM (Patton-S, Lynx-S,
-Sherman-P). Georgian by default with an English switch, theme follows the system by default
-with a light / dark switch, prices in lari.
+Every page is plain HTML generated ahead of time, so the text, prices and specs are there for
+Google and AI assistants without running any JavaScript. No npm, no framework: the build is one
+Node.js script with no dependencies.
 
-No build step, no npm, no framework. Open `index.html` and it runs.
+## How it gets published
+
+Push to `main`. GitHub Actions (`.github/workflows/pages.yml`) runs `node tools/build.mjs`,
+which writes the finished site into `_site/` and publishes it. You never run the build by hand
+to change a price or a text.
+
+If the build fails (a syntax error in `catalog.js`, or an internal link that points nowhere),
+nothing is published and the live site stays as it was. The error is in the Actions tab.
+
+To preview locally: install Node.js 18+, run `node tools/build.mjs`, then serve `_site/` with
+any static server (`npx serve _site`). Without `cwebp` and ImageMagick installed the preview
+uses the original photos; the live build has both.
 
 ## What lives where
 
 | File | What it holds |
 |---|---|
-| `data/catalog.js` | every model: price, specs, descriptions, photo names; the WhatsApp number and warranty length in `meta` |
-| `data/i18n.js` | every piece of text on the page, in Georgian and English |
-| `index.html` | page structure, the visible phone number, opening hours |
-| `assets/styles.css` | colors, fonts, spacing, all in the token block at the top |
-| `assets/app.js` | rendering, filtering, sorting, comparison, WhatsApp links, language, theme |
-| `assets/wheels/` | 55 product photos, 5 to 14 per model (`id-1`, `id-2`, …; the first is the card photo) |
+| `data/catalog.js` | every model: price, specs, descriptions, photos; WhatsApp number, warranty, contact hours and stock status in `meta` |
+| `data/i18n.js` | every text on the site in Georgian and English, including the page titles and descriptions Google shows (`seo.*`) and the FAQ (`faq.*`) |
+| `content/guide.ka.html`, `.en.html` | the "what is an electric unicycle" guide |
+| `content/tips/` | the tips articles (see below) |
+| `assets/styles.css` | colours, fonts, spacing |
+| `assets/app.js` | the interactive parts: slideshow, sort, comparison, photo gallery and full screen, theme, mobile menu |
+| `assets/wheels/` | original product photos (`id-1`, `id-2`, …; the first is the card photo) |
+| `assets/icons/` | favicon, logo, default share image |
+| `tools/build/site.js` | the page templates and all SEO output |
+| `tools/build.mjs` | reads the sources, resizes photos, writes `_site/`, checks links |
+
+## Pages
+
+| Georgian | English | |
+|---|---|---|
+| `/` | `/en/` | home: slideshow, all models, guide, service, tips |
+| `/monoborblebi/` | `/en/electric-unicycles/` | catalogue with sort and comparison |
+| `/monoborblebi/nosfet/`, `/monoborblebi/leaperkim/` | `/en/electric-unicycles/…` | one page per brand |
+| `/monoborblebi/nosfet-aero/` … | `/en/electric-unicycles/nosfet-aero/` … | one page per model |
+| `/natsilebi/`, `/aksesuarebi/`, `/damtsavebi/`, `/3d-bechdva/` | `/en/parts/` … | catalogue sections |
+| `/servisi/` | `/en/service/` | service centre and warranty |
+| `/ra-aris-monoborbali/` | `/en/what-is-an-electric-unicycle/` | guide and FAQ |
+| `/rchevebi/` | `/en/tips/` | tips |
+| `/chven-shesakheb/`, `/kontakti/` | `/en/about/`, `/en/contact/` | about, contact |
+
+Old addresses keep working: `index.html?model=…`, `?brand=…`, `?cat=…` and `tips/*.html`
+forward to the new pages.
+
+A catalogue section with no products yet (everything except the wheels, for now) is marked
+`noindex` and left out of the sitemap, so Google does not see empty pages. Add a product to
+`extras` in `catalog.js` and the section becomes a normal indexed page.
+
+## Search engines and AI assistants
+
+The build produces, on every page:
+
+- a unique `<title>` and description, a canonical address, and `hreflang` links between the
+  Georgian and English versions;
+- Open Graph tags with a JPG share image (WhatsApp and Facebook previews);
+- schema.org data (JSON-LD): the shop (`Store`: phone, hours, Tbilisi), breadcrumbs, and on
+  model pages a `Product` with an `Offer` (price in GEL, warranty) and every spec as a
+  property. The catalogue has an `ItemList`, the guide an `FAQPage`.
+
+And for the whole site: `sitemap.xml` (both languages, with photos), `robots.txt` (open to all
+search engines and AI crawlers), and `llms.txt`, a plain-text summary of the shop, models and
+prices for AI assistants.
+
+Stock status: `meta.availability` in `catalog.js` is `null`, so no stock status is sent to
+Google. Set it to `"InStock"`, `"PreOrder"` or `"BackOrder"` (or per model with an
+`"availability"` field) once it is known.
 
 ## Changing a price
 
-Open `data/catalog.js`, find the model, change the number after `priceGel`. Save, reload.
+Open `data/catalog.js`, find the model, change the number after `priceGel`, push.
 
 ```js
 "priceGel": 9600,        // current price in lari, no spaces or commas
 "oldPriceGel": null,     // crossed-out price, or null for no discount
 ```
 
-Cards carry no badges and no stock status; every card says "contact us to check stock"
-(`stock.ask` in `data/i18n.js`).
-
-Keep the quotes and commas exactly as they are. If the catalogue stops loading, a comma or a
+Keep the quotes and commas exactly as they are. If the build fails after an edit, a comma or a
 quote went missing.
-
 
 ## Specs and comparison
 
-Each model has a `specs` block. The model window and the comparison table both read from it,
-so a value only has to be right in one place. The field list is in the comment at the top of
+Each model has a `specs` block; the field list is in the comment at the top of
 `data/catalog.js`. An unknown value is `null`: it shows as a dash and is left out when the
-table picks the best value in a row.
+comparison picks the best value in a row.
 
-Visitors tick "+ შედარება" on up to four cards, and a tray appears at the bottom of the screen.
-The comparison table marks two things. A row where the wheels differ gets an orange bar on the
-left. The best value in a row (lowest price or weight, highest power, battery, speed, range and
-so on) is coloured. A "differences only" switch hides rows where every wheel is the same.
+Visitors tick "+ შედარება" on up to four wheels; the picks are remembered while they move
+between pages. The comparison table marks rows where the wheels differ with an orange bar and
+colours the best value in each row.
 
 The figures come from ewheels.com, ecodrift.ru and nosfet.com, checked on 2026-11-06. Where the
 sources disagreed, the catalogue uses the manufacturer figure, or the retailer figure that the
 arithmetic supports (for example the Apex is 151V, not the 121V printed on nosfet.com). The
-model descriptions are written for this site from those facts. They are not translations of
-the retailers' copy.
+model descriptions are written for this site from those facts.
 
 ## Contact: WhatsApp and calls
 
-There is no call-back form. The phone number in the contact panel and the footer is a `tel:`
-link, so tapping it starts a call. Every contact button opens a WhatsApp chat with +995 598 66 61 11,
-with a message already typed: a general hello, or the name of the model
-the visitor was looking at. The number used for the links is `meta.whatsapp` in
-`data/catalog.js` (digits only). The number shown as text sits in `index.html`, in the contact
-panel and the footer. Change both if the number changes.
-
-## Warranty
-
-Every model carries 12 months on the motor, the controller and the battery cells. The length
-is `meta.warrantyMonths`. The wording is in `data/i18n.js` under `warranty.*` and `svc.1*`.
+The phone number is `meta.whatsapp` in `catalog.js` (digits only). Every contact button opens a
+WhatsApp chat with a message already typed (a general hello, or the model name); the number is
+also shown as a `tel:` link. Contact hours are `meta.hoursOpen` / `meta.hoursClose`.
 
 ## Changing text
 
-Every visible string is in `data/i18n.js`, once under `ka` and once under `en`. Change both,
-or the other language will keep showing the old wording. Model descriptions live with the
-models in `data/catalog.js`, also as a `ka` / `en` pair.
+Every text is in `data/i18n.js`, once under `ka` and once under `en`. Change both, or the other
+language keeps the old wording.
 
 ## Adding a model
 
-1. Drop three photos into `assets/wheels/`, named `brand-model-1.webp`, `-2`, `-3`.
-2. Copy an existing block inside `wheels` and edit it. The `id` must be unique, and `brand`
-   must match one of the brand ids.
+1. Drop the photos into `assets/wheels/`, named `brand-model-1.webp`, `-2`, … The build makes
+   the small versions by itself.
+2. Copy an existing block inside `wheels` and edit it. The `id` must be unique (it becomes the
+   page address), and `brand` must match one of the brand ids.
 
-The model count in the strip under the hero is counted from the catalogue, so it updates by
-itself.
+## Tips pages
 
-## Language and theme
-
-Georgian is the default. The switch remembers a visitor's choice in their browser. The theme
-follows the operating system by default; the switch offers light and dark, and remembers the
-choice once a visitor picks one.
+- `content/tips/articles.tsv`: one line per article, tab-separated: slug, title (ka), title (en),
+  short description (ka), short description (en). The order here is the order on the list page.
+- `content/tips/<slug>.ka.html` and `<slug>.en.html`: the article body (h2, p, ul, …). Links to a
+  model can stay as `../index.html?model=<id>`: the build turns them into model page links.
 
 ## Before this goes live
 
-- Specs come from retailer listings and nosfet.com. Close, but check them against the
-  distributor's sheets for the batch you actually import. The Sherman-P is new (pre-order at
-  both retailers in November 2026), so its figures may still move.
-- The photos are manufacturer press renders taken from retailer catalogues (the Sherman-P set
-  from ecodrift.ru). Fine for a mockup, not something to sell against without the
-  distributor's blessing. Replace them with your own, or ask for a media kit.
+- Specs come from retailer listings and nosfet.com. Check them against the distributor's sheets
+  for the batch you import. The Sherman-P is new, so its figures may still move.
+- The photos are manufacturer press renders taken from retailer catalogues. Replace them with
+  your own, or ask for a media kit.
 - The street address is only "Tbilisi" for now.
 
-## Running it
+## Notes on the photos and design
 
-Double click `index.html`. It works straight off the filesystem, no server needed.
+Every photo has its flat border trimmed off; cards render them on a light plate with
+`mix-blend-mode: multiply`, so any leftover background blends in. The build serves 480, 1000 and
+1600 px WebP versions (`assets/img/`) plus a 1200 px JPG for sharing.
 
-The published copy runs on GitHub Pages. `.github/workflows/pages.yml` deploys on every push
-to `main`, but only if Settings, Pages, Source is set to "GitHub Actions".
-
-## Notes on the photos
-
-Press photos arrive at wildly different sizes, some on white backgrounds, some as cutouts
-with transparency. Every photo was converted to webp and had its flat border trimmed off,
-which is why they sit at a consistent size on the cards. Cards render them on a light plate
-with `mix-blend-mode: multiply`, so whatever background survives blends into the plate
-instead of showing as a pale rectangle.
-
-## Design notes
-
-Dark is the primary theme, light is its inverse, and both are built from the same CSS
-variables. Type is Nunito for Latin model names and numbers, Noto Sans Georgian for Georgian,
-both from Google Fonts. One accent, a signal orange, on prices, calls to action and the best
-values in the comparison table; the rest is a cool near-black.
-
-## Tips pages (რჩევები)
-
-The tips section lives in `tips/` (a list page plus one page per article, Georgian and English
-on the same page). Those files are generated, so don't edit them by hand. Edit the sources in
-`tools/tips/` instead:
-
-- `articles.tsv`: one line per article, tab-separated: slug, title (ka), title (en), short
-  description (ka), short description (en). The order here is the order on the list page.
-- `articles/<slug>.ka.html` and `articles/<slug>.en.html`: the article body (h2, p, ul, ...).
-- `head.html` / `foot.html`: the header and footer shared by every tips page.
-
-Then rebuild with `bash tools/tips/build.sh` (Git Bash) and commit both `tools/tips/` and `tips/`.
-Links from the tips pages back into the catalogue use `index.html?cat=<path>` or
-`index.html?brand=<id>`, which the home page reads on load.
+Dark is the primary theme, light is its inverse, both from the same CSS variables. Nunito for
+Latin model names and numbers, Noto Sans Georgian for Georgian, both from Google Fonts (loaded
+without blocking the first paint). One accent, a signal orange.
