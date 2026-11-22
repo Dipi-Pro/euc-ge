@@ -440,7 +440,7 @@ window.CATALOG = {
       "id": "kingsong-f18",
       "brand": "kingsong",
       "model": "F18",
-      "priceGel": 9000,
+      "priceGel": 9200,
       "oldPriceGel": null,
       "blurb": {
         "ka": "5000 W ძრავი (9000 W პიკზე), 2664 Wh ბატარეა და 100 მმ ჰაერის ამორტიზაცია 41 კილოგრამად. F18 KingSong-ის ოფროუდ სერიის ძლიერი მოდელია: მოდულური კონსტრუქციით და მაგნიუმის ჩარჩოთი.",
