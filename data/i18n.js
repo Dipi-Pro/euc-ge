@@ -50,7 +50,7 @@ window.I18N = {
     "hero.lead": "ელექტრო მონობორბლები NOSFET-ის, LEAPERKIM-ის და KINGSONG-ისგან: ქალაქის მოდელებიდან მაღალი სიმძლავრის ოფროუდამდე. ფასები ლარში, 12 თვიანი გარანტია და სერვისი ადგილზე.",
 
     "cat.eyebrow": "კატალოგი",
-    "cat.h2": "სრული პროდუქტი",
+    "cat.h2": "ყველა პროდუქტი",
     "cat.all": "ყველა",
     "cat.wheels": "მონობორბლები",
     "cat.soon": "ამ განყოფილებაში პროდუქცია მალე დაემატება. რაც გაინტერესებს, მოგვწერე WhatsApp-ზე.",
@@ -264,7 +264,7 @@ window.I18N = {
     "hero.lead": "Electric unicycles from NOSFET, LEAPERKIM and KINGSONG, from city wheels to high-power off-roaders. Prices in lari, a 12-month warranty and service on site.",
 
     "cat.eyebrow": "Catalogue",
-    "cat.h2": "The full range",
+    "cat.h2": "All products",
     "cat.all": "All",
     "cat.wheels": "Unicycles",
     "cat.soon": "Products for this section are coming soon. Message us on WhatsApp about anything you need.",
