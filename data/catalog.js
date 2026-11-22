@@ -67,7 +67,8 @@ window.CATALOG = {
       { "id": "seats", "name": { "ka": "დასაჯდომი", "en": "Seats" } },
       { "id": "alarms", "name": { "ka": "სიგნალი/სიგნალიზაცია", "en": "Horns & alarms" } },
       { "id": "lights", "name": { "ka": "ციმციმა", "en": "Flashing lights" } },
-      { "id": "locks", "name": { "ka": "საკეტი", "en": "Locks" } }
+      { "id": "locks", "name": { "ka": "საკეტი", "en": "Locks" } },
+      { "id": "mirrors", "name": { "ka": "სარკე", "en": "Mirrors" } }
     ] },
     { "id": "protection", "name": { "ka": "დამცავები", "en": "Protective gear" }, "children": [
       { "id": "helmets", "name": { "ka": "ჩაფხუტი", "en": "Helmets" } },
@@ -100,10 +101,91 @@ window.CATALOG = {
        "name": { "ka": "სახელი", "en": "Name" },
        "blurb": { "ka": "მოკლე აღწერა", "en": "Short description" },
        "priceGel": 120,                   // ან null, თუ ფასი WhatsApp-ზე
-       "images": ["extras/unique-id-1.jpg"]   // assets/wheels/ საქაღალდიდან
+       "desc": { "ka": "...", "en": "..." },   // არასავალდებულო: ვრცელი აღწერა ("აღწერა და მახასიათებლები")
+       "specs": [ { "k": { "ka": "წონა", "en": "Weight" }, "v": { "ka": "66 გ", "en": "66 g" } } ],
+                                          // არასავალდებულო: მახასიათებლები; "v" შეიძლება უბრალო ტექსტიც იყოს
+       // ფოტოები: assets/wheels/<id>/ საქაღალდეში, მთავარი "1" (როგორც მოდელებზე)
      }
      სანამ განყოფილებაში პროდუქტი არ არის, საიტზე "მალე დაემატება" ჩანს. */
-  "extras": [],
+  "extras": [
+    { "id": "pads-universal-2", "cat": "accessories/pads", "name": { "ka": "2 ნაწილიანი უნივერსალი", "en": "2-piece universal pads" }, "priceGel": 150 },
+    { "id": "pads-universal-3", "cat": "accessories/pads", "name": { "ka": "3 ნაწილიანი უნივერსალი", "en": "3-piece universal pads" }, "priceGel": 250 },
+    { "id": "pads-nosfet-aeon", "cat": "accessories/pads", "name": { "ka": "NOSFET Aeon-სთვის", "en": "For NOSFET Aeon" }, "priceGel": 250 },
+    { "id": "pads-nosfet-xeno", "cat": "accessories/pads", "name": { "ka": "NOSFET Xeno-სთვის", "en": "For NOSFET Xeno" }, "priceGel": 260 },
+    { "id": "pads-leaperkim-all", "cat": "accessories/pads", "name": { "ka": "უნივერსალი LEAPERKIM-სთვის", "en": "Universal pads for LEAPERKIM" }, "priceGel": 250 },
+    { "id": "seat-lynx-s", "cat": "accessories/seats", "name": { "ka": "Lynx-S-სთვის", "en": "For Lynx-S" }, "priceGel": 240 },
+    { "id": "seat-nosfet-aeon-aero", "cat": "accessories/seats", "name": { "ka": "Aeon და Aero-სთვის", "en": "For Aeon and Aero" }, "priceGel": 220 },
+    { "id": "seat-sherman-p", "cat": "accessories/seats", "name": { "ka": "Sherman-P-სთვის", "en": "For Sherman-P" }, "priceGel": 240 },
+    { "id": "seat-nosfet-xeno", "cat": "accessories/seats", "name": { "ka": "Xeno-სთვის", "en": "For Xeno" }, "priceGel": 200 },
+    {
+      "id": "alarm-pidzoom-fh60", "cat": "accessories/alarms", "priceGel": 200,
+      "name": { "ka": "Pidzoom FH60", "en": "Pidzoom FH60" },
+      "blurb": { "ka": "120 dB უსადენო საყვირი თითის პულტით და მოძრაობის სიგნალიზაციით.", "en": "120 dB wireless horn with a finger remote and a motion alarm." },
+      "desc": {
+        "ka": "PIDZOOM Finger Horn FH60: უფრო ხმამაღალი უსადენო საყვირი ქალაქგარეთ და მანქანების ნაკადში სასიარულოდ. პულტი თითზე იკეთება: ცენტრალურ ღილაკზე დაჭერით საყვირი ირთვება, დანარჩენი ღილაკებით კი მოძრაობის სიგნალიზაცია ირთვება და ითიშება. თუ ჩართული სიგნალიზაციისას ბორბალს ვინმე შეეხება, საყვირი ხმას გამოსცემს. განკუთვნილია მონობორბლის, OneWheel-ის, სკეიტბორდის, სკუტერის და ველოსიპედის რაიდერებისთვის.",
+        "en": "PIDZOOM Finger Horn FH60: a louder wireless horn for suburban roads and traffic. The remote is worn on a finger: the centre button sounds the horn, the other buttons arm and disarm the motion alarm. If someone moves the wheel while the alarm is armed, the horn sounds. Made for riders of electric unicycles, OneWheels, skateboards, scooters and bikes."
+      },
+      "specs": [
+        { "k": { "ka": "ხმის სიძლიერე", "en": "Sound level" }, "v": "120 dB" },
+        { "k": { "ka": "საყვირის დიამეტრი", "en": "Horn diameter" }, "v": { "ka": "70 მმ", "en": "70 mm" } },
+        { "k": { "ka": "წონა", "en": "Weight" }, "v": { "ka": "250 გ", "en": "250 g" } },
+        { "k": { "ka": "ბატარეა", "en": "Battery" }, "v": "780 mAh (7.4 V)" },
+        { "k": { "ka": "ხმა", "en": "Sound" }, "v": { "ka": "ელექტრონული საყვირი", "en": "Electronic horn" } },
+        { "k": { "ka": "სიგნალიზაცია", "en": "Alarm" }, "v": { "ka": "მოძრაობის სენსორი, ირთვება პულტით", "en": "Motion sensor, armed from the remote" } }
+      ]
+    },
+    {
+      "id": "alarm-pidzoom-fh30", "cat": "accessories/alarms", "priceGel": 100,
+      "name": { "ka": "Pidzoom FH30", "en": "Pidzoom FH30" },
+      "blurb": { "ka": "115 dB კომპაქტური საყვირი თითის პულტით, სიგნალიზაციით და Type-C დატენვით.", "en": "Compact 115 dB horn with a finger remote, motion alarm and Type-C charging." },
+      "desc": {
+        "ka": "PIDZOOM Finger Horn FH30: პატარა და მსუბუქი (66 გ) უსადენო საყვირი ველობილიკებისთვის და ქალაქისთვის. პულტი თითზე ან საჭეზე მაგრდება: ცენტრალური ღილაკით საყვირი ირთვება, ზედა და ქვედა ღილაკებით მოძრაობის სიგნალიზაცია ირთვება და ითიშება. ერთი დატენვა 3–6 თვე ყოფნის. დამაგრება შეიძლება სამაგრით, Velcro-თი ან წებოვანი ფირფიტით. განკუთვნილია მონობორბლის, OneWheel-ის, სკეიტბორდის, სკუტერის და ველოსიპედის რაიდერებისთვის.",
+        "en": "PIDZOOM Finger Horn FH30: a small, light (66 g) wireless horn for bike paths and the city. The remote goes on a finger or the handlebar: the centre button sounds the horn, the top and bottom buttons arm and disarm the motion alarm. One charge lasts 3–6 months. Mounts with a clamp base, Velcro or an adhesive pad. Made for riders of electric unicycles, OneWheels, skateboards, scooters and bikes."
+      },
+      "specs": [
+        { "k": { "ka": "ხმის სიძლიერე", "en": "Sound level" }, "v": "115 dB" },
+        { "k": { "ka": "ზომა", "en": "Size" }, "v": { "ka": "46 × 43 × 41 მმ", "en": "46 × 43 × 41 mm" } },
+        { "k": { "ka": "წონა", "en": "Weight" }, "v": { "ka": "66 გ", "en": "66 g" } },
+        { "k": { "ka": "ბატარეა", "en": "Battery" }, "v": "400 mAh (3.7 V)" },
+        { "k": { "ka": "ერთი დატენვა", "en": "One charge lasts" }, "v": { "ka": "3–6 თვე", "en": "3–6 months" } },
+        { "k": { "ka": "დატენვა", "en": "Charging" }, "v": { "ka": "USB Type-C, სრულად ~4 სთ (5 V, 2 A-მდე)", "en": "USB Type-C, full in ~4 h (5 V, up to 2 A)" } },
+        { "k": { "ka": "წყალგამძლეობა", "en": "Water resistance" }, "v": "IPX5" },
+        { "k": { "ka": "ხმა", "en": "Sound" }, "v": { "ka": "ელექტრონული საყვირი და ზარის ხმა", "en": "Electronic horn and bell sound" } },
+        { "k": { "ka": "პულტი", "en": "Remote" }, "v": { "ka": "Ø31 × 15 მმ, 2 × CR2016 ელემენტი", "en": "Ø31 × 15 mm, 2 × CR2016 cells" } },
+        { "k": { "ka": "პულტის რადიუსი", "en": "Remote range" }, "v": { "ka": "4 მ-მდე", "en": "Up to 4 m" } }
+      ]
+    },
+    {
+      "id": "mirror-pidzoom-helmet", "cat": "accessories/mirrors", "priceGel": 130,
+      "name": { "ka": "Pidzoom ჩაფხუტის სარკე", "en": "Pidzoom helmet mirror" },
+      "blurb": { "ka": "ჩაფხუტზე სამაგრი უკანა ხედის სარკე: ამოზნექილი და ბრტყელი სარკე, სამი სიგრძის ღერო.", "en": "Helmet-mounted rear-view mirror: convex and flat mirrors, three arm lengths." },
+      "desc": {
+        "ka": "PIDZOOM Helmet Mirror: უკანა ხედის სარკე ჩაფხუტზე, შექმნილი ელექტრო ტრანსპორტის რაიდერების საზოგადოებასთან ერთად. კომპლექტში ორი სარკეა: ამოზნექილი ფართო ხედისთვის და ბრტყელი უფრო ზუსტი, დეტალური ხედისთვის. ღეროს სამი სიგრძე და ოთხი სახის საძირე ნებისმიერ ჩაფხუტზე დამაგრების საშუალებას იძლევა. ორი სფერული სახსარი და ხელით მოსაჭერი ხრახნი კუთხეს მარტივად აწყობს და მყარად აფიქსირებს. სტაბილურია ~96 კმ/სთ-მდე სიჩქარეზე და ნახტომებზეც; ღეროს მომრგვალებული კიდეები ბასრი კუთხეების გარეშეა. განკუთვნილია მონობორბლის, სკუტერის და ველოსიპედის რაიდერებისთვის.",
+        "en": "PIDZOOM Helmet Mirror: a rear-view mirror for your helmet, designed with input from the electric-vehicle riding community. It comes with two mirrors: convex for a wider view and flat for a more focused, detailed one. Three arm lengths and four base types fit any helmet. Two ball joints and thumb nuts make it easy to set the angle and lock it. Stable at up to ~96 km/h (60 mph) and over trail jumps; the arm has rounded edges with no sharp corners. Made for electric unicycle, scooter and bike riders."
+      },
+      "specs": [
+        { "k": { "ka": "სარკეები", "en": "Mirrors" }, "v": { "ka": "ამოზნექილი და ბრტყელი", "en": "Convex and flat" } },
+        { "k": { "ka": "ღერო", "en": "Arm" }, "v": { "ka": "3 სიგრძე, მომრგვალებული კიდეები", "en": "3 lengths, rounded edges" } },
+        { "k": { "ka": "საძირე", "en": "Bases" }, "v": { "ka": "4 სახის, ნებისმიერი ჩაფხუტისთვის", "en": "4 types, for any helmet" } },
+        { "k": { "ka": "რეგულირება", "en": "Adjustment" }, "v": { "ka": "2 სფერული სახსარი, ხელის ხრახნით", "en": "2 ball joints with thumb nuts" } },
+        { "k": { "ka": "სტაბილურობა", "en": "Stability" }, "v": { "ka": "~96 კმ/სთ-მდე (60 mph)", "en": "Up to ~96 km/h (60 mph)" } }
+      ]
+    },
+    {
+      "id": "mirror-wrist", "cat": "accessories/mirrors", "priceGel": 60,
+      "name": { "ka": "მაჯის სარკე", "en": "Wrist mirror" },
+      "blurb": { "ka": "ამოზნექილი სარკე Velcro-ს სამაგრით, ხელზე ან ხელთათმანზე.", "en": "A convex mirror on a Velcro strap, worn on the hand or glove." },
+      "desc": {
+        "ka": "კომპაქტური უკანა ხედის სარკე, რომელიც ხელზე იკეთება. Velcro-ს რეგულირებადი ღვედი ხელისგულზე ან ხელთათმანზე სწრაფად მაგრდება, ასე რომ, უკან გასახედად საკმარისია ხელის აწევა. ამოზნექილი ლინზა ფართო ხედს იძლევა და დამზადებულია დარტყმაგამძლე აკრილისგან. როცა არ გჭირდება, პატარა ზომის გამო ადვილად ინახება.",
+        "en": "A compact rear-view mirror you wear on your hand. The adjustable Velcro strap goes around the palm or a glove in seconds, so a look behind is just a raise of the hand away. The convex lens gives a wide view and is made of impact-resistant acrylic. Small enough to stow easily when you don't need it."
+      },
+      "specs": [
+        { "k": { "ka": "ლინზა", "en": "Lens" }, "v": { "ka": "ამოზნექილი, დარტყმაგამძლე აკრილი", "en": "Convex, impact-resistant acrylic" } },
+        { "k": { "ka": "დამაგრება", "en": "Mounting" }, "v": { "ka": "Velcro-ს რეგულირებადი ღვედი ბალთით", "en": "Adjustable Velcro strap with buckle" } },
+        { "k": { "ka": "ფერი", "en": "Colour" }, "v": { "ka": "შავი", "en": "Black" } }
+      ]
+    }
+  ],
   "brands": [
     {
       "id": "nosfet",

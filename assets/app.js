@@ -223,10 +223,16 @@
     function apply() {
       var key = decodeURIComponent(location.hash.slice(1)) || root;
       if (key.split("/")[0] !== root) key = root;
-      $$("[data-sub]", box).forEach(function (a) {
-        a.setAttribute("aria-current", String(a.dataset.sub === key));
-        /* ღრმა დონის რიგი მხოლოდ მაშინ ჩანს, როცა მისი მშობელია არჩეული */
+      /* ანთებულია არჩეული ღილაკი და მისი ყველა მშობელი (მაგ. LEAPERKIM, როცა
+         Patton-S არჩეულია). რიგის პირველი ღილაკი ("ყველა") მხოლოდ მაშინ ანთია,
+         როცა ზუსტად ის არის არჩეული. */
+      $$(".chips", box).forEach(function (row) {
+        $$("[data-sub]", row).forEach(function (a, i) {
+          var s = a.dataset.sub;
+          a.setAttribute("aria-current", String(s === key || (i > 0 && key.indexOf(s + "/") === 0)));
+        });
       });
+      /* ღრმა დონის რიგი მხოლოდ მაშინ ჩანს, როცა მისი მშობელია არჩეული */
       $$(".chips", box).forEach(function (row) {
         var first = $("[data-sub]", row);
         var parent = first ? first.dataset.sub : root;
@@ -241,64 +247,86 @@
     apply();
   }
 
-  /* --- ფოტოები და სრული ეკრანი (მოდელის გვერდი) --------------------------- */
-  var thumbs = [], viewIdx = 0;
-  function showPhoto(i) {
-    if (!thumbs.length) return;
-    viewIdx = (i + thumbs.length) % thumbs.length;
-    var big = $("#pBig");
-    if (big) { big.removeAttribute("srcset"); big.src = thumbs[viewIdx].dataset.src; }
-    thumbs.forEach(function (b, n) { b.setAttribute("aria-current", String(n === viewIdx)); });
+  /* --- ფოტოები და სრული ეკრანი ------------------------------------------
+     გალერეა = ფოტოების სია + მიმდინარე ნომერი. მოდელის გვერდზე ერთია
+     (.sheet__media, მინიატურებით), ნაწილების/აქსესუარების ბარათებზე კი
+     თითო ბარათს თავისი აქვს (.xgal[data-gal]). სრული ეკრანი აჩვენებს იმ
+     გალერეას, რომელზეც ბოლოს დააჭირეს. */
+  var G = null;
+  function galOf(el) {
+    var root = el && el.closest(".xgal, .sheet__media");
+    if (!root) return null;
+    if (root._gal) return root._gal;
+    var g = { root: root, idx: 0, img: $("img", root), thumbs: [], photos: [], count: $(".xgal__count", root) };
+    if (root.dataset.gal) {
+      try { g.photos = JSON.parse(root.dataset.gal).map(function (p) { return { src: p[0], full: p[1] }; }); } catch (e) {}
+    } else {
+      g.img = $("#pBig") || g.img;
+      g.thumbs = $$(".sheet__thumbs [data-thumb]", root);
+      g.photos = g.thumbs.map(function (b) { return { src: b.dataset.src, full: b.dataset.full }; });
+    }
+    root._gal = g;
+    return g;
+  }
+  function showPhoto(g, i) {
+    if (!g || !g.photos.length) return;
+    var n = g.photos.length;
+    g.idx = (i + n) % n;
+    if (g.img) { g.img.removeAttribute("srcset"); g.img.src = g.photos[g.idx].src; }
+    g.thumbs.forEach(function (b, k) { b.setAttribute("aria-current", String(k === g.idx)); });
+    if (g.count) g.count.textContent = (g.idx + 1) + " / " + n;
     var v = $("#viewer");
-    if (v && v.open) {
-      $("#viewerImg").src = thumbs[viewIdx].dataset.full;
-      $("#viewerCount").textContent = (viewIdx + 1) + " / " + thumbs.length;
+    if (v && v.open && G === g) {
+      $("#viewerImg").src = g.photos[g.idx].full;
+      $("#viewerCount").textContent = (g.idx + 1) + " / " + n;
     }
   }
-  function openView() {
+  function openView(g) {
     var v = $("#viewer");
-    if (!v || !thumbs.length) return;
-    $("#viewerImg").alt = ($("#pBig") || {}).alt || "";
-    v.classList.toggle("viewer--one", thumbs.length < 2);
+    if (!v || !g || !g.photos.length) return;
+    G = g;
+    $("#viewerImg").alt = (g.img || {}).alt || "";
+    v.classList.toggle("viewer--one", g.photos.length < 2);
     v.showModal();
-    showPhoto(viewIdx);
+    showPhoto(g, g.idx);
+  }
+  /* თითით გადასმა ფოტოზე = შემდეგი / წინა; გადასმის შემდეგ სრული ეკრანი არ იხსნება */
+  function swipeable(area) {
+    var g = galOf(area);
+    if (!g || g.photos.length < 2) return;
+    var bx = null, by = null, bSwiped = false;
+    area.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) { bx = null; return; }
+      bx = e.touches[0].clientX; by = e.touches[0].clientY; bSwiped = false;
+    }, { passive: true });
+    area.addEventListener("touchend", function (e) {
+      if (bx === null) return;
+      var dx = e.changedTouches[0].clientX - bx, dy = e.changedTouches[0].clientY - by;
+      bx = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { bSwiped = true; showPhoto(g, g.idx + (dx < 0 ? 1 : -1)); }
+    }, { passive: true });
+    area.addEventListener("click", function (e) {
+      if (!bSwiped) return;
+      bSwiped = false; e.stopPropagation(); e.preventDefault();
+    }, true);
   }
   function initGallery() {
-    thumbs = $$(".sheet__thumbs [data-thumb]");
-    /* მოდელის გვერდზე დიდ ფოტოზე თითით გადასმა = შემდეგი / წინა ფოტო;
-       გადასმის შემდეგ ფოტო სრულ ეკრანზე აღარ იხსნება */
-    var big = $(".sheet__big");
-    if (big && thumbs.length > 1) {
-      var bx = null, by = null, bSwiped = false;
-      big.addEventListener("touchstart", function (e) {
-        if (e.touches.length !== 1) { bx = null; return; }
-        bx = e.touches[0].clientX; by = e.touches[0].clientY; bSwiped = false;
-      }, { passive: true });
-      big.addEventListener("touchend", function (e) {
-        if (bx === null) return;
-        var dx = e.changedTouches[0].clientX - bx, dy = e.changedTouches[0].clientY - by;
-        bx = null;
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { bSwiped = true; showPhoto(viewIdx + (dx < 0 ? 1 : -1)); }
-      }, { passive: true });
-      big.addEventListener("click", function (e) {
-        if (!bSwiped) return;
-        bSwiped = false; e.stopPropagation(); e.preventDefault();
-      }, true);
-    }
+    $$(".sheet__big, .xgal").forEach(swipeable);
     var v = $("#viewer");
     if (!v) return;
     v.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") { showPhoto(viewIdx + 1); e.preventDefault(); }
-      if (e.key === "ArrowLeft") { showPhoto(viewIdx - 1); e.preventDefault(); }
+      if (!G) return;
+      if (e.key === "ArrowRight") { showPhoto(G, G.idx + 1); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { showPhoto(G, G.idx - 1); e.preventDefault(); }
     });
     var stage = $("#viewerStage"), x0 = null, y0 = null, swiped = false;
     stage.addEventListener("click", function (e) { if (e.target === stage && !swiped) v.close(); });
     stage.addEventListener("pointerdown", function (e) { if (e.button === 0) { x0 = e.clientX; y0 = e.clientY; swiped = false; } });
     stage.addEventListener("pointerup", function (e) {
-      if (x0 === null) return;
+      if (x0 === null || !G) return;
       var dx = e.clientX - x0, dy = e.clientY - y0;
       x0 = null;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { swiped = true; showPhoto(viewIdx + (dx < 0 ? 1 : -1)); }
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { swiped = true; showPhoto(G, G.idx + (dx < 0 ? 1 : -1)); }
     });
     stage.addEventListener("pointercancel", function () { x0 = null; });
   }
@@ -313,10 +341,10 @@
     if ((el = hit("[data-flag-step]"))) { showFlag(flagIdx + Number(el.dataset.flagStep)); autoFlag(false); return; }
     if ((el = hit("[data-flag]"))) { showFlag(Number(el.dataset.flag)); autoFlag(true); return; }
     if ((el = hit("[data-theme-set]"))) { setTheme(el.dataset.themeSet); return; }
-    if ((el = hit("[data-thumb]"))) { showPhoto(Number(el.dataset.thumb)); return; }
-    if (hit("[data-view-open]")) { openView(); return; }
-    if ((el = hit("[data-view-step]"))) { showPhoto(viewIdx + Number(el.dataset.viewStep)); return; }
-    if ((el = hit("[data-photo-step]"))) { showPhoto(viewIdx + Number(el.dataset.photoStep)); return; }
+    if ((el = hit("[data-thumb]"))) { showPhoto(galOf(el), Number(el.dataset.thumb)); return; }
+    if ((el = hit("[data-view-open]"))) { openView(galOf(el)); return; }
+    if ((el = hit("[data-view-step]"))) { if (G) showPhoto(G, G.idx + Number(el.dataset.viewStep)); return; }
+    if ((el = hit("[data-photo-step]"))) { var pg = galOf(el); if (pg) showPhoto(pg, pg.idx + Number(el.dataset.photoStep)); return; }
     if ((el = hit("[data-close]"))) { el.closest("dialog").close(); return; }
     if ((el = hit("[data-nav-toggle]"))) {
       el.setAttribute("aria-expanded", String(el.closest(".nav__drop").classList.toggle("nav__drop--open")));

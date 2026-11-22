@@ -900,3 +900,30 @@ a.tile { color: inherit; }
 .sheet__arrow--prev { left: 10px; }
 .sheet__arrow--next { right: 10px; }
 @media (max-width: 600px) { .sheet__arrow { width: 36px; height: 36px; font-size: 1.35rem; } .sheet__arrow--prev { left: 6px; } .sheet__arrow--next { right: 6px; } }
+/* ნაწილების / აქსესუარების ბარათი: ფოტოები ისრებით, swipe-ით და სრულ ეკრანზე */
+.xgal { touch-action: pan-y; cursor: zoom-in; }
+.xgal .sheet__zoom { cursor: zoom-in; }
+.xgal .sheet__arrow { width: 34px; height: 34px; font-size: 1.3rem; }
+.xgal .sheet__arrow--prev { left: 6px; }
+.xgal .sheet__arrow--next { right: 6px; }
+.xgal__count {
+  position: absolute; right: 8px; bottom: 8px; z-index: 2; padding: 2px 8px;
+  border-radius: 999px; background: var(--card); border: 1px solid var(--line);
+  font: 600 0.75rem/1.6 var(--lat); color: var(--ink-2, var(--ink)); pointer-events: none;
+}
+/* მონობორბლის ბარათი: ფოტოზე დაჭერა დეტალებს ხსნის (არა სრულ ეკრანს) */
+.xgal--link { cursor: pointer; }
+.xgal__link { position: absolute; inset: 0; display: block; cursor: pointer; }
+/* ნაწილების / აქსესუარების ბარათი: აღწერა და მახასიათებლები */
+.xinfo { margin: 0.2rem 0 0.6rem; border: 1px solid var(--line); border-radius: var(--r-sm); }
+.xinfo > summary {
+  cursor: pointer; list-style: none; padding: 8px 12px; font-weight: 700; font-size: 0.85rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.xinfo > summary::-webkit-details-marker { display: none; }
+.xinfo > summary::after { content: "+"; font: 700 1.1rem/1 var(--lat); color: var(--accent); }
+.xinfo[open] > summary::after { content: "−"; }
+.xinfo > p { margin: 0; padding: 0 12px 10px; font-size: 0.85rem; line-height: 1.55; color: var(--ink-2, var(--ink)); }
+.xinfo__specs { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.xinfo__specs th, .xinfo__specs td { padding: 6px 12px; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+.xinfo__specs th { font-weight: 600; color: var(--ink-2, var(--ink)); width: 45%; }

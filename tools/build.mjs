@@ -54,6 +54,14 @@ for (const w of ctx.CATALOG.wheels) {
   }
   if (!w.images || !w.images.length) throw new Error(`No photos for model "${w.id}": add them to assets/wheels/${w.id}/`);
 }
+/* ნაწილების, აქსესუარების და ა.შ. ფოტოები: assets/wheels/<id>/ (იგივე წესით). ფოტოს გარეშე პროდუქტი მაინც ჩანს. */
+for (const x of ctx.CATALOG.extras || []) {
+  const dir = path.join(SRC, x.id);
+  if (fs.existsSync(dir)) {
+    const list = fs.readdirSync(dir).filter((n) => IMG_RE.test(n)).sort(byNumber);
+    if (list.length) x.images = list.map((n) => `${x.id}/${n}`);
+  }
+}
 
 const tips = read("content/tips/articles.tsv").split(/\r?\n/).filter((l) => l.trim()).map((line) => {
   const [slug, tka, ten, dka, den] = line.split("\t");

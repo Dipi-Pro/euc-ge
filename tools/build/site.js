@@ -276,8 +276,16 @@
       return (
         '<article class="card" data-id="' + w.id + '" data-brand="' + w.brand + '" data-price="' + w.priceGel +
           '" data-power="' + s.motorW + '" data-range="' + s.rangeKm + '">' +
-          '<a class="card__plate" href="' + url + '" tabindex="-1" aria-hidden="true">' +
-            picture(w.images[0], full, "(max-width: 600px) 90vw, 300px", ' loading="lazy" decoding="async"') + "</a>" +
+          /* ფოტოები ისრებით და swipe-ით; ფოტოზე დაჭერა დეტალებს ხსნის */
+          '<div class="card__plate xgal xgal--link" data-gal="' + esc(JSON.stringify(w.images.map(function (f) { return [img(f, 1000), img(f, 1600)]; }))) + '">' +
+            '<a class="xgal__link" href="' + url + '" tabindex="-1" aria-hidden="true">' +
+              picture(w.images[0], full, "(max-width: 600px) 90vw, 300px", ' loading="lazy" decoding="async"') + "</a>" +
+            (w.images.length > 1
+              ? '<button class="sheet__arrow sheet__arrow--prev" data-photo-step="-1" aria-label="' + esc(L.t("viewer.prev")) + '">‹</button>' +
+                '<button class="sheet__arrow sheet__arrow--next" data-photo-step="1" aria-label="' + esc(L.t("viewer.next")) + '">›</button>' +
+                '<span class="xgal__count">1 / ' + w.images.length + "</span>"
+              : "") +
+          "</div>" +
           '<button class="pick" data-pick="' + w.id + '" aria-pressed="false">' + esc(L.t("cmp.add")) + "</button>" +
           '<div class="card__body">' +
             '<span class="card__brand">' + esc(b.name) + "</span>" +
@@ -304,14 +312,42 @@
       );
     }
 
+    /* პროდუქტის (მონობორბლის გარდა) ფოტოები ბარათზე: ისრები, swipe, დაჭერით
+       სრული ეკრანი. data-gal: [[ფოტო ბარათისთვის, ფოტო სრული ეკრანისთვის], ...] */
+    function extraPlate(L, x, name) {
+      var list = x.images || [];
+      if (!list.length) return '<div class="card__plate"></div>';
+      var gal = JSON.stringify(list.map(function (f) { return [img(f, 1000), img(f, 1600)]; }));
+      return '<div class="card__plate xgal" data-gal="' + esc(gal) + '">' +
+        '<button class="sheet__zoom" data-view-open aria-label="' + esc(L.t("viewer.open")) + '">' +
+          picture(list[0], name, "(max-width: 600px) 90vw, 300px", ' loading="lazy" decoding="async"') + "</button>" +
+        (list.length > 1
+          ? '<button class="sheet__arrow sheet__arrow--prev" data-photo-step="-1" aria-label="' + esc(L.t("viewer.prev")) + '">‹</button>' +
+            '<button class="sheet__arrow sheet__arrow--next" data-photo-step="1" aria-label="' + esc(L.t("viewer.next")) + '">›</button>' +
+            '<span class="xgal__count">1 / ' + list.length + "</span>"
+          : "") +
+        "</div>";
+    }
+
     function extraCard(L, x) {
       var name = L.loc(x.name);
       return (
         '<article class="card" data-cat="' + esc(x.cat || "") + '">' +
-          '<div class="card__plate">' + (x.images && x.images[0] ? picture(x.images[0], name, "(max-width: 600px) 90vw, 300px", ' loading="lazy" decoding="async"') : "") + "</div>" +
+          extraPlate(L, x, name) +
           '<div class="card__body">' +
             '<h2 class="card__name">' + esc(name) + "</h2>" +
             (x.blurb ? '<p class="sheet__blurb">' + esc(L.loc(x.blurb)) + "</p>" : "") +
+            /* აღწერის ფანჯარა: იხსნება ბარათზევე, ტექსტი HTML-შია (ძიებისთვისაც) */
+            (x.desc || (x.specs && x.specs.length)
+              ? '<details class="xinfo"><summary>' + esc(L.t("cat.more")) + "</summary>" +
+                  (x.desc ? "<p>" + esc(L.loc(x.desc)) + "</p>" : "") +
+                  (x.specs && x.specs.length
+                    ? '<table class="xinfo__specs"><tbody>' + x.specs.map(function (r) {
+                        return '<tr><th scope="row">' + esc(L.loc(r.k)) + "</th><td>" + esc(typeof r.v === "string" ? r.v : L.loc(r.v)) + "</td></tr>";
+                      }).join("") + "</tbody></table>"
+                    : "") +
+                "</details>"
+              : "") +
             '<div class="card__price">' +
               (x.priceGel != null ? '<div class="price">' + L.price(x.priceGel) + "</div>" : "") +
               '<div class="card__acts">' + waLink(L, name, "btn btn--sm", esc(L.t("cta.waShort"))) + "</div>" +
@@ -811,6 +847,7 @@
         "</div>\n</section>\n";
       page(L, {
         path: path, alt: alt, cur: "catalog", noindex: !items.length,
+        viewer: items.some(function (x) { return x.images && x.images.length; }),
         title: L.t("seo.cat.title", { x: name }), desc: L.t("seo.cat.desc", { x: name }),
         body: body, ld: [crumbsLd(cr)]
       });
