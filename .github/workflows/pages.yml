@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
@@ -66,6 +66,19 @@ jobs:
         with:
           path: _site
 
+      # GitHub sometimes cannot find the package it uploaded a moment ago
+      # ("No artifacts named github-pages were found"). That is on GitHub's
+      # side, so if the deploy fails we wait half a minute and try once more.
       - name: Deploy to Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to Pages (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
