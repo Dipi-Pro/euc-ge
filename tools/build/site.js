@@ -775,6 +775,8 @@
             '<p class="guar__p">' + esc(L.t("warranty.body")) + "</p></div></div>" +
           '<h2 class="sheet__h">' + esc(L.t("sheet.about")) + "</h2>" +
           '<p class="sheet__blurb">' + esc(L.loc(w.blurb)) + "</p>" +
+          /* გარბენის შენიშვნა: მაქსიმუმი მხოლოდ იდეალურ პირობებშია */
+          '<p class="sheet__blurb range-note">' + esc(L.t("sheet.rangeNote", { n: s.rangeKm })) + "</p>" +
           (feats.length ? '<h2 class="sheet__h">' + esc(L.t("sheet.feats")) + "</h2>" +
             '<ul class="feats">' + feats.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + "</ul>" : "") +
           '<h2 class="sheet__h">' + esc(L.t("sheet.specs")) + "</h2>" +
