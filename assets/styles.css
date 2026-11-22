@@ -659,3 +659,56 @@ body.has-tray { padding-bottom: 96px; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .rise { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   რჩევები (tips/): სიის გვერდი და სტატიები
+   ========================================================================== */
+/* ორენოვანი შიგთავსი: ჩანს მხოლოდ არჩეული ენის ბლოკი */
+html[lang="en"] [data-only="ka"],
+html:not([lang="en"]) [data-only="en"] { display: none !important; }
+
+.crumbs { font-size: 0.82rem; color: var(--muted); margin: 0 auto 18px; max-width: 70ch; }
+.crumbs a { color: var(--ink-2); }
+.crumbs a:hover { color: var(--accent); }
+
+.tips-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: clamp(22px, 3vw, 36px); max-width: 60ch; }
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 14px; }
+.tip-card {
+  display: flex; flex-direction: column; gap: 10px; padding: 22px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+  transition: border-color 0.15s, transform 0.15s;
+}
+.tip-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.tip-card__n { font-family: var(--lat); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.1em; color: var(--accent); }
+.tip-card h2 { font-size: 1.12rem; line-height: 1.3; }
+.tip-card p { margin: 0; font-size: 0.88rem; color: var(--ink-2); }
+.tip-card__more { margin-top: auto; font-size: 0.85rem; font-weight: 700; color: var(--accent); }
+
+/* სტატიის ტექსტი */
+.prose { max-width: 70ch; margin-inline: auto; }
+.prose h1 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); line-height: 1.18; margin: 0 0 14px; }
+.prose .lead { margin-bottom: 26px; }
+.prose h2 { font-size: 1.15rem; margin: 30px 0 10px; }
+.prose p, .prose li { font-size: 0.97rem; line-height: 1.7; color: var(--ink-2); }
+.prose p { margin: 0 0 12px; }
+.prose ul, .prose ol { margin: 0 0 14px; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 6px; }
+.prose strong { color: var(--ink); }
+.prose a { color: var(--accent); }
+.prose .tbl { overflow-x: auto; margin: 6px 0 18px; border: 1px solid var(--line); border-radius: var(--r-sm); }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.prose th, .prose td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.prose thead th { font-family: var(--lat); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent); background: var(--card); }
+.prose tbody th { font-weight: 600; color: var(--muted); }
+.prose tr:last-child > * { border-bottom: 0; }
+.note-box { margin: 18px 0; padding: 14px 16px; border-inline-start: 3px solid var(--accent); background: var(--card); border-radius: var(--r-xs); }
+.note-box p { margin: 0; }
+
+/* სტატიის ბოლოს: WhatsApp და სხვა რჩევები */
+.tip-cta { max-width: 70ch; margin: 34px auto 0; padding: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); }
+.tip-cta p { margin: 0; font-weight: 700; }
+.tip-more { max-width: 70ch; margin: 30px auto 0; }
+.tip-more h2 { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.tip-more ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tip-more li a { display: block; padding: 11px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.tip-more li a:hover { color: var(--accent); }
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }

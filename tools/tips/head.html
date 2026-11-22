@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:type" content="{{OGTYPE}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/styles.css">
+<script>
+  try {
+    var t = localStorage.getItem("zipi-theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) { /* localStorage გამორთულია: ვრჩებით სისტემის თემაზე */ }
+</script>
+</head>
+<body data-home="../index.html">
+<a class="skip" href="#main" data-t="skip">გადადი მთავარ შიგთავსზე</a>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="../index.html" aria-label="ZIPI.GE">
+      <span class="logo__mark">ZIPI<span>.GE</span></span>
+      <span class="logo__sub" data-t="logo.sub">ელექტრო მონობორბლები</span>
+    </a>
+
+    <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" data-t-aria="nav.menu" aria-label="მენიუ">☰</button>
+
+    <nav class="nav" id="nav">
+      <a href="../index.html" data-t="nav.home">მთავარი</a>
+      <div class="nav__drop">
+        <a href="../index.html#catalog" data-t="nav.catalog" aria-haspopup="true">კატალოგი</a>
+        <button class="nav__toggle" data-nav-toggle aria-expanded="false" aria-controls="navCats" data-t-aria="nav.catalogMenu" aria-label="კატალოგის განყოფილებები">▾</button>
+        <div class="nav__menu" id="navCats"></div>
+      </div>
+      <a href="../index.html#service" data-t="nav.service">სერვისი</a>
+      <a href="index.html" data-t="nav.tips"{{TIPS_CURRENT}}>რჩევები</a>
+      <a href="../index.html#about" data-t="nav.about">ჩვენ შესახებ</a>
+      <a href="../index.html#contact" data-t="nav.contact">კონტაქტი</a>
+    </nav>
+
+    <div class="seg seg--lang" data-t-aria="lang.label" aria-label="ენა">
+      <button data-lang="ka" aria-pressed="true">ქარ</button>
+      <button data-lang="en" aria-pressed="false">ENG</button>
+    </div>
+
+    <div class="seg seg--theme" data-t-aria="theme.label" aria-label="თემა">
+      <button data-theme-set="light" aria-pressed="false" title="ღია" data-t-title="theme.light">☀</button>
+      <button data-theme-set="dark" aria-pressed="false" title="მუქი" data-t-title="theme.dark">☾</button>
+    </div>
+
+    <a class="btn btn--sm" data-wa href="https://wa.me/995598666111" target="_blank" rel="noopener" data-t="cta.waShort">WhatsApp</a>
+  </div>
+</header>
+
+<main id="main" class="sec">
+  <div class="wrap">

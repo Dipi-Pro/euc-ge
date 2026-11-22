@@ -121,3 +121,18 @@ Dark is the primary theme, light is its inverse, and both are built from the sam
 variables. Type is Nunito for Latin model names and numbers, Noto Sans Georgian for Georgian,
 both from Google Fonts. One accent, a signal orange, on prices, calls to action and the best
 values in the comparison table; the rest is a cool near-black.
+
+## Tips pages (რჩევები)
+
+The tips section lives in `tips/` (a list page plus one page per article, Georgian and English
+on the same page). Those files are generated, so don't edit them by hand. Edit the sources in
+`tools/tips/` instead:
+
+- `articles.tsv`: one line per article, tab-separated: slug, title (ka), title (en), short
+  description (ka), short description (en). The order here is the order on the list page.
+- `articles/<slug>.ka.html` and `articles/<slug>.en.html`: the article body (h2, p, ul, ...).
+- `head.html` / `foot.html`: the header and footer shared by every tips page.
+
+Then rebuild with `bash tools/tips/build.sh` (Git Bash) and commit both `tools/tips/` and `tips/`.
+Links from the tips pages back into the catalogue use `index.html?cat=<path>` or
+`index.html?brand=<id>`, which the home page reads on load.

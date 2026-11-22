@@ -19,6 +19,7 @@ window.I18N = {
     "nav.service": "სერვისი",
     "nav.about": "ჩვენ შესახებ",
     "nav.contact": "კონტაქტი",
+    "nav.tips": "რჩევები",
     "nav.menu": "მენიუ",
     "nav.catalogMenu": "კატალოგის განყოფილებები",
 
@@ -158,6 +159,7 @@ window.I18N = {
     "nav.service": "Service",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "nav.tips": "Tips",
     "nav.menu": "Menu",
     "nav.catalogMenu": "Catalogue sections",
 

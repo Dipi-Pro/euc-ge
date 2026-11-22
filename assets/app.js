@@ -25,6 +25,12 @@
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* იგივე სკრიპტი მუშაობს მთავარ გვერდზეც და სხვა გვერდებზეც (მაგ. რჩევები).
+     IS_HOME: მთავარი გვერდია (აქვს კატალოგი). სხვა გვერდზე <body data-home="../index.html">
+     გვეუბნება, სად არის მთავარი გვერდი, და მენიუს ბმულები იქ მიდის. */
+  var IS_HOME = !!document.getElementById("grid");
+  var HOME = document.body.getAttribute("data-home") || "";
   var brandOf = function (id) { return BRANDS.filter(function (b) { return b.id === id; })[0]; };
   var wheelOf = function (id) { return WHEELS.filter(function (w) { return w.id === id; })[0]; };
   var fullName = function (w) { return brandOf(w.brand).name + " " + w.model; };
@@ -89,8 +95,8 @@
     remember(STORE_LANG, lang);
     applyStatic();
     render();
-    if ($("#sheet").open) $("#sheet").close();
-    if ($("#cmp").open) renderCompare();
+    if (IS_HOME && $("#sheet").open) $("#sheet").close();
+    if (IS_HOME && $("#cmp").open) renderCompare();
   }
 
   /* --- თემა: ნაგულისხმევად სისტემას მიჰყვება ----------------------------
@@ -315,8 +321,16 @@
 
   /* ჰედერის ჩამოსაშლელი მენიუ, ნებისმიერი სიღრმით */
   /* ico: ხატულის HTML მხოლოდ მთავარი განყოფილებისთვის, დანარჩენებისთვის "" */
+  /* მთავარ გვერდზე ბმული კატალოგამდე ჩადის; სხვა გვერდიდან მთავარ გვერდს
+     ხსნის არჩეული განყოფილებით: index.html?cat=print3d/nosfet#catalog */
+  function navHref(attr) {
+    if (IS_HOME) return "#catalog";
+    var m = /data-(path|cat|jump)="([^"]+)"/.exec(attr);
+    if (!m) return HOME + "#catalog";
+    return HOME + "?" + (m[1] === "jump" ? "brand=" : "cat=") + encodeURIComponent(m[2]) + "#catalog";
+  }
   function navLink(attr, label, popup, ico) {
-    return '<a href="#catalog" ' + attr + (isLat(label) ? ' class="nav__lat"' : "") +
+    return '<a href="' + navHref(attr) + '" ' + attr + (isLat(label) ? ' class="nav__lat"' : "") +
       (popup ? ' aria-haspopup="true"' : "") + ">" + (ico || "") + '<span class="nav__label">' + esc(label) + "</span></a>";
   }
   function navNode(attr, label, inner, ico) {
@@ -605,8 +619,9 @@
 
   /* --- ჩვენება ---------------------------------------------------------- */
   function render() {
-    buildFlag();
     buildNav();
+    if (!IS_HOME) return;
+    buildFlag();
     buildCats();
     buildChips();
     renderGrid();
@@ -620,6 +635,9 @@
   document.addEventListener("click", function (e) {
     var hit = function (sel) { return e.target.closest(sel); };
     var el;
+
+    /* სხვა გვერდზე კატალოგის ბმულები ჩვეულებრივად ხსნის მთავარ გვერდს */
+    if (!IS_HOME && hit("[data-path], [data-cat], [data-jump]")) return;
 
     if ((el = hit("[data-pick]"))) { togglePick(el.dataset.pick); return; }
     if (hit("[data-cmp-open]")) { openCompare(); return; }
@@ -678,11 +696,14 @@
     d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
   });
 
-  $("#sort").addEventListener("change", renderGrid);
-  $("#cmpOnly").addEventListener("change", renderCompare);
   $("#nav").addEventListener("click", function (e) {
     if (e.target.tagName === "A") $("#nav").classList.remove("nav--open");
   });
+
+  /* ქვემოთ მხოლოდ მთავარი გვერდის ელემენტებია (სორტირება, შედარება, სლაიდშოუ) */
+  if (IS_HOME) {
+  $("#sort").addEventListener("change", renderGrid);
+  $("#cmpOnly").addEventListener("change", renderCompare);
   $(".flag").addEventListener("mouseenter", function () { autoFlag(false); });
   $(".flag").addEventListener("mouseleave", function () { autoFlag(true); });
   $(".flag").addEventListener("focusin", function () { autoFlag(false); });
@@ -704,13 +725,29 @@
     autoFlag(true);
   }, { passive: true });
   $("#flagStage").addEventListener("touchcancel", function () { swipeX = null; autoFlag(true); }, { passive: true });
+  }
+
+  /* სხვა გვერდიდან მოსული ბმული: ?cat=print3d/nosfet ან ?brand=leaperkim */
+  function readDeepLink() {
+    var c = /[?&]cat=([^&#]+)/.exec(location.search);
+    var b = /[?&]brand=([^&#]+)/.exec(location.search);
+    if (c) {
+      var p = decodeURIComponent(c[1]).split("/");
+      if (p[0] === "wheels" || nodesOf(p).length) { path = p; cat = p[0]; }
+    }
+    if (b) {
+      var id = decodeURIComponent(b[1]);
+      if (brandOf(id)) { path = ["wheels"]; cat = "wheels"; filter = id; }
+    }
+  }
 
   function init() {
     /* შენახული არჩევანი თუ არ არის (ან ძველი "auto"-ა), სისტემის თემას მივყვებით */
     setTheme(recall(STORE_THEME));
+    if (IS_HOME) readDeepLink();
     applyStatic();
     render();
-    autoFlag(true);
+    if (IS_HOME) autoFlag(true);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

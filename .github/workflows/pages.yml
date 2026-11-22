@@ -53,7 +53,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp -r index.html CNAME assets data _site/
+          cp -r index.html CNAME assets data tips _site/
 
       # 4. Package the site. Nothing is compiled or minified.
       - name: Package the site
