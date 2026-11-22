@@ -202,9 +202,11 @@
       var b = brandOf(w.brand);
       var s = w.specs;
       return (
-        '<div class="flag__slide" data-on="' + (i === flagIdx ? 1 : 0) + '" role="tabpanel" aria-label="' + esc(fullName(w)) + '">' +
+        /* მთელი სლაიდი იხსნება დეტალებად (data-open), არა მხოლოდ ფოტო */
+        '<div class="flag__slide" data-on="' + (i === flagIdx ? 1 : 0) + '" data-open="' + w.id + '" role="tabpanel" aria-label="' + esc(fullName(w)) + '">' +
           '<button class="flag__plate" data-open="' + w.id + '" aria-label="' + esc(fullName(w)) + '">' +
-            '<img src="' + photo(w.images[0]) + '" alt="' + esc(fullName(w)) + '"' + (i ? ' loading="lazy"' : "") + "></button>" +
+            '<img src="' + photo(w.images[0]) + '" alt="' + esc(fullName(w)) + '" draggable="false"' + (i ? ' loading="lazy"' : "") + ">" +
+            '<span class="flag__hint" aria-hidden="true">' + esc(t("flag.hint")) + " →</span></button>" +
           '<div class="flag__meta">' +
             "<div>" +
               '<div class="flag__brand">' + esc(b.name) + "</div>" +
@@ -220,7 +222,10 @@
           "</div>" +
         "</div>"
       );
-    }).join("");
+    }).join("") +
+      /* ისრები: მხოლოდ მაუსიან ეკრანზე ჩანს (CSS: hover + pointer: fine) */
+      '<button class="flag__arrow flag__arrow--prev" data-flag-step="-1" aria-label="' + esc(t("flag.prev")) + '">‹</button>' +
+      '<button class="flag__arrow flag__arrow--next" data-flag-step="1" aria-label="' + esc(t("flag.next")) + '">›</button>';
 
     $("#flagDots").innerHTML = slides.map(function (w, i) {
       /* მხოლოდ წერტილი; მოდელის სახელი მხოლოდ ეკრანის წამკითხველისთვისაა */
@@ -642,6 +647,7 @@
     if ((el = hit("[data-pick]"))) { togglePick(el.dataset.pick); return; }
     if (hit("[data-cmp-open]")) { openCompare(); return; }
     if (hit("[data-cmp-clear]")) { picks = []; syncPicks(); return; }
+    if ((el = hit("[data-flag-step]"))) { showFlag(flagIdx + Number(el.dataset.flagStep)); autoFlag(false); return; }
     if ((el = hit("[data-open]"))) { openSheet(el.dataset.open); return; }
     if ((el = hit("[data-lang]"))) { setLang(el.dataset.lang); return; }
     if ((el = hit("[data-theme-set]"))) { setTheme(el.dataset.themeSet); return; }
@@ -725,6 +731,30 @@
     autoFlag(true);
   }, { passive: true });
   $("#flagStage").addEventListener("touchcancel", function () { swipeX = null; autoFlag(true); }, { passive: true });
+
+  /* სლაიდშოუ კომპიუტერზე: მაუსის მარცხენა ღილაკით გადათრევა = swipe.
+     თუ მაუსი საკმარისად გადაადგილდა, მომდევნო click აღარ ხსნის დეტალებს. */
+  var dragX = null, dragY = null, dragged = false;
+  $("#flagStage").addEventListener("pointerdown", function (e) {
+    if (e.pointerType !== "mouse" || e.button !== 0 || e.target.closest(".flag__arrow")) return;
+    dragX = e.clientX; dragY = e.clientY; dragged = false;
+  });
+  window.addEventListener("pointermove", function (e) {
+    if (dragX === null) return;
+    if (Math.abs(e.clientX - dragX) > 8) { dragged = true; $("#flagStage").classList.add("is-drag"); }
+  });
+  window.addEventListener("pointerup", function (e) {
+    if (dragX === null) return;
+    var dx = e.clientX - dragX, dy = e.clientY - dragY;
+    dragX = null;
+    $("#flagStage").classList.remove("is-drag");
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) showFlag(flagIdx + (dx < 0 ? 1 : -1));
+  });
+  $("#flagStage").addEventListener("click", function (e) {
+    if (!dragged) return;
+    dragged = false;
+    e.stopPropagation(); e.preventDefault();
+  }, true);
   }
 
   /* სხვა გვერდიდან მოსული ბმული: ?cat=print3d/nosfet ან ?brand=leaperkim */

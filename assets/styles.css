@@ -371,6 +371,36 @@ button.flag__plate { display: block; width: 100%; padding: 0; cursor: pointer; f
 .flag__dot:hover { background: var(--muted); }
 .flag__dot[aria-selected="true"]:hover { background: var(--accent); }
 
+/* მთელი სლაიდი დასაჭერია: კურსორი და ფოტოზე "დეტალების ნახვა" მინიშნება */
+.flag__slide { cursor: pointer; }
+.flag__stage.is-drag, .flag__stage.is-drag * { cursor: grabbing; user-select: none; }
+.flag__plate img { transition: transform 0.35s ease; }
+.flag__hint {
+  position: absolute; left: 50%; bottom: 14px; transform: translate(-50%, 6px);
+  padding: 7px 14px; border-radius: 999px;
+  background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 700; white-space: nowrap;
+  opacity: 0; transition: opacity 0.25s, transform 0.25s; pointer-events: none;
+}
+/* ისრები: ფოტოს შუა სიმაღლეზე, კიდეებთან */
+.flag__arrow {
+  position: absolute; top: calc(50% - 40px); z-index: 2;
+  display: none; place-items: center;
+  width: 42px; height: 42px; padding: 0 0 3px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  font: 700 1.6rem/1 var(--lat); cursor: pointer; box-shadow: var(--shadow);
+  opacity: 0.85; transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+.flag__arrow--prev { left: 10px; }
+.flag__arrow--next { right: 10px; }
+.flag__arrow:hover { opacity: 1; background: var(--accent); color: #fff; border-color: var(--accent); }
+/* მაუსიანი ეკრანი (Windows და სხვ.): ისრები, მინიშნება და გადათრევა */
+@media (hover: hover) and (pointer: fine) {
+  .flag__arrow { display: grid; }
+  .flag__slide:hover .flag__hint { opacity: 1; transform: translate(-50%, 0); }
+  .flag__slide:hover .flag__plate img { transform: scale(1.04); }
+  .flag__stage { user-select: none; }
+}
+
 @media (max-width: 900px) { .hero__in { grid-template-columns: 1fr; } .flag { order: -1; } }
 
 /* --- ციფრების ზოლი ------------------------------------------------------ */

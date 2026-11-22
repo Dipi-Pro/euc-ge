@@ -32,6 +32,9 @@ window.I18N = {
     "cta.waShort": "WhatsApp",
     "cta.catalog": "კატალოგის ნახვა",
     "cta.details": "დეტალები",
+    "flag.hint": "დეტალების ნახვა",
+    "flag.prev": "წინა მოდელი",
+    "flag.next": "შემდეგი მოდელი",
     "cta.close": "დახურვა",
 
     /* WhatsApp-ის ჩატში წინასწარ ჩაწერილი შეტყობინებები */
@@ -172,6 +175,9 @@ window.I18N = {
     "cta.waShort": "WhatsApp",
     "cta.catalog": "See the catalogue",
     "cta.details": "Details",
+    "flag.hint": "View details",
+    "flag.prev": "Previous model",
+    "flag.next": "Next model",
     "cta.close": "Close",
 
     "wa.hello": "Hello! I'm interested in an electric unicycle.",
