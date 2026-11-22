@@ -22,6 +22,8 @@
      suspType: air, coil, hydraulic, hydraulicAir ან none
      weightKg: წონა, კგ
      chargerA: კომპლექტში შემავალი დამტენის დენი, ამპერი
+     chargeH: დატენვის დრო ამ დამტენით, საათი (ტექსტი, მაგ. "4" ან "2.5-3")
+     fastA / fastH: მწარმოებლის მაქსიმალური რეკომენდებული დენი, ამპერი, და დატენვის დრო ამ დენით
      maxLoadKg: რაიდერის მაქსიმალური წონა, კგ
      climbDeg: მაქსიმალური აღმართი, გრადუსი
      ip: წყალგამძლეობის კლასი (ტექსტი)
@@ -167,7 +169,7 @@ window.CATALOG = {
           "Kickstand, trolley handle, two-piece mudguard and three-mode lights with a daytime running light."
         ]
       },
-      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "chargeH": "2.5-3", "fastA": 10, "fastH": "1.5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-aeon",
@@ -197,7 +199,7 @@ window.CATALOG = {
           "Kickstand and folding trolley handle."
         ]
       },
-      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 60, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 2200, "peakW": 8000, "batteryWh": 1300, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 60, "rangeKm": 75, "tire": "3.0-12", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 29, "chargerA": 5, "chargeH": "2-3", "fastA": 10, "fastH": "1.5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-xeno",
@@ -225,7 +227,7 @@ window.CATALOG = {
           "Over-the-air firmware updates from the Nosfet app. The BMS protects against short circuit, overcharge and overheating."
         ]
       },
-      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 100, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "chargeH": "5", "fastA": 5, "fastH": "5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-apex",
@@ -243,7 +245,7 @@ window.CATALOG = {
           "ამორტიზაციასთან ერთად პედლების სიმაღლეც იცვლება: 225-დან 313 მმ-მდე.",
           "ამორტიზაციის მიმმართველები 6061-T6 ალუმინისაა, ზუსტად დამუშავებული და ანოდირებული, როგორც ველოსიპედის ჩანგალში.",
           "20 W წინა ფარი მოჭრილი სხივით, რომ შემხვედრი არ დააბრმავოს; სამი რეჟიმი და ავტომატური სიკაშკაშე.",
-          "სწრაფი დატენვა 20 ამპერამდე შესაბამისი დამტენით: დაახლოებით 3 საათში 80%-მდე.",
+          "ორი დასატენი პორტი: შესაბამისი დამტენებით 20 ამპერამდე, სრული დატენვა დაახლოებით 2 საათში.",
           "სადგამი დაცემისას იკეცება და არ ტყდება, ფრთა კი დარტყმისას უბრალოდ იხსნება."
         ],
         "en": [
@@ -251,11 +253,11 @@ window.CATALOG = {
           "Pedal height moves with the suspension setting: 225 to 313 mm.",
           "The stanchions are 6061-T6 aluminium, precision ground and anodised, like a bicycle fork.",
           "A 20 W headlight with a cut-off beam so it does not blind oncoming traffic; three modes and auto brightness.",
-          "Fast charging up to 20 A with a matching charger: about 3 hours to 80%.",
+          "Two charge ports: up to 20 A with matching chargers, a full charge in about 2 hours.",
           "The kickstand folds away on a hard drop instead of snapping, and the mudguard breaks away on impact."
         ]
       },
-      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 90, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": null, "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 3200, "peakW": null, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 90, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 150, "suspType": "hydraulic", "weightKg": 38.8, "chargerA": 5, "chargeH": "4", "fastA": 20, "fastH": "2", "maxLoadKg": 136, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "leaperkim-patton-s",
@@ -285,7 +287,7 @@ window.CATALOG = {
           "Two charge ports: up to 20 A with matching chargers."
         ]
       },
-      "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "maxLoadKg": 145, "climbDeg": 40, "ip": null }
+      "specs": { "motorW": 3000, "peakW": 7000, "batteryWh": 2220, "voltage": 126, "cells": "Samsung 50S 21700, 30S4P", "topSpeedKmh": 80, "rangeKm": 100, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 36.5, "chargerA": 5, "chargeH": "4.5", "fastA": 20, "fastH": "1.5", "maxLoadKg": 145, "climbDeg": 40, "ip": null }
     },
     {
       "id": "leaperkim-lynx-s",
@@ -303,17 +305,17 @@ window.CATALOG = {
           "36 MOSFET-იანი კონტროლერი 840 ამპერი პიკური დენით; ძრავს ტემპერატურის სენსორი აქვს.",
           "90 მმ FastAce ჰიდრავლიკური ამორტიზაცია ზამბარით და ჰაერის კამერით; შეკუმშვა და დაბრუნება ორივე მხარეს რეგულირდება.",
           "დიდი წვეტიანი პედლები სამ სიმაღლეზე ყენდება. ფეხის კაუჭები და დარტყმაგამძლე დასაკეცი სადგამი ჩაშენებულია.",
-          "დატენვა 20 ამპერამდე (დაახლოებით 3 kW): 10 ამპერით ბატარეა დაახლოებით 2 საათში ივსება."
+          "დატენვა 15 ამპერამდე (მწარმოებლის ინსტრუქციით): 10 ამპერით ბატარეა დაახლოებით 2 საათში ივსება.",
         ],
         "en": [
           "C42 motor with a 42 mm stator: 25% more power than the original Lynx.",
           "A 36-MOSFET controller with 840 A peak current; the motor has a temperature sensor.",
           "90 mm FastAce hydraulic suspension with a coil spring and an air chamber; compression and rebound adjust on both sides.",
           "Large spiked pedals with three height positions. Toe hooks and a crash-resistant folding kickstand are built in.",
-          "Charging up to 20 A (about 3 kW): at 10 A the pack fills in about 2 hours."
+          "Charging up to 15 A (per the manufacturer's manual): at 10 A the pack fills in about 2 hours."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 100, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "maxLoadKg": 150, "climbDeg": 45, "ip": null }
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 2700, "voltage": 151, "cells": "Samsung 50S 21700", "topSpeedKmh": 100, "rangeKm": 120, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 42.5, "chargerA": 5, "chargeH": "4", "fastA": 15, "fastH": "1.5", "maxLoadKg": 150, "climbDeg": 45, "ip": null }
     },
     {
       "id": "leaperkim-sherman-p",
@@ -343,7 +345,7 @@ window.CATALOG = {
           "Hidden trolley handle, folding kickstand, toe hooks and IPX6 water resistance."
         ]
       },
-      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 120, "rangeKm": 230, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 3800, "peakW": 10000, "batteryWh": 4700, "voltage": 176, "cells": "Samsung 50S 21700, 42S6P", "topSpeedKmh": 120, "rangeKm": 230, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulicAir", "weightKg": 52, "chargerA": 5, "chargeH": "6", "fastA": 20, "fastH": "1.5", "maxLoadKg": 150, "climbDeg": null, "ip": "IPX6" }
     },
     /* KingSong: 14D Pro და 16S Pro kingsong.com-ის მონაცემებიდან (16S Pro: მომხმარებლის
        სახელმძღვანელოც) და ევროპელი გამყიდველებიდან; F18 kingsongeurope.com-ის ცხრილიდან;
@@ -374,7 +376,7 @@ window.CATALOG = {
           "Maximum rider weight 120 kg."
         ]
       },
-      "specs": { "motorW": 800, "peakW": 2400, "batteryWh": 420, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 30, "rangeKm": 40, "tire": "14x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 14.5, "chargerA": 2, "maxLoadKg": 120, "climbDeg": null, "ip": null }
+      "specs": { "motorW": 800, "peakW": 2400, "batteryWh": 420, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 30, "rangeKm": 40, "tire": "14x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 14.5, "chargerA": 2, "chargeH": "3.5", "fastA": 2, "fastH": "3.5", "maxLoadKg": 120, "climbDeg": null, "ip": null }
     },
     {
       "id": "kingsong-16s-pro",
@@ -402,7 +404,7 @@ window.CATALOG = {
           "About 7 hours to charge with the included charger, about 3.5 hours with an optional 5 A fast charger."
         ]
       },
-      "specs": { "motorW": 1200, "peakW": 3800, "batteryWh": 840, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 40, "rangeKm": 80, "tire": "16x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 17.4, "chargerA": 2, "maxLoadKg": 120, "climbDeg": null, "ip": null }
+      "specs": { "motorW": 1200, "peakW": 3800, "batteryWh": 840, "voltage": 67, "cells": "Samsung 35E 18650", "topSpeedKmh": 40, "rangeKm": 80, "tire": "16x2.125", "suspensionMm": 0, "suspType": "none", "weightKg": 17.4, "chargerA": 2, "chargeH": "7", "fastA": 5, "fastH": "3.5", "maxLoadKg": 120, "climbDeg": null, "ip": null }
     },
     {
       "id": "kingsong-f16",
@@ -432,7 +434,7 @@ window.CATALOG = {
           "Carbon-fibre handle, dot-matrix display and over-the-air firmware updates."
         ]
       },
-      "specs": { "motorW": 3500, "peakW": 10000, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 80, "rangeKm": 110, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 38, "chargerA": 5, "maxLoadKg": 120, "climbDeg": 45, "ip": "IP54" }
+      "specs": { "motorW": 3500, "peakW": 10000, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 80, "rangeKm": 110, "tire": "3.0-12", "suspensionMm": 80, "suspType": "hydraulic", "weightKg": 38, "chargerA": 5, "chargeH": "4-5", "fastA": 10, "fastH": "2.5", "maxLoadKg": 120, "climbDeg": 45, "ip": "IP54" }
     },
     {
       "id": "kingsong-f18",
@@ -460,7 +462,7 @@ window.CATALOG = {
           "Magnesium alloy frame, carbon-fibre handle and built-in Apple Find My."
         ]
       },
-      "specs": { "motorW": 5000, "peakW": 9000, "batteryWh": 2664, "voltage": 151, "cells": "Samsung 50S 21700, 36S4P", "topSpeedKmh": 108, "rangeKm": 150, "tire": "2.75-14", "suspensionMm": 100, "suspType": "air", "weightKg": 41, "chargerA": 10, "maxLoadKg": 140, "climbDeg": 45, "ip": "IPX6" }
+      "specs": { "motorW": 5000, "peakW": 9000, "batteryWh": 2664, "voltage": 151, "cells": "Samsung 50S 21700, 36S4P", "topSpeedKmh": 108, "rangeKm": 150, "tire": "2.75-14", "suspensionMm": 100, "suspType": "air", "weightKg": 41, "chargerA": 10, "chargeH": "2-3", "fastA": 20, "fastH": "1-1.5", "maxLoadKg": 140, "climbDeg": 45, "ip": "IPX6" }
     }
   ]
 };

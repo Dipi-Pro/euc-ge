@@ -335,6 +335,10 @@
     function rows(L) {
       var dash = "—";
       var unit = function (v, u) { return v == null ? dash : L.num(v) + " " + u; };
+      /* "2.5-3" -> "2,5–3 სთ" (ენის მიხედვით) */
+      var hours = function (s) {
+        return "~" + String(s).split("-").map(function (x) { return L.num(Number(x)); }).join("–") + " " + L.t("unit.h");
+      };
       return [
         { k: "spec.price", onlyCmp: true, best: "low", num: function (w) { return w.priceGel; }, show: function (w) { return L.price(w.priceGel); } },
         { k: "spec.motor", best: "high", num: function (w) { return w.specs.motorW; }, show: function (w) { return unit(w.specs.motorW, "W"); }, code: "WTT", v: function (w) { return w.specs.motorW; } },
@@ -350,6 +354,12 @@
         { k: "spec.suspType", best: null, show: function (w) { return w.specs.suspType ? L.t("susp." + w.specs.suspType) : dash; }, v: function (w) { return w.specs.suspType ? L.t("susp." + w.specs.suspType) : null; } },
         { k: "spec.weight", best: "low", num: function (w) { return w.specs.weightKg; }, show: function (w) { return unit(w.specs.weightKg, L.t("unit.kg")); }, code: "KGM", v: function (w) { return w.specs.weightKg; } },
         { k: "spec.charger", best: "high", num: function (w) { return w.specs.chargerA; }, show: function (w) { return unit(w.specs.chargerA, "A"); }, code: "AMP", v: function (w) { return w.specs.chargerA; } },
+        /* დატენვის დრო ქარხნული დამტენით, და მაქსიმალური რეკომენდებული დენით */
+        { k: "spec.chargeTime", best: null, show: function (w) { return w.specs.chargeH ? hours(w.specs.chargeH) : dash; },
+          v: function (w) { return w.specs.chargeH ? hours(w.specs.chargeH) : null; } },
+        { k: "spec.fastCharge", best: null,
+          show: function (w) { return w.specs.fastA ? w.specs.fastA + " A · " + hours(w.specs.fastH) : dash; },
+          v: function (w) { return w.specs.fastA ? w.specs.fastA + " A, " + hours(w.specs.fastH) : null; } },
         { k: "spec.load", best: "high", num: function (w) { return w.specs.maxLoadKg; }, show: function (w) { return unit(w.specs.maxLoadKg, L.t("unit.kg")); }, code: "KGM", v: function (w) { return w.specs.maxLoadKg; } },
         { k: "spec.climb", best: "high", num: function (w) { return w.specs.climbDeg; }, show: function (w) { return w.specs.climbDeg == null ? dash : w.specs.climbDeg + "°"; }, code: "DD", v: function (w) { return w.specs.climbDeg; } },
         { k: "spec.ip", best: null, show: function (w) { return w.specs.ip || dash; }, v: function (w) { return w.specs.ip; } },
@@ -1098,7 +1108,8 @@
       md.push("- [" + fullName(w) + "](" + abs(U.product("en", w)) + "): " + E.price(w.priceGel).replace(" ₾", " GEL") + ". " +
         E.num(s.motorW) + " W motor" + (s.peakW ? " (" + E.num(s.peakW) + " W peak)" : "") + ", " + E.num(s.batteryWh) + " Wh, " + s.voltage + " V, top speed " +
         s.topSpeedKmh + " km/h, range up to " + s.rangeKm + " km, " + (s.weightKg != null ? s.weightKg + " kg, " : "") +
-        (s.suspensionMm ? s.suspensionMm + " mm suspension, " : "") + "tyre " + s.tire + ". Georgian page: " + abs(U.product("ka", w)));
+        (s.suspensionMm ? s.suspensionMm + " mm suspension, " : "") + "tyre " + s.tire +
+        (s.chargeH ? ". Charging: ~" + s.chargeH + " h with the included " + s.chargerA + " A charger" + (s.fastA && s.fastA !== s.chargerA ? ", ~" + s.fastH + " h at the max. recommended " + s.fastA + " A" : "") : "") + ". Georgian page: " + abs(U.product("ka", w)));
     });
     md.push("");
     md.push("## Pages");
