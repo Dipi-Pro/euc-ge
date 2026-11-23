@@ -251,7 +251,7 @@ window.CATALOG = {
           "Kickstand, trolley handle, two-piece mudguard and three-mode lights with a daytime running light."
         ]
       },
-      "specs": { "motorW": 2000, "peakW": null, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "chargeH": "2.5-3", "fastA": 10, "fastH": "1.5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 2000, "peakW": 5000, "batteryWh": 1110, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 50, "rangeKm": 60, "tire": "3.0-10", "suspensionMm": 70, "suspType": "hydraulic", "weightKg": 24.5, "chargerA": 5, "chargeH": "2.5-3", "fastA": 10, "fastH": "1.5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-aeon",
@@ -309,7 +309,7 @@ window.CATALOG = {
           "Over-the-air firmware updates from the Nosfet app. The BMS protects against short circuit, overcharge and overheating."
         ]
       },
-      "specs": { "motorW": 2500, "peakW": null, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 110, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "chargeH": "5", "fastA": 5, "fastH": "5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
+      "specs": { "motorW": 2500, "peakW": 10000, "batteryWh": 2200, "voltage": 126, "cells": "Samsung 50S 21700", "topSpeedKmh": 75, "rangeKm": 110, "tire": "80/90-14", "suspensionMm": 90, "suspType": "hydraulic", "weightKg": 33, "chargerA": 5, "chargeH": "5", "fastA": 5, "fastH": "5", "maxLoadKg": 120, "climbDeg": null, "ip": "IPX6" }
     },
     {
       "id": "nosfet-apex",
