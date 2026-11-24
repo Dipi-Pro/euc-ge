@@ -464,7 +464,7 @@ window.CATALOG = {
       "id": "kingsong-16s-pro",
       "brand": "kingsong",
       "model": "16S Pro",
-      "priceGel": 2300,
+      "priceGel": 2500,
       "oldPriceGel": null,
       "blurb": {
         "ka": "1200 W ძრავი (3800 W პიკზე), 840 Wh ბატარეა და 16-ინჩიანი ბორბალი 17.4 კილოგრამად. 16S Pro ქალაქის მონობორბალია UL 2272 სერტიფიკატით: 14D Pro-ზე ორჯერ დიდი ბატარეით და გარბენით.",
@@ -544,7 +544,7 @@ window.CATALOG = {
           "Magnesium alloy frame, carbon-fibre handle and built-in Apple Find My."
         ]
       },
-      "specs": { "motorW": 5000, "peakW": 9000, "batteryWh": 2664, "voltage": 151, "cells": "Samsung 50S 21700, 36S4P", "topSpeedKmh": 108, "rangeKm": 130, "tire": "2.75-14", "suspensionMm": 100, "suspType": "air", "weightKg": 41, "chargerA": 10, "chargeH": "2-3", "fastA": 20, "fastH": "1-1.5", "maxLoadKg": 140, "climbDeg": 45, "ip": "IPX6" }
+      "specs": { "motorW": 5000, "peakW": 9000, "batteryWh": 2664, "voltage": 151, "cells": "Samsung 50S 21700, 36S4P", "topSpeedKmh": 90, "rangeKm": 130, "tire": "2.75-14", "suspensionMm": 100, "suspType": "air", "weightKg": 41, "chargerA": 10, "chargeH": "2-3", "fastA": 20, "fastH": "1-1.5", "maxLoadKg": 140, "climbDeg": 45, "ip": "IPX6" }
     }
   ]
 };
